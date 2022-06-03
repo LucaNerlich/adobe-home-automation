@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import {sum} from "../index";
 
 // hello world test, delete sooner or later
