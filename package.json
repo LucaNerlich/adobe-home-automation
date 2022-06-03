@@ -13,6 +13,7 @@
     },
     "scripts": {
         "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
+        "serve": "esbuild src/index.ts --bundle --servedir=./ --outdir=./ --sourcemap --loader:.html=text",
         "build": "npm run test && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
         "build-prod": "npm run test && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
         "test": "jest"
