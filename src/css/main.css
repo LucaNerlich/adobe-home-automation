@@ -11,27 +11,27 @@ body {
 
 /* Left 50% Container */
 .container-dashboard {
-    min-height: 100vh;
-    width: 50%;
+    min-height: var(--container-height);
+    width: var(--container-width);
+    border: var(--simple-border);
     display: flex;
     flex-direction: column;
-    border: var(--simple-border);
 }
 
 /* Inside Left Container Top*/
 .container-forms {
-    height: 50%;
-    border-bottom: 5px solid #000000;
+    height: var(--container-width);
+    border-bottom: var(--simple-border);
 }
 
 /* Inside Left Container Bottom*/
 .container-provider {
-    height: 50%;
+    height: var(--container-width);
 }
 
 /* Right 50% Container */
 .container-consumer {
-    min-height: 100vh;
+    min-height: var(--container-height);
     width: 50%;
     border: var(--simple-border);
 }

@@ -1,4 +1,8 @@
 :root {
     --color-black: #000000;
+
+    /* CONTAINER */
+    --container-height: 90vh;
+    --container-width: 50%;
     --simple-border: 5px solid var(--color-black);
 }
