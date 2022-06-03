@@ -248,3 +248,7 @@ yarn.lock
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+index.js
+index.js.map
