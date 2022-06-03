@@ -7,6 +7,7 @@ export abstract class Consumer {
     abstract label: string;
 
     abstract getDisplayElement(): HTMLElement;
+    abstract getElement(): HTMLElement;
 
     abstract update(eventData: EventData): void;
 

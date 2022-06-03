@@ -50,8 +50,7 @@ lightbulb?.addEventListener("lightswitch", consumeEvent)
 TOPIC_CONSUMER_MAP.set("lightswitch", lightbulb);
 console.log("topicConsumerMap", TOPIC_CONSUMER_MAP);
 
+// dummy consumer
 let consumerContainer = getConsumerContainer();
 let simpleConsumer = new SimpleConsumer("some-consumer-label", new BooleanStrategy());
-let displayElement = simpleConsumer.getDisplayElement();
-console.log("displayElement", displayElement);
-consumerContainer?.appendChild(displayElement)
+consumerContainer?.appendChild(simpleConsumer.getElement())

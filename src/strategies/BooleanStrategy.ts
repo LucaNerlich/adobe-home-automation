@@ -2,6 +2,9 @@ import {Strategy} from "./Strategy";
 import {EventData} from "../entities/EventData";
 import {getConsumerWrapper} from "../domUtils";
 
+const classOff = "bool-strategy-off";
+const classOn = "bool-strategy-on";
+
 export class BooleanStrategy extends Strategy {
     label: string;
 
@@ -13,7 +16,7 @@ export class BooleanStrategy extends Strategy {
     getDisplayElement(eventData: EventData): HTMLElement {
         const state: boolean = BooleanStrategy.parseValue(eventData);
         const consumerWrapper = getConsumerWrapper(eventData.label);
-        const consumerDisplay = document.createElement("div");
+        const consumerDisplay = document.createElement("span");
 
         BooleanStrategy.setValue(state, consumerDisplay);
 
@@ -24,20 +27,20 @@ export class BooleanStrategy extends Strategy {
         return eventData.value;
     }
 
-    private static setValue(state: boolean, consumerDisplay: HTMLDivElement) {
+    private static setValue(state: boolean, consumerDisplay: HTMLSpanElement) {
         if (state) {
             consumerDisplay.textContent = "ON";
-            if (consumerDisplay.classList.contains("bool-strategy-off")) {
-                consumerDisplay.classList.remove("bool-strategy-off")
+            if (consumerDisplay.classList.contains(classOff)) {
+                consumerDisplay.classList.remove(classOff)
             }
 
-            consumerDisplay.classList.add("bool-strategy-on")
+            consumerDisplay.classList.add(classOn)
         } else {
             consumerDisplay.textContent = "OFF";
-            if (consumerDisplay.classList.contains("bool-strategy-on")) {
-                consumerDisplay.classList.remove("bool-strategy-on")
+            if (consumerDisplay.classList.contains(classOn)) {
+                consumerDisplay.classList.remove(classOn)
             }
-            consumerDisplay.classList.add("bool-strategy-off")
+            consumerDisplay.classList.add(classOff)
         }
     }
 }
