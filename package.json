@@ -2,11 +2,11 @@
     "name": "adobe-home-automation",
     "description": "Technical Assessment - Senior Software Development Engineer",
     "version": "1.0.0",
-    "main": "src/js/index.ts",
+    "main": "index.js",
     "dependencies": {
-        "esbuild": "^0.14.42"
     },
     "devDependencies": {
+        "esbuild": "^0.14.42",
         "@types/jest": "^28.1.0",
         "esbuild-jest": "^0.5.0",
         "jest": "^28.1.0",
