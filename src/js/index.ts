@@ -1,5 +1,5 @@
 function test() {
-    console.log("ping");
+    console.log("ping2");
 }
 
 export function sum(a: number, b: number) {

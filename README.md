@@ -17,6 +17,11 @@
 
 ### Interpretation
 
+TODO pub/sub / event handling / bus. Make it generic, able to add "any" kind of household smart item.
+
+I am keeping any frontend styling to a minimum and simple, since I want to focus on the underlying logic and do not "
+waste" time.
+
 ## How to run
 
 **Note, I've copied the "final" production build fragments to `/assignment`.**
@@ -43,8 +48,9 @@ I'm fully aware that build-fragments should not be added to version control in a
     - [x] Setup Typescript
     - [x] ~~Integrate SASS~~ lets keep it simple
     - [x] Ensure that the production build works and runs independently of this project
-- [ ] Add Jest for script unit tests 
-- [ ] Setup skeleton div structure
+- [x] Add Jest Setup for unit tests
+- [x] Setup skeleton div structure
+- [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
 - [ ] Copy "final" build files to `/assignment`
 
 ## Documentation
