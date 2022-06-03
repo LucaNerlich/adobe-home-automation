@@ -14,14 +14,17 @@ export function getFormsContainer(): HTMLElement | null {
 
 /**
  * Returns a simple div to be used as a generic wrapper around every consumer item.
- * @param title -> optional value, specify to add a data-title attribute
+ * @param id -> unique uuid
+ * @param label -> optional value, specify to add a data-label attribute
  */
-export function getConsumerWrapper(title?: string): HTMLElement {
+export function getConsumerWrapper(id: string, label?: string): HTMLElement {
     const consumerRootContainer = document.createElement("div");
+    consumerRootContainer.id = id
     consumerRootContainer.classList.add("consumer-item")
 
-    if (title && title.length > 0) {
-        consumerRootContainer.setAttribute("data-title", title.replace(" ", "-"))
+    if (label && label.length > 0) {
+        const labelAttribute = label.replace(" ", "-");
+        consumerRootContainer.setAttribute("data-label", labelAttribute)
     }
 
     return consumerRootContainer;

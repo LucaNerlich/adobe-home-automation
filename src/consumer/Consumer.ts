@@ -1,8 +1,7 @@
 import {Strategy} from "../strategies/Strategy";
-import {getRandomID} from "../constants";
 
 export abstract class Consumer {
-    id: string = getRandomID();
+    abstract id: string;
     abstract label: string;
 
     abstract getDisplayElement(): HTMLElement;

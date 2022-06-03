@@ -20,7 +20,7 @@ export class SimpleConsumer extends Consumer {
     getDisplayElement(): HTMLElement {
         // initialize with default data
         return this._strategy.getDisplayElement({
-            label: "some-simple-consumer",
+            label: "some-float-consumer",
             id: this.id,
             value: false,
         });
@@ -36,4 +36,6 @@ export class SimpleConsumer extends Consumer {
     private getLabel() {
         return this.label ? this.label : "simple-consumer";
     }
+
+
 }
