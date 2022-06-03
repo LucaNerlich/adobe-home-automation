@@ -67,7 +67,10 @@ I'm fully aware that build-fragments should not be added to version control in a
     - [x] Ensure that the production build works and runs independently of this project
 - [x] Add Jest Setup for unit tests
 - [x] create "dummy" provider element + event
-- [ ] create "dummy" consumer element
+- [x] create "dummy" consumer element
+- [ ] create generic provider
+- [ ] create generic consumer
+- [ ] investigate how the strategy pattern could be used
 - Must have Device Types
     - [ ] boolean -> light on/off, blinds open/closed
     - [ ] float 0-1 -> e.g dimmable light

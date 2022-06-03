@@ -1,14 +1,9 @@
 import {EventData} from "./entities/EventData";
-
-function test() {
-    console.log("ping2");
-}
+import {TOPIC_CONSUMER_MAP} from "./constants";
 
 export function sum(a: number, b: number) {
     return a + b;
 }
-
-test();
 
 const customEvent: CustomEvent = new CustomEvent('lightswitch', {
     detail: {
@@ -17,13 +12,15 @@ const customEvent: CustomEvent = new CustomEvent('lightswitch', {
     } as EventData
 });
 
-function handleEvent(this: HTMLElement, event: Event) {
+
+function provideEvent(this: HTMLElement, event: Event) {
     event.preventDefault();
+    this.textContent = "off"
     this.style.backgroundColor = "red";
-    console.log("handleEvent");
-    console.log("event", event.type);
+    console.log("event.type", event.type);
     if (event.type === "click") {
         lightswitch?.dispatchEvent(customEvent)
+        lightbulb?.dispatchEvent(customEvent)
     }
     if (event.type === "lightswitch") {
         const eventData: EventData = (<CustomEvent>event).detail as EventData;
@@ -31,6 +28,21 @@ function handleEvent(this: HTMLElement, event: Event) {
     }
 }
 
+function consumeEvent(this: HTMLElement, event: Event) {
+    event.preventDefault();
+    console.log("lightbulb", lightbulb);
+    const eventData: EventData = (<CustomEvent>event).detail as EventData;
+    this.textContent = eventData.value
+}
+
 const lightswitch = document.getElementById("lightswitch");
-lightswitch?.addEventListener("lightswitch", handleEvent)
-lightswitch?.addEventListener("click", handleEvent)
+lightswitch?.addEventListener("lightswitch", provideEvent)
+lightswitch?.addEventListener("click", provideEvent)
+
+
+const lightbulb = document.getElementById("lightbulb");
+lightbulb?.addEventListener("lightswitch", consumeEvent)
+
+
+TOPIC_CONSUMER_MAP.set("lightswitch", lightbulb);
+console.log("topicConsumerMap", TOPIC_CONSUMER_MAP);
