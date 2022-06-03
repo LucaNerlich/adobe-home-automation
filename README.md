@@ -17,10 +17,27 @@
 
 ### Interpretation
 
-TODO pub/sub / event handling / bus. Make it generic, able to add "any" kind of household smart item.
+Write JavaScript that enables the (browser) pages visitor to add new (smart home) devices of type X, where X can be
+anything such as a light switch, heating or window blinds.
+To facilitate this generic approach, the implemented logic should be able to handle multiple kind of input/output types.
 
-I am keeping any frontend styling to a minimum and simple, since I want to focus on the underlying logic and do not "
-waste" time.
+The simplest example is the "on / off (boolean value)" state for any electric circuit (e.g lightswitch).
+This could be extended by adding multiple light sources to the same switch.
+Additionally, one could imagine that the light itself is dimmamble -> the app needs to handle float values now.
+
+I am envisioning a dashboard that consists of three different panes.
+A form to add a new device.
+A panel to control such added devices, as well as a panel that visualizes each device's state.
+
+The communication between the "hub" (control dashboard) and its devices is a "publish / subscribe" architecture.
+In larger applications, this would be handled by a messsage queue, such as Apache Kafka or RabbitMQ.
+However, due to the size and constrains of this app, I will try to build something similar, but simplified.
+
+The "configuration"
+panel publishes state changes for a topic and all devices that subscribe to this topic consume that update.
+
+On a side note, I am keeping any frontend styling to a minimum and simple,
+since I want to focus on the underlying logic and not "waste" time.
 
 ## How to run
 
@@ -59,3 +76,5 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 - <https://esbuild.github.io/>
 - <https://dev.to/marcinwosinek/esbuild-in-a-simple-html-js-usecase-h1d>
+- <https://css-tricks.com/lets-create-a-lightweight-native-event-bus-in-javascript/>
+- <https://pierfrancesco-soffritti.medium.com/create-a-simple-event-bus-in-javascript-8aa0370b3969>
