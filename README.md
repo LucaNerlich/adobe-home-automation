@@ -57,6 +57,11 @@ I'm fully aware that build-fragments should not be added to version control in a
     1. index.html references the built scripts and stylesheets.
     2. Everything runs self-contained
 
+## Documentation
+
+- Entry-file Html: `assignment/index.html`
+- Entry-file Scripts: `assignment/index.js`
+
 ## ToDos
 
 - [x] Initial Repository Setup
@@ -80,16 +85,13 @@ I'm fully aware that build-fragments should not be added to version control in a
     - [ ] set timer for X -> close blinds at 12pm
 - [x] Setup skeleton div structure
 - [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
+- [ ] add Demo Screenshot to README
+- [ ] add table of contents to README
 - [ ] Copy "final" build files to `/assignment`
-  - index.html
-  - index.js
-  - index.css
-  - /css/*.css
-
-## Documentation
-
-- Entry-file Html: `assignment/index.html`
-- Entry-file Scripts: `assignment/index.js`
+    - index.html
+    - index.js
+    - index.css
+    - /css/*.css
 
 ## References
 
