@@ -1,6 +1,5 @@
 import {Strategy} from "./Strategy";
 import {EventData} from "../entities/EventData";
-import {getConsumerWrapper} from "../domUtils";
 
 const classOff = "bool-strategy-off";
 const classOn = "bool-strategy-on";
@@ -13,14 +12,13 @@ export class BooleanStrategy extends Strategy {
         this.label = label ? label : "";
     }
 
-    getDisplayElement(eventData: EventData): HTMLElement {
+    getDisplayElement(eventData: EventData): HTMLSpanElement {
         const state: boolean = BooleanStrategy.parseValue(eventData);
-        const consumerWrapper = getConsumerWrapper(eventData.label);
         const consumerDisplay = document.createElement("span");
 
         BooleanStrategy.setValue(state, consumerDisplay);
 
-        return consumerWrapper.appendChild(consumerDisplay);
+        return consumerDisplay;
     }
 
     private static parseValue(eventData: EventData) {

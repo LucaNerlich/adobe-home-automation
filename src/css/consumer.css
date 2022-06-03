@@ -5,3 +5,9 @@
 .bool-strategy-on {
     background-color: #10a809;
 }
+
+.consumer-item {
+    padding: 1em;
+    margin: 1em;
+    border-bottom: var(--border-2);
+}

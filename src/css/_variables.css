@@ -4,5 +4,6 @@
     /* CONTAINER */
     --container-height: 90vh;
     --container-width: 50%;
-    --simple-border: 5px solid var(--color-black);
+    --border-5: 5px solid var(--color-black);
+    --border-2: 2px solid var(--color-black);
 }

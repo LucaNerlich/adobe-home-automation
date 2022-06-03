@@ -1,6 +1,7 @@
 import {Consumer} from "./Consumer";
 import {EventData} from "../entities/EventData";
 import {Strategy} from "../strategies/Strategy";
+import {getConsumerWrapper} from "../domUtils";
 
 export class SimpleConsumer extends Consumer {
     label: string;
@@ -26,11 +27,11 @@ export class SimpleConsumer extends Consumer {
     }
 
     getElement(): HTMLElement {
-        const simpleConsumerElement = document.createElement("div");
-        simpleConsumerElement.classList.add(this.getLabel())
-        simpleConsumerElement.textContent = this.getLabel() + ": "
-        simpleConsumerElement.appendChild(this.getDisplayElement())
-        return simpleConsumerElement;
+        const consumerWrapper = getConsumerWrapper(this.getLabel());
+        consumerWrapper.classList.add(this.getLabel())
+        consumerWrapper.textContent = this.getLabel() + ": "
+        consumerWrapper.appendChild(this.getDisplayElement())
+        return consumerWrapper;
     }
 
     private getLabel() {
