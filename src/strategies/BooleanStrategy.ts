@@ -22,7 +22,11 @@ export class BooleanStrategy extends Strategy {
     }
 
     private static parseValue(eventData: EventData) {
-        return eventData.value;
+        return (
+            (eventData.value > 0 || eventData.value < 0) ||
+            (eventData.value === 'true') ||
+            (eventData.value === true)
+        );
     }
 
     private static setValue(state: boolean, consumerDisplay: HTMLSpanElement) {

@@ -3,6 +3,7 @@ import {addGlobalConsumer, TOPIC_CONSUMER_MAP} from "./constants";
 import {getConsumerContainer} from "./domUtils";
 import {SimpleConsumer} from "./consumer/SimpleConsumer";
 import {BooleanStrategy} from "./strategies/BooleanStrategy";
+import {NumberStrategy} from "./strategies/NumberStrategy";
 
 export function sum(a: number, b: number) {
     return a + b;
@@ -33,7 +34,7 @@ function provideEvent(this: HTMLElement, event: Event) {
     })
 }
 
-function consumeEvent(this: HTMLElement, event: Event) {
+function dummyEventHandler(this: HTMLElement, event: Event) {
     event.preventDefault();
     const eventData: EventData = (<CustomEvent>event).detail as EventData;
     console.log("eventData", eventData);
@@ -53,14 +54,20 @@ function ping() {
 // dummy consumer
 let consumerContainer = getConsumerContainer();
 let simpleConsumer = new SimpleConsumer("kitchen-light", new BooleanStrategy(), ping);
-let simpleConsumerElement = simpleConsumer.getElement();
-simpleConsumerElement?.addEventListener("lightswitch", consumeEvent)
-consumerContainer?.appendChild(simpleConsumerElement)
+let boolConsumer1 = simpleConsumer.getElement();
+boolConsumer1?.addEventListener("lightswitch", dummyEventHandler)
+consumerContainer?.appendChild(boolConsumer1)
 
 let simpleConsumer2 = new SimpleConsumer("kitchen-light-secondary", new BooleanStrategy(), ping);
-let simpleConsumerElement2 = simpleConsumer2.getElement();
-simpleConsumerElement2?.addEventListener("lightswitch", consumeEvent)
-consumerContainer?.appendChild(simpleConsumerElement2)
+let boolConsumer2 = simpleConsumer2.getElement();
+boolConsumer2?.addEventListener("lightswitch", dummyEventHandler)
+consumerContainer?.appendChild(boolConsumer2)
 
-addGlobalConsumer("lightswitch", simpleConsumerElement)
-addGlobalConsumer("lightswitch", simpleConsumerElement2)
+let simpleConsumer3 = new SimpleConsumer("living-room-heater", new NumberStrategy(), ping);
+let numberConsumer1 = simpleConsumer3.getElement();
+numberConsumer1?.addEventListener("lightswitch", dummyEventHandler)
+consumerContainer?.appendChild(numberConsumer1)
+
+addGlobalConsumer("lightswitch", boolConsumer1)
+addGlobalConsumer("lightswitch", boolConsumer2)
+addGlobalConsumer("lightswitch", numberConsumer1)
