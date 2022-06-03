@@ -99,5 +99,6 @@ I'm fully aware that build-fragments should not be added to version control in a
 - <https://pierfrancesco-soffritti.medium.com/create-a-simple-event-bus-in-javascript-8aa0370b3969>
 - <https://www.w3schools.com/html/html_forms.asp>
 - <https://www.dofactory.com/javascript/design-patterns/strategy>
+- <https://refactoring.guru/design-patterns/strategy/typescript/example>
 - <https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events>
 - <https://medium.com/geekculture/html-event-handling-in-typescript-b9ca7178d912>

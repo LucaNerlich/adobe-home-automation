@@ -1,5 +1,8 @@
 import {EventData} from "./entities/EventData";
 import {TOPIC_CONSUMER_MAP} from "./constants";
+import {getConsumerContainer} from "./domUtils";
+import {SimpleConsumer} from "./consumer/SimpleConsumer";
+import {BooleanStrategy} from "./strategies/BooleanStrategy";
 
 export function sum(a: number, b: number) {
     return a + b;
@@ -46,3 +49,9 @@ lightbulb?.addEventListener("lightswitch", consumeEvent)
 
 TOPIC_CONSUMER_MAP.set("lightswitch", lightbulb);
 console.log("topicConsumerMap", TOPIC_CONSUMER_MAP);
+
+let consumerContainer = getConsumerContainer();
+let simpleConsumer = new SimpleConsumer("some-consumer-label", new BooleanStrategy());
+let displayElement = simpleConsumer.getDisplayElement();
+console.log("displayElement", displayElement);
+consumerContainer?.appendChild(displayElement)
