@@ -66,11 +66,23 @@ I'm fully aware that build-fragments should not be added to version control in a
     - [x] ~~Integrate SASS~~ lets keep it simple
     - [x] Ensure that the production build works and runs independently of this project
 - [x] Add Jest Setup for unit tests
+- [x] create "dummy" provider element + event
+- [ ] create "dummy" consumer element
+- Must have Device Types
+    - [ ] boolean -> light on/off, blinds open/closed
+    - [ ] float 0-1 -> e.g dimmable light
+    - [ ] float -> heating
+- Nice to have Device Types
+    - [ ] color (picker/value) -> rgb lights
+    - [ ] set timer for X -> close blinds at 12pm
 - [x] Setup skeleton div structure
 - [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
 - [ ] Copy "final" build files to `/assignment`
 
 ## Documentation
+
+- Entry-file Html: `assignment/index.html`
+- Entry-file Scripts: `assignment/index.js`
 
 ## References
 
@@ -78,3 +90,7 @@ I'm fully aware that build-fragments should not be added to version control in a
 - <https://dev.to/marcinwosinek/esbuild-in-a-simple-html-js-usecase-h1d>
 - <https://css-tricks.com/lets-create-a-lightweight-native-event-bus-in-javascript/>
 - <https://pierfrancesco-soffritti.medium.com/create-a-simple-event-bus-in-javascript-8aa0370b3969>
+- <https://www.w3schools.com/html/html_forms.asp>
+- <https://www.dofactory.com/javascript/design-patterns/strategy>
+- <https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events>
+- <https://medium.com/geekculture/html-event-handling-in-typescript-b9ca7178d912>
