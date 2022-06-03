@@ -39,11 +39,16 @@ function dummyEventHandler(this: HTMLElement, event: Event) {
     const eventData: EventData = (<CustomEvent>event).detail as EventData;
     console.log("eventData", eventData);
 
-    this.textContent = eventData.value
+    const displaySpan = this.querySelector("span:first-of-type");
+
+    // todo move to consume / strategy and handle properly
+    if (displaySpan) {
+        displaySpan.textContent = eventData.value
+    }
+    console.log("displaySpan", displaySpan);
 }
 
 const lightswitch = document.getElementById("lightswitch");
-lightswitch?.addEventListener("lightswitch", provideEvent)
 lightswitch?.addEventListener("click", provideEvent)
 
 

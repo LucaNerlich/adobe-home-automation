@@ -8,6 +8,8 @@ export abstract class Consumer {
 
     abstract getElement(): HTMLElement;
 
+    abstract addEventHandler(topic: string, callback: Function): void;
+
     abstract update: Function;
 
     abstract _strategy: Strategy;

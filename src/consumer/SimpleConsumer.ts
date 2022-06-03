@@ -1,7 +1,7 @@
 import {Consumer} from "./Consumer";
 import {Strategy} from "../strategies/Strategy";
 import {getConsumerWrapper} from "../domUtils";
-import {getRandomID} from "../constants";
+import {addGlobalConsumer, getRandomID} from "../constants";
 
 export class SimpleConsumer extends Consumer {
     id: string;
@@ -35,5 +35,10 @@ export class SimpleConsumer extends Consumer {
 
     private getLabel() {
         return this.label ? this.label : "simple-consumer";
+    }
+
+    addEventHandler(topic: string, callback: any): void {
+        addGlobalConsumer(topic, this.getElement())
+        this.getElement().addEventListener(topic, callback)
     }
 }
