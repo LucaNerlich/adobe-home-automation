@@ -1,5 +1,4 @@
 import {Strategy} from "../strategies/Strategy";
-import {EventData} from "../entities/EventData";
 import {getRandomID} from "../constants";
 
 export abstract class Consumer {
@@ -7,9 +6,10 @@ export abstract class Consumer {
     abstract label: string;
 
     abstract getDisplayElement(): HTMLElement;
+
     abstract getElement(): HTMLElement;
 
-    abstract update(eventData: EventData): void;
+    abstract update: Function;
 
     abstract _strategy: Strategy;
 

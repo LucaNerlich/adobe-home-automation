@@ -1,5 +1,15 @@
-// App
-export const TOPIC_CONSUMER_MAP = new Map<string, HTMLElement | null>();
+// Topic -> Consumers Map
+export const TOPIC_CONSUMER_MAP = new Map<string, Array<HTMLElement>>();
+
+export function addGlobalConsumer(topic: string, consumer: HTMLElement | null): void {
+    if (consumer) {
+        if (TOPIC_CONSUMER_MAP.has(topic)) {
+            TOPIC_CONSUMER_MAP.get(topic)?.push(consumer);
+        } else {
+            TOPIC_CONSUMER_MAP.set(topic, [consumer])
+        }
+    }
+}
 
 // DOM
 export const PROVIDER_CONTAINER_ID: string = "provider";

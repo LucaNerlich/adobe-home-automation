@@ -1,5 +1,5 @@
 import {EventData} from "./entities/EventData";
-import {TOPIC_CONSUMER_MAP} from "./constants";
+import {addGlobalConsumer, TOPIC_CONSUMER_MAP} from "./constants";
 import {getConsumerContainer} from "./domUtils";
 import {SimpleConsumer} from "./consumer/SimpleConsumer";
 import {BooleanStrategy} from "./strategies/BooleanStrategy";
@@ -17,24 +17,27 @@ const customEvent: CustomEvent = new CustomEvent('lightswitch', {
 
 
 function provideEvent(this: HTMLElement, event: Event) {
+    console.log("dispatching custom event");
+
     event.preventDefault();
-    this.textContent = "off"
+    this.textContent = "clicked"
     this.style.backgroundColor = "red";
     console.log("event.type", event.type);
-    if (event.type === "click") {
-        lightswitch?.dispatchEvent(customEvent)
-        lightbulb?.dispatchEvent(customEvent)
-    }
-    if (event.type === "lightswitch") {
-        const eventData: EventData = (<CustomEvent>event).detail as EventData;
-        console.log("eventData", eventData);
-    }
+
+    const eventData: EventData = (<CustomEvent>event).detail as EventData;
+    console.log("eventData", eventData);
+
+    const consumers = TOPIC_CONSUMER_MAP.get(customEvent.type);
+    consumers?.forEach(item => {
+        item.dispatchEvent(customEvent)
+    })
 }
 
 function consumeEvent(this: HTMLElement, event: Event) {
     event.preventDefault();
-    console.log("lightbulb", lightbulb);
     const eventData: EventData = (<CustomEvent>event).detail as EventData;
+    console.log("eventData", eventData);
+
     this.textContent = eventData.value
 }
 
@@ -43,14 +46,21 @@ lightswitch?.addEventListener("lightswitch", provideEvent)
 lightswitch?.addEventListener("click", provideEvent)
 
 
-const lightbulb = document.getElementById("lightbulb");
-lightbulb?.addEventListener("lightswitch", consumeEvent)
-
-
-TOPIC_CONSUMER_MAP.set("lightswitch", lightbulb);
-console.log("topicConsumerMap", TOPIC_CONSUMER_MAP);
+function ping() {
+    console.log("ping in consumer");
+}
 
 // dummy consumer
 let consumerContainer = getConsumerContainer();
-let simpleConsumer = new SimpleConsumer("some-consumer-label", new BooleanStrategy());
-consumerContainer?.appendChild(simpleConsumer.getElement())
+let simpleConsumer = new SimpleConsumer("kitchen-light", new BooleanStrategy(), ping);
+let simpleConsumerElement = simpleConsumer.getElement();
+simpleConsumerElement?.addEventListener("lightswitch", consumeEvent)
+consumerContainer?.appendChild(simpleConsumerElement)
+
+let simpleConsumer2 = new SimpleConsumer("kitchen-light-secondary", new BooleanStrategy(), ping);
+let simpleConsumerElement2 = simpleConsumer2.getElement();
+simpleConsumerElement2?.addEventListener("lightswitch", consumeEvent)
+consumerContainer?.appendChild(simpleConsumerElement2)
+
+addGlobalConsumer("lightswitch", simpleConsumerElement)
+addGlobalConsumer("lightswitch", simpleConsumerElement2)

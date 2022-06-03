@@ -1,16 +1,17 @@
 import {Consumer} from "./Consumer";
-import {EventData} from "../entities/EventData";
 import {Strategy} from "../strategies/Strategy";
 import {getConsumerWrapper} from "../domUtils";
 
 export class SimpleConsumer extends Consumer {
     label: string;
     _strategy: Strategy;
+    update: Function;
 
-    constructor(label: string, strategy: Strategy) {
+    constructor(label: string, strategy: Strategy, eventCallback: Function) {
         super();
         this.label = label;
         this._strategy = strategy;
+        this.update = eventCallback
     }
 
     getDisplayElement(): HTMLElement {
@@ -20,10 +21,6 @@ export class SimpleConsumer extends Consumer {
             id: this.id,
             value: false,
         });
-    }
-
-    update(eventData: EventData): void {
-        console.log("eventData", eventData);
     }
 
     getElement(): HTMLElement {
@@ -37,4 +34,6 @@ export class SimpleConsumer extends Consumer {
     private getLabel() {
         return this.label ? this.label : "simple-consumer";
     }
+
+
 }
