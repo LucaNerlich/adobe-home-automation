@@ -1,4 +1,4 @@
-@import "_variables.css";
+@import "src/css/_variables.css";
 
 body {
     font-family: sans-serif;

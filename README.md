@@ -81,6 +81,10 @@ I'm fully aware that build-fragments should not be added to version control in a
 - [x] Setup skeleton div structure
 - [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
 - [ ] Copy "final" build files to `/assignment`
+  - index.html
+  - index.js
+  - index.css
+  - /css/*.css
 
 ## Documentation
 

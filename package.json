@@ -13,9 +13,9 @@
         "typescript": "^4.7.2"
     },
     "scripts": {
-        "dev": "esbuild src/js/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
-        "build": "npm run test && esbuild src/js/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
-        "build-prod": "npm run test && esbuild src/js/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
+        "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
+        "build": "npm run test && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
+        "build-prod": "npm run test && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
         "test": "jest"
     },
     "repository": {
