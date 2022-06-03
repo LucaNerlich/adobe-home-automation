@@ -1,0 +1,40 @@
+{
+    "name": "adobe-home-automation",
+    "description": "Technical Assessment - Senior Software Development Engineer",
+    "version": "1.0.0",
+    "main": "src/js/index.ts",
+    "dependencies": {
+        "esbuild": "^0.14.42"
+    },
+    "devDependencies": {
+        "@types/jest": "^28.1.0",
+        "esbuild-jest": "^0.5.0",
+        "jest": "^28.1.0",
+        "typescript": "^4.7.2"
+    },
+    "scripts": {
+        "dev": "esbuild src/js/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
+        "build": "npm run test && esbuild src/js/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
+        "build-prod": "npm run test && esbuild src/js/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LucaNerlich/adobe-home-automation.git"
+    },
+    "author": {
+        "name": "Luca Nerlich",
+        "email": "nerlich@adobe.com",
+        "url": "https://lucanerlich.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/LucaNerlich/adobe-home-automation/issues"
+    },
+    "homepage": "https://github.com/LucaNerlich/adobe-home-automation#readme",
+    "engines": {
+        "node": "16.15.0",
+        "npm": "8.5.5"
+    }
+}
+

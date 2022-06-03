@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/js/index.ts"],
+  "sourcesContent": ["function test() {\n    console.log(\"ping\");\n}\n\nexport function sum(a: number, b: number) {\n    return a + b;\n}\n\ntest();\n\n"],
+  "mappings": ";;AAAA,kBAAgB;AACZ,YAAQ,IAAI,MAAM;AAAA,EACtB;AAEO,eAAa,GAAW,GAAW;AACtC,WAAO,IAAI;AAAA,EACf;AAEA,OAAK;",
+  "names": []
+}
