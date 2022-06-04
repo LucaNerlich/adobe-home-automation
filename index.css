@@ -1,11 +1,11 @@
 @import "src/css/_variables.css";
-@import "src/css/consumer.css";
+@import "src/css/devices.css";
 
 body {
     font-family: sans-serif;
 }
 
-.container {
+.container, .container-forms {
     display: flex;
     flex-direction: row;
 }
@@ -21,8 +21,16 @@ body {
 
 /* Inside Left Container Top*/
 .container-forms {
-    height: var(--container-width);
     border-bottom: var(--border-5);
+}
+
+.container-provider-form {
+    border-right: var(--border-5);
+}
+
+.container-consumer-form, .container-provider-form {
+    width: var(--container-width);
+    min-height: 100%;
 }
 
 /* Inside Left Container Bottom*/
@@ -37,7 +45,7 @@ body {
     border: var(--border-5);
 }
 
-h1, h2 {
+h1, h2, h3 {
     padding-left: 1em;
 }
 
