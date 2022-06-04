@@ -24,6 +24,7 @@ export class NumberStrategy extends Strategy {
         inputElement.setAttribute('min', '0')
         inputElement.setAttribute('max', '1')
         inputElement.setAttribute('step', '0.1')
+        inputElement.setAttribute('placeholder', '% max. value')
         inputElement.addEventListener('change', (event) => {
             const numberField = event.target as HTMLInputElement
             const checkboxEvent = createCustomEvent(topic, randomID, numberField?.valueAsNumber)
