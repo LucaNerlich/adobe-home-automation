@@ -11,6 +11,7 @@
 - [Documentation](#documentation)
     - [Demo Content](#demo-content)
 - [ToDos](#todos)
+    - [Known Issues](#known-issues)
 - [References](#references)
 
 ## Assigment
@@ -128,6 +129,11 @@ You are now able to manually load the demo content via a button click.
     - index.js
     - index.css
     - /css/*.css
+
+### Known Issues
+
+- Consumer Form tries to submit twice, but validation blocks the second submit
+- When adding a new consumer, it does not automatically grab the current state of its corresponding provider
 
 ## References
 
