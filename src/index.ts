@@ -1,4 +1,4 @@
-import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from './constants'
+import {TOPIC_CONSUMER_MAP} from './constants'
 import {createCustomEvent, getConsumerContainer, getProviderContainer} from './domUtils'
 import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
@@ -29,6 +29,9 @@ const providerContainer = getProviderContainer()
 const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light', 'Kitchen Light')
 providerContainer?.appendChild(kitchenLightProvider)
 
+const livingRoomHeatingProvider = new NumberStrategy().createProviderElement('living-room-heater', 'living-room-heater')
+providerContainer?.appendChild(livingRoomHeatingProvider)
+
 
 // dummy consumer container
 const consumerContainer = getConsumerContainer()
@@ -40,8 +43,4 @@ const simpleConsumer2 = new SimpleConsumer('kitchen-light', 'kitchen-light-secon
 consumerContainer?.appendChild(simpleConsumer2.getElement())
 
 const simpleConsumer3 = new SimpleConsumer('living-room-heater', 'living-room-heater', new NumberStrategy())
-const numberDisplay1 = simpleConsumer3.getElement()
-numberDisplay1?.addEventListener('lightswitch', simpleConsumer3.strategy.update)
-consumerContainer?.appendChild(numberDisplay1)
-
-addGlobalConsumerDisplay('lightswitch', numberDisplay1)
+consumerContainer?.appendChild(simpleConsumer3.getElement())
