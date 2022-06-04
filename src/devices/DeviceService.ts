@@ -11,7 +11,7 @@ import {Consumer} from './consumer/Consumer'
  * @param topic -> the event topic for which the provider should emit its event
  * @param strategyType -> the type of strategy which the provider should implement
  */
-function createProvider(topic: string, strategyType: StrategyType): HTMLElement {
+export function createProvider(topic: string, strategyType: StrategyType): HTMLElement {
     let result: HTMLElement = document.createElement('div')
 
     if (strategyType != null) {
@@ -37,7 +37,7 @@ function createProvider(topic: string, strategyType: StrategyType): HTMLElement 
  * @param label -> a name or label to identify the consumer / device
  * @param strategyType -> the type of strategy which the consumer should implement
  */
-function createConsumer(topic: string, label: string, strategyType: StrategyType): Consumer | null {
+export function createConsumer(topic: string, label: string, strategyType: StrategyType): Consumer | null {
     let result: Consumer | null = null
 
     if (strategyType != null) {

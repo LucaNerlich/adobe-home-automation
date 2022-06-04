@@ -119,8 +119,7 @@ You are now able to manually load the demo content via a button click.
 - [x] Setup skeleton div structure
 - [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
     - [x] add "load demo state" button instead?
-- [ ] add remove button to consumer and provider
-    - provider needs to remove topic and all consumer on deletion
+- [ ] add jest testcases
 - [ ] add updated Demo Screenshot to README
 - [x] add table of contents to README
 - [ ] record short demo video
@@ -130,10 +129,11 @@ You are now able to manually load the demo content via a button click.
     - index.css
     - /css/*.css
 
-### Known Issues
+### Known Issues / Future Extensions
 
-- Consumer Form tries to submit twice, but validation blocks the second submit
+- Consumer Form tries to submit twice. However, validation correctly blocks the second submission.
 - When adding a new consumer, it does not automatically grab the current state of its corresponding provider
+- Currently, not possible to delete a consumer or a topic, once added.
 
 ## References
 
