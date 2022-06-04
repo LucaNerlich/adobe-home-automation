@@ -74,7 +74,13 @@ I'm fully aware that build-fragments should not be added to version control in a
 - [x] create "dummy" provider element + event
 - [x] create "dummy" consumer element
 - [ ] create generic provider
-- [ ] create generic consumer
+- [x] create generic consumer
+- [ ] start with a device creation form
+    - independently create provider and consumer
+- [ ] write service that creates provider
+- [ ] write service that creates consumer
+    - setup listeners during creation
+    - ensure that multiple consumers are able to listen to the same event topic
 - [ ] investigate how the strategy pattern could be used
 - Must have Device Types
     - [ ] boolean -> light on/off, blinds open/closed

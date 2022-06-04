@@ -1,4 +1,4 @@
-import {EventData} from "../entities/EventData";
+import {EventData} from '../entities/EventData'
 
 /*
 todo how to handle "composite" devices ->
@@ -7,7 +7,7 @@ todo how to handle "composite" devices ->
 export abstract class Strategy {
 
     // todo do we need the strat label?
-    abstract label?: string;
+    abstract label?: string
 
     /**
      * Mocks a real display / api from a smart home device
