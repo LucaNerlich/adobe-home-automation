@@ -15,7 +15,7 @@ export abstract class Strategy {
     /**
      * Creates and returns an element (e.g input field)
      */
-    abstract createProviderElement(topic: string, label: string): HTMLElement;
+    abstract createProviderElement(topic: string, label?: string): HTMLElement;
 
     /**
      * Updates the underlying div that represents the display / api for implementing strategy

@@ -8,19 +8,19 @@ export class NumberStrategy extends Strategy {
     /**
      * Do we handle only 0 -> 1 as % value for simplicity’s sake?
      */
-    createProviderElement(topic: string, label: string): HTMLElement {
+    createProviderElement(topic: string, label?: string): HTMLElement {
         const randomID = getRandomID()
         const formElement = document.createElement('form')
         formElement.classList.add('number-strategy-form')
 
         const labelElement = document.createElement('label')
-        labelElement.textContent = label
+        labelElement.textContent = label ? label : topic
         labelElement.setAttribute('for', randomID)
 
         const inputElement = document.createElement('input')
         inputElement.id = randomID
         inputElement.setAttribute('type', 'number')
-        inputElement.setAttribute('name', label)
+        inputElement.setAttribute('name', label ? label : topic)
         inputElement.setAttribute('min', '0')
         inputElement.setAttribute('max', '1')
         inputElement.setAttribute('step', '0.1')

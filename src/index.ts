@@ -10,10 +10,12 @@ export function sum(a: number, b: number) {
 
 // dummy provider container
 const providerContainer = getProviderContainer()
-const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light', 'Kitchen Light')
+const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light')
 providerContainer?.appendChild(kitchenLightProvider)
+const livingroomLightProvider = new BooleanStrategy().createProviderElement('livingroom-light')
+providerContainer?.appendChild(livingroomLightProvider)
 
-const livingRoomHeatingProvider = new NumberStrategy().createProviderElement('living-room-heater', 'living-room-heater')
+const livingRoomHeatingProvider = new NumberStrategy().createProviderElement('living-room-heater')
 providerContainer?.appendChild(livingRoomHeatingProvider)
 
 
@@ -26,5 +28,8 @@ consumerContainer?.appendChild(simpleConsumer.getElement())
 const simpleConsumer2 = new SimpleConsumer('kitchen-light', 'kitchen-light-secondary', new BooleanStrategy())
 consumerContainer?.appendChild(simpleConsumer2.getElement())
 
-const simpleConsumer3 = new SimpleConsumer('living-room-heater', 'living-room-heater', new NumberStrategy())
+const simpleConsumer3 = new SimpleConsumer('livingroom-light', 'livingroom-light', new BooleanStrategy())
 consumerContainer?.appendChild(simpleConsumer3.getElement())
+
+const simpleConsumer4 = new SimpleConsumer('living-room-heater', 'living-room-heater', new NumberStrategy())
+consumerContainer?.appendChild(simpleConsumer4.getElement())

@@ -33,19 +33,19 @@ export class BooleanStrategy extends Strategy {
         }
     }
 
-    createProviderElement(topic: string, label: string): HTMLElement {
+    createProviderElement(topic: string, label?: string): HTMLElement {
         const randomID = getRandomID()
         const formElement = document.createElement('form')
         formElement.classList.add('bool-strategy-form')
 
         const labelElement = document.createElement('label')
-        labelElement.textContent = label
+        labelElement.textContent = label ? label : topic
         labelElement.setAttribute('for', randomID)
 
         const inputElement = document.createElement('input')
         inputElement.id = randomID
         inputElement.setAttribute('type', 'checkbox')
-        inputElement.setAttribute('name', label)
+        inputElement.setAttribute('name', label ? label : topic)
         inputElement.addEventListener('click', (event) => {
             const checkboxElement = event.target as HTMLInputElement
             const checkboxEvent = createCustomEvent(topic, randomID, checkboxElement?.checked)
