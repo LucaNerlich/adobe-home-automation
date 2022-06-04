@@ -92,6 +92,7 @@ I'm fully aware that build-fragments should not be added to version control in a
     - [ ] set timer for X -> close blinds at 12pm
 - [x] Setup skeleton div structure
 - [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
+    - maybe add "load demo state" button instead?
 - [ ] add Demo Screenshot to README
 - [ ] add table of contents to README
 - [ ] Copy "final" build files to `/assignment`

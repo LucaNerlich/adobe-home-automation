@@ -8,6 +8,11 @@ export function sum(a: number, b: number) {
     return a + b
 }
 
+// TODO
+document.getElementById('load-demo-button')?.addEventListener('click', () => {
+    console.log('loading demo state')
+})
+
 // dummy provider container
 const providerContainer = getProviderContainer()
 const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light')
