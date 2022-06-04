@@ -6,8 +6,12 @@
     background-color: #10a809;
 }
 
-.consumer-item {
+.consumer-item, form {
     padding: 1em;
     margin: 1em;
     border-bottom: var(--border-2);
+}
+
+label {
+    margin-right: 1em;
 }

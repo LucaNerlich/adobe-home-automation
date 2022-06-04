@@ -1,28 +1,12 @@
-import {TOPIC_CONSUMER_MAP} from './constants'
-import {createCustomEvent, getConsumerContainer, getProviderContainer} from './domUtils'
+import {getConsumerContainer, getProviderContainer} from './domUtils'
 import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
 
+// todo remove, this is just a jest hello world example
 export function sum(a: number, b: number) {
     return a + b
 }
-
-const customEvent: CustomEvent = createCustomEvent('lightswitch', 'some-light-switch-id', 0.5)
-
-function provideEvent(this: HTMLElement, event: Event) {
-    event.preventDefault()
-    this.textContent = 'clicked'
-    this.style.backgroundColor = 'red'
-
-    const consumers = TOPIC_CONSUMER_MAP.get(customEvent.type)
-    consumers?.forEach(item => {
-        item.dispatchEvent(customEvent)
-    })
-}
-
-const lightswitch = document.getElementById('lightswitch')
-lightswitch?.addEventListener('click', provideEvent)
 
 // dummy provider container
 const providerContainer = getProviderContainer()
