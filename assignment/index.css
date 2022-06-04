@@ -1,0 +1,53 @@
+@import "src/css/_variables.css";
+@import "src/css/devices.css";
+@import "src/css/forms.css";
+
+body {
+    font-family: sans-serif;
+}
+
+.container, .container-forms {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Left 50% Container */
+.container-dashboard {
+    min-height: var(--container-height);
+    width: var(--container-width);
+    border: var(--border-5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inside Left Container Top*/
+.container-forms {
+    border-bottom: var(--border-5);
+}
+
+.container-provider-form {
+    border-right: var(--border-5);
+}
+
+.container-consumer-form, .container-provider-form {
+    width: var(--container-width);
+    min-height: 100%;
+}
+
+/* Inside Left Container Bottom*/
+.container-provider {
+    height: var(--container-width);
+}
+
+/* Right 50% Container */
+.container-consumer {
+    min-height: var(--container-height);
+    width: 50%;
+    border: var(--border-5);
+}
+
+h1, h2, h3 {
+    padding-left: 1em;
+}
+
+
