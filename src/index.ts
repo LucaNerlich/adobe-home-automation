@@ -16,17 +16,10 @@ const customEvent: CustomEvent = new CustomEvent('lightswitch', {
     } as EventData,
 })
 
-
 function provideEvent(this: HTMLElement, event: Event) {
-    console.log('dispatching custom event')
-
     event.preventDefault()
     this.textContent = 'clicked'
     this.style.backgroundColor = 'red'
-    console.log('event.type', event.type)
-
-    const eventData: EventData = (<CustomEvent>event).detail as EventData
-    console.log('eventData', eventData)
 
     const consumers = TOPIC_CONSUMER_MAP.get(customEvent.type)
     consumers?.forEach(item => {

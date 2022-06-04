@@ -47,15 +47,16 @@ I'm fully aware that build-fragments should not be added to version control in a
 > Development
 
 1. `$ npm run build`
-2. Open `/index.html` in any modern browser
-    1. Alternatively, run `$ npm run watch` to listen for changes and auto-compile in the background
+2. Serve `/index.html` from HTTP server and open in any modern browser
+    1. e.g `$ npm run serve` to use EsBuild built in development server
+    2. Alternatively, run `$ npm run watch` to listen for changes and auto-compile in the background
 
 > Production
 
 1. `$ npm run build-prod`
 2. Open `/index.html` in any modern browser
-    1. index.html references the built scripts and stylesheets.
-    2. Everything runs self-contained
+    1. index.html references the scripts and stylesheets.
+    2. Everything runs self-contained when served from an HTTP server
 
 ## Documentation
 

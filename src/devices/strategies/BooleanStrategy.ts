@@ -44,7 +44,6 @@ export class BooleanStrategy extends Strategy {
         event.preventDefault()
 
         const eventData: EventData = (<CustomEvent>event).detail as EventData
-        console.log('eventData', eventData)
         // force typecast
         const displayElement = this as unknown as HTMLElement
         // get the element that actually holds the displayed value in case of bool strategy
