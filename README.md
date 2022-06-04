@@ -9,7 +9,7 @@
     - [Interpretation](#interpretation)
 - [How to run](#how-to-run)
 - [Documentation](#documentation)
-    - [Testing](#testing-unit--e2e)
+    - [Testing (Unit + E2E)](#testing-unit--e2e)
     - [Implementation](#implementation)
     - [Demo Content](#demo-content)
 - [ToDos](#todos)
