@@ -1,25 +1,23 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
-import {getConsumerWrapper} from '../domUtils'
-import {addGlobalConsumer, getRandomID} from '../constants'
+import {getConsumerWrapper} from '../../domUtils'
+import {addGlobalConsumer, getRandomID} from '../../constants'
 
 export class SimpleConsumer extends Consumer {
     id: string
     label: string
     _strategy: Strategy
-    update: Function
 
-    constructor(label: string, strategy: Strategy, eventCallback: Function) {
+    constructor(label: string, strategy: Strategy) {
         super()
         this.id = getRandomID()
         this.label = label
         this._strategy = strategy
-        this.update = eventCallback
     }
 
     getDisplayElement(): HTMLElement {
         // initialize with default data
-        return this._strategy.getDisplayElement({
+        return this._strategy.createDisplayElement({
             label: 'some-simple-consumer',
             id: this.id,
             value: false,
@@ -40,5 +38,10 @@ export class SimpleConsumer extends Consumer {
 
     private getLabel() {
         return this.label ? this.label : 'simple-consumer'
+    }
+
+
+    get strategy(): Strategy {
+        return this._strategy
     }
 }

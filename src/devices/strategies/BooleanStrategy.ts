@@ -1,16 +1,10 @@
 import {Strategy} from './Strategy'
-import {EventData} from '../entities/EventData'
+import {EventData} from '../../entities/EventData'
 
 const classOff = 'bool-strategy-off'
 const classOn = 'bool-strategy-on'
 
 export class BooleanStrategy extends Strategy {
-    label: string
-
-    constructor(label?: string) {
-        super()
-        this.label = label ? label : ''
-    }
 
     private static parseValue(eventData: EventData) {
         return (
@@ -37,12 +31,28 @@ export class BooleanStrategy extends Strategy {
         }
     }
 
-    getDisplayElement(eventData: EventData): HTMLSpanElement {
+    createDisplayElement(eventData: EventData): HTMLSpanElement {
         const state: boolean = BooleanStrategy.parseValue(eventData)
         const consumerDisplay = document.createElement('span')
 
         BooleanStrategy.setValue(state, consumerDisplay)
 
         return consumerDisplay
+    }
+
+    update(event: Event): void {
+        event.preventDefault()
+
+        const eventData: EventData = (<CustomEvent>event).detail as EventData
+        console.log('eventData', eventData)
+
+        // force typecast
+        const displayElement = this as unknown as HTMLElement
+        // get the element that actually holds the displayed value in case of bool strategy
+        const displayValueSpan = displayElement.querySelector('span:first-of-type')
+
+        if (displayValueSpan) {
+            displayValueSpan.textContent = eventData.value
+        }
     }
 }

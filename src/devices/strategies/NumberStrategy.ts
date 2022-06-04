@@ -1,15 +1,9 @@
 import {Strategy} from './Strategy'
-import {EventData} from '../entities/EventData'
+import {EventData} from '../../entities/EventData'
 
 export class NumberStrategy extends Strategy {
-    label: string
 
-    constructor(label?: string) {
-        super()
-        this.label = label ? label : ''
-    }
-
-    getDisplayElement(eventData: EventData): HTMLSpanElement {
+    createDisplayElement(eventData: EventData): HTMLSpanElement {
         const consumerDisplay = document.createElement('span')
         const value: number = parseFloat(eventData.value)
         if (!isNaN(value)) {
@@ -17,5 +11,10 @@ export class NumberStrategy extends Strategy {
         }
 
         return consumerDisplay
+    }
+
+    update(event: Event): void {
+        event.preventDefault()
+        const eventData: EventData = (<CustomEvent>event).detail as EventData
     }
 }
