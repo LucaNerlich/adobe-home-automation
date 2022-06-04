@@ -12,6 +12,8 @@ todo how to handle "composite" devices ->
  */
 export abstract class Strategy {
 
+    abstract strategyType: StrategyType
+
     /**
      * Mocks a real display / api from a smart home device
      * returns the element that visualizes the given value
@@ -29,8 +31,6 @@ export abstract class Strategy {
      * @param event -> event and data sent by provider
      */
     abstract update(event: Event): void;
-
-    abstract strategyType: StrategyType
 }
 
 export enum StrategyType {

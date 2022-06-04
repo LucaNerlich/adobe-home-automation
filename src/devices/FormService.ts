@@ -104,9 +104,9 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
         formRoot.appendChild(topicLabel)
         formRoot.appendChild(topicInput)
         createStrategySelect(formRoot)
+
         const submit = createSubmit('Add Provider')
         const submitErrorSpan = generateErrorSpan('Invalid: Duplicate Topic')
-
         formRoot.appendChild(submit)
         formRoot.appendChild(submitErrorSpan)
 
@@ -150,7 +150,7 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         // reset form children
         formRoot.innerHTML = ''
 
-        // nam
+        // name
         const nameId = getRandomID()
         const nameLabel = document.createElement('label')
         nameLabel.setAttribute('for', nameId)
@@ -159,19 +159,20 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         nameInput.id = nameId
         nameInput.setAttribute('type', 'text')
         nameInput.setAttribute('name', NAME_FORM_NAME)
-        nameInput.setAttribute('placeholder', 'Kitchen-Light')
+        nameInput.setAttribute('placeholder', 'Kitchen-Light 1')
         nameInput.setAttribute('required', 'true')
 
         // build the form in order
         formRoot.appendChild(nameLabel)
         formRoot.appendChild(nameInput)
+
         generateTopicSelect(formRoot)
         createStrategySelect(formRoot)
+
         const submit = createSubmit('Add Consumer')
         const submitErrorSpan = generateErrorSpan('Invalid: Name cannot be empty.')
         formRoot.appendChild(submit)
         formRoot.appendChild(submitErrorSpan)
-
 
         // on submit
         formRoot.addEventListener('submit', (event) => {

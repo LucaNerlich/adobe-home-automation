@@ -16,29 +16,6 @@ export class ConsumerImpl extends Consumer {
         this.strategy = strategy
     }
 
-    private getDisplayElement(): HTMLElement {
-        return this.strategy.createConsumerElement(this.topic, {
-            label: this.label,
-            id: this.id,
-            value: false,
-        })
-    }
-
-    getElement(): HTMLElement {
-        const consumerWrapper = ConsumerImpl.getConsumerWrapper(this.id, this.getLabel())
-        consumerWrapper.textContent = this.getLabel() + ': '
-        consumerWrapper.appendChild(this.getDisplayElement())
-
-        const topicHint = document.createElement('p')
-        topicHint.textContent = this.topic
-        consumerWrapper.appendChild(topicHint)
-        return consumerWrapper
-    }
-
-    private getLabel() {
-        return this.label ? this.label : 'simple-consumer'
-    }
-
     /**
      * Returns a simple div to be used as a generic wrapper around every consumer item.
      * @param id -> unique uuid
@@ -55,5 +32,28 @@ export class ConsumerImpl extends Consumer {
         }
 
         return consumerRootContainer
+    }
+
+    getElement(): HTMLElement {
+        const consumerWrapper = ConsumerImpl.getConsumerWrapper(this.id, this.getLabel())
+        consumerWrapper.textContent = this.getLabel() + ': '
+        consumerWrapper.appendChild(this.getDisplayElement())
+
+        const topicHint = document.createElement('p')
+        topicHint.textContent = this.topic
+        consumerWrapper.appendChild(topicHint)
+        return consumerWrapper
+    }
+
+    private getDisplayElement(): HTMLElement {
+        return this.strategy.createConsumerElement(this.topic, {
+            label: this.label,
+            id: this.id,
+            value: false,
+        })
+    }
+
+    private getLabel() {
+        return this.label ? this.label : 'simple-consumer'
     }
 }
