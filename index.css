@@ -1,5 +1,6 @@
 @import "src/css/_variables.css";
 @import "src/css/devices.css";
+@import "src/css/forms.css";
 
 body {
     font-family: sans-serif;

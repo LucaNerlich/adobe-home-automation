@@ -2,6 +2,7 @@ import {getConsumerContainer, getProviderContainer} from './domUtils'
 import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
+import {generateConsumerForm, generateProviderForm} from './devices/FormService'
 
 // todo remove, this is just a jest hello world example
 export function sum(a: number, b: number) {
@@ -12,6 +13,10 @@ export function sum(a: number, b: number) {
 document.getElementById('load-demo-button')?.addEventListener('click', () => {
     console.log('loading demo state')
 })
+
+// From Generation
+generateProviderForm(document.getElementById('provider-form') as HTMLFormElement)
+generateConsumerForm(document.getElementById('consumer-form') as HTMLFormElement)
 
 // dummy provider container
 const providerContainer = getProviderContainer()
