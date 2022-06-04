@@ -68,6 +68,12 @@ I'm fully aware that build-fragments should not be added to version control in a
     1. index.html references the scripts and stylesheets.
     2. Everything runs self-contained when served from an HTTP server
 
+> Run pre built '/assignment' artifacts
+
+1. `$ npm run serve-prod`
+    1. This uses EsBuild built-in http server to 'serve' the built files.
+    2. The path is hardcoded to `/assignment` to where I've manually copied the latest built artifacts
+
 ## Documentation
 
 - Entry-file Html: `assignment/index.html`

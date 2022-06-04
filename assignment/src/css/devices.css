@@ -1,0 +1,28 @@
+.bool-strategy-off {
+    background-color: #be1d1d;
+}
+
+.bool-strategy-on {
+    background-color: #10a809;
+}
+
+.consumer-item, form {
+    padding: 1em;
+    margin: 1em;
+    border-bottom: var(--border-2);
+}
+
+.consumer-item > p {
+    margin: 0;
+    font-style: italic;
+    font-size: small;
+}
+
+label {
+    margin-right: 1em;
+}
+
+#load-demo-button {
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
