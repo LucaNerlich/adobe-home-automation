@@ -1,4 +1,4 @@
-describe('spec.cy.ts', () => {
+describe('structure.cy.ts', () => {
     it('index.html should have h1', () => {
         cy.visit('/')
         cy.contains('Home Automation')
