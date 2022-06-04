@@ -1,0 +1,32 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Cypress" type="CypressConfigurationType" factoryName="Cypress" singleton="false" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="allowRunningInParallel" value="true" />
+    <option name="envs">
+      <map />
+    </option>
+    <option name="passParentEnvs" value="true" />
+    <option name="programParameters" value="--browser chrome --config video=false,screenshotOnRunFailure=false" />
+    <option name="projectPathOnTarget" />
+    <option name="selectedOptions">
+      <list />
+    </option>
+    <option name="workingDirectory" value="C:\Users\Luca\IdeaProjects\adobe-home-automation" />
+    <option name="textRange" />
+    <option name="allNames" />
+    <option name="specsDir" value="C:\Users\Luca\IdeaProjects\adobe-home-automation\cypress\e2e" />
+    <option name="specFile" value="" />
+    <option name="testName" />
+    <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+    <option name="envs">
+      <map />
+    </option>
+    <option name="additionalParams" value="--browser chrome --config video=false,screenshotOnRunFailure=false" />
+    <option name="passParentEnvs" value="true" />
+    <option name="nodeJsRef" value="project" />
+    <option name="npmRef" value="Project" />
+    <option name="cypressPackageRef" value="$PROJECT_DIR$/node_modules/cypress" />
+    <option name="kind" value="DIRECTORY" />
+    <option name="interactive" value="false" />
+    <method v="2" />
+  </configuration>
+</component>
