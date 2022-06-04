@@ -73,6 +73,8 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 ### Demo Content
 
+![demo-screenshot](./assets/demo.png)
+
 The app comes with a set of demo providers and consumers already added.
 Remove the following line in `/index.ts`, to disable this behaviour:
 

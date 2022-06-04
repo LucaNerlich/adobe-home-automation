@@ -30,6 +30,10 @@ export class SimpleConsumer extends Consumer {
         const consumerWrapper = getConsumerWrapper(this.id, this.getLabel())
         consumerWrapper.textContent = this.getLabel() + ': '
         consumerWrapper.appendChild(this.getDisplayElement())
+
+        const topicHint = document.createElement('p')
+        topicHint.textContent = this.topic
+        consumerWrapper.appendChild(topicHint)
         return consumerWrapper
     }
 

@@ -12,6 +12,12 @@
     border-bottom: var(--border-2);
 }
 
+.consumer-item > p {
+    margin: 0;
+    font-style: italic;
+    font-size: small;
+}
+
 label {
     margin-right: 1em;
 }
