@@ -6,14 +6,14 @@ export const TOPIC_FORM_NAME = 'topic'
 export const NAME_FORM_NAME = 'name'
 export const STRATEGIES_FORM_NAME = 'strategies'
 
-function createSubmit(label: string) {
+export function createSubmit(label: string) {
     const submit = document.createElement('input')
     submit.setAttribute('type', 'submit')
     submit.setAttribute('value', label)
     return submit
 }
 
-function createSelectOption(label: string): HTMLElement {
+export function createSelectOption(label: string): HTMLElement {
     const optionElement = document.createElement('option')
     optionElement.setAttribute('value', label)
     optionElement.textContent = label

@@ -1,6 +1,5 @@
 /**
- * Encapsulates data sent from a provider to a consumer.=]
- * {"}
+ * Encapsulates data sent from a provider to a consumer.
  */
 export interface EventData {
     id: string,
