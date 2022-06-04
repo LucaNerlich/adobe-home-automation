@@ -17,6 +17,8 @@ function createTestConsumer(strategyType: StrategyType): Consumer | null {
     return createConsumer(topic, label, strategyType)
 }
 
+// Implicitly tests ConsumerImpl, BooleanStrategy and NumberStrategy
+
 test('Validate BOOLEAN_STRATEGY provider', () => {
     const provider = createTestProvider(StrategyType.BOOLEAN_STRATEGY)
 

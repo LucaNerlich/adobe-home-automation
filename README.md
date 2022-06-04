@@ -58,7 +58,7 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 1. `$ npm run build`
 2. Serve `/index.html` from HTTP server and open in any modern browser
-    1. e.g `$ npm run serve` to use EsBuild built in development server
+    1. e.g `$ npm run serve` to use esbuild built in development server
     2. Alternatively, run `$ npm run watch` to listen for changes and auto-compile in the background
 
 > Production
@@ -68,16 +68,28 @@ I'm fully aware that build-fragments should not be added to version control in a
     1. index.html references the scripts and stylesheets.
     2. Everything runs self-contained when served from an HTTP server
 
-> Run pre built '/assignment' artifacts
+> Run pre-built '/assignment' artifacts
 
 1. `$ npm run serve-prod`
-    1. This uses EsBuild built-in http server to 'serve' the built files.
+    1. This uses esbuild built-in HTTP server to 'serve' the built files.
     2. The path is hardcoded to `/assignment` to where I've manually copied the latest built artifacts
 
 ## Documentation
 
+> Production Artifacts
+
 - Entry-file Html: `assignment/index.html`
 - Entry-file Scripts: `assignment/index.js`
+- Entry-file Stylesheets: `assignment/index.css`
+
+This project uses [esbuild](https://esbuild.github.io/) to bundle and transpile the typescript code into a single,
+portable `index.js`.
+This script is being referenced by the `index.html`, which additionally loads all stylesheets via a single `index.css`.
+I've opted out of adding any SASS Plugins to keep this setup as simple as possible.
+
+The app is broken down into three main sections.
+
+-
 
 ### Demo Content
 
@@ -97,7 +109,7 @@ You are now able to manually load the demo content via a button click.
 
 - [x] Initial Repository Setup
 - [x] Build and Development Setup
-    - [x] Integrate EsBuild
+    - [x] Integrate esbuild
     - [x] Setup Typescript
     - [x] ~~Integrate SASS~~ lets keep it simple
     - [x] Ensure that the production build works and runs independently of this project
@@ -140,6 +152,7 @@ You are now able to manually load the demo content via a button click.
 - Consumer Form tries to submit twice. However, validation correctly blocks the second submission.
 - When adding a new consumer, it does not automatically grab the current state of its corresponding provider
 - Currently, not possible to delete a consumer or a topic, once added.
+- Add more test cases, especially for the event listeners, although this is quite tricky.
 
 ## References
 
