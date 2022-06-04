@@ -1,6 +1,5 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
-import {getConsumerWrapper} from '../../domUtils'
 import {getRandomID} from '../../constants'
 
 export class SimpleConsumer extends Consumer {
@@ -27,7 +26,7 @@ export class SimpleConsumer extends Consumer {
     }
 
     getElement(): HTMLElement {
-        const consumerWrapper = getConsumerWrapper(this.id, this.getLabel())
+        const consumerWrapper = this.getConsumerWrapper(this.id, this.getLabel())
         consumerWrapper.textContent = this.getLabel() + ': '
         consumerWrapper.appendChild(this.getDisplayElement())
 
@@ -39,5 +38,23 @@ export class SimpleConsumer extends Consumer {
 
     private getLabel() {
         return this.label ? this.label : 'simple-consumer'
+    }
+
+    /**
+     * Returns a simple div to be used as a generic wrapper around every consumer item.
+     * @param id -> unique uuid
+     * @param label -> optional value, specify to add a data-label attribute
+     */
+    private getConsumerWrapper(id: string, label?: string): HTMLElement {
+        const consumerRootContainer = document.createElement('div')
+        consumerRootContainer.id = id
+        consumerRootContainer.classList.add('consumer-item')
+
+        if (label && label.length > 0) {
+            const labelAttribute = label.replace(' ', '-')
+            consumerRootContainer.setAttribute('data-label', labelAttribute)
+        }
+
+        return consumerRootContainer
     }
 }

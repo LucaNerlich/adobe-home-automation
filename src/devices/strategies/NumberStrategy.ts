@@ -1,9 +1,10 @@
-import {Strategy} from './Strategy'
+import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
 import {createCustomEvent} from '../../domUtils'
 
 export class NumberStrategy extends Strategy {
+    readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
 
     /**
      * Do we handle only 0 -> 1 as % value for simplicity’s sake?

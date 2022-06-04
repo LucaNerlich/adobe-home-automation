@@ -1,10 +1,19 @@
 import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, getRandomID} from '../constants'
+import {StrategyType} from './strategies/Strategy'
 
 function createSubmit(label: string) {
     const submit = document.createElement('input')
     submit.setAttribute('type', 'submit')
     submit.setAttribute('value', label)
     return submit
+}
+
+function createSelectOption(label: string): HTMLElement {
+    const optionElement = document.createElement('option')
+    optionElement.setAttribute('value', label)
+    optionElement.textContent = label
+
+    return optionElement
 }
 
 /**
@@ -21,14 +30,12 @@ function createStrategySelect(formRoot: HTMLFormElement) {
     const strategyInput = document.createElement('select')
     strategyInput.id = strategyId
     strategyInput.setAttribute('name', 'strategies')
-    const boolOption = document.createElement('option')
-    boolOption.setAttribute('value', 'booleanStrategy')
-    boolOption.textContent = 'Boolean Value'
-    strategyInput.appendChild(boolOption)
-    const numberOption = document.createElement('option')
-    numberOption.setAttribute('value', 'numberStrategy')
-    numberOption.textContent = 'Number Value'
-    strategyInput.appendChild(numberOption)
+
+    // https://bobbyhadz.com/blog/typescript-iterate-enum
+    Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
+            strategyInput.appendChild(createSelectOption(strategyType))
+        },
+    )
 
     formRoot.appendChild(document.createElement('br'))
     formRoot.appendChild(strategyLabel)
@@ -50,14 +57,21 @@ function generateTopicSelect(formRoot: HTMLFormElement) {
     strategySelectInput.setAttribute('name', 'topics')
 
     AVAILABLE_TOPICS.forEach(topic => {
-        const topicOption = document.createElement('option')
-        topicOption.setAttribute('value', topic)
-        topicOption.textContent = topic
-        strategySelectInput.appendChild(topicOption)
+        strategySelectInput.appendChild(createSelectOption(topic))
     })
 
     formRoot.appendChild(topicSelectLabel)
     formRoot.appendChild(strategySelectInput)
+}
+
+/**
+ *
+ * @param formData
+ */
+function createFromProviderFormData(formData: FormData) {
+
+// todo
+    // createProvider('')
 }
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
@@ -100,12 +114,15 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
             let isValid: boolean = true
             formData.forEach((value, key) => {
                 if (key === TOPIC_KEY) {
-                    if (AVAILABLE_TOPICS.includes(value.toString())) {
+                    const topicValue = value.toString().replace(' ', '-')
+                    if (AVAILABLE_TOPICS.includes(topicValue)) {
                         submitErrorSpan.style.display = ''
                         console.log('hit')
                         isValid = false
                     } else {
-                        AVAILABLE_TOPICS.push(value.toString().replace(' ', '-'))
+                        AVAILABLE_TOPICS.push(topicValue)
+                        // create and add new provider
+
                         isValid = true
                     }
                 }
@@ -116,6 +133,9 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
                 generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
                 submitErrorSpan.style.display = 'none'
                 form.reset()
+
+                // create and add new provider
+                createFromProviderFormData(formData)
             }
         })
     }

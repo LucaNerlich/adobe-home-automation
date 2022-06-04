@@ -29,4 +29,11 @@ export abstract class Strategy {
      * @param event -> event and data sent by provider
      */
     abstract update(event: Event): void;
+
+    abstract strategyType: StrategyType
+}
+
+export enum StrategyType {
+    BOOLEAN_STRATEGY,
+    NUMBER_STRATEGY
 }

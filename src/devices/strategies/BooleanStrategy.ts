@@ -1,4 +1,4 @@
-import {Strategy} from './Strategy'
+import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {createCustomEvent} from '../../domUtils'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
@@ -7,6 +7,7 @@ const classOff = 'bool-strategy-off'
 const classOn = 'bool-strategy-on'
 
 export class BooleanStrategy extends Strategy {
+    readonly strategyType: StrategyType = StrategyType.BOOLEAN_STRATEGY
 
     private static parseValue(eventData: EventData) {
         return (

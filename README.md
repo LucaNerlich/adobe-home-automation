@@ -118,7 +118,7 @@ You are now able to manually load the demo content via a button click.
     - maybe add "load demo state" button instead?
 - [ ] add remove button to consumer and provider
     - provider needs to remove topic and all consumer on deletion
-- [ ] add Demo Screenshot to README
+- [ ] add updated Demo Screenshot to README
 - [x] add table of contents to README
 - [ ] record short demo video
 - [ ] Copy "final" build files to `/assignment`
