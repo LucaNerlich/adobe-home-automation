@@ -34,6 +34,6 @@ export abstract class Strategy {
 }
 
 export enum StrategyType {
-    BOOLEAN_STRATEGY,
-    NUMBER_STRATEGY
+    BOOLEAN_STRATEGY = 'BOOLEAN_STRATEGY',
+    NUMBER_STRATEGY = 'NUMBER_STRATEGY'
 }

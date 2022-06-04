@@ -12,10 +12,10 @@ export function createProvider(topic: string, strategyType: StrategyType): HTMLE
 
     if (strategyType != null) {
         switch (strategyType) {
-            case StrategyType.BOOLEAN_STRATEGY:
+            case StrategyType.BOOLEAN_STRATEGY.valueOf():
                 result = new BooleanStrategy().createProviderElement(topic)
                 break
-            case StrategyType.NUMBER_STRATEGY:
+            case StrategyType.NUMBER_STRATEGY.valueOf():
                 result = new NumberStrategy().createProviderElement(topic)
                 break
             default:
