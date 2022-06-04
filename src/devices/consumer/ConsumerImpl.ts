@@ -2,7 +2,7 @@ import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
 
-export class SimpleConsumer extends Consumer {
+export class ConsumerImpl extends Consumer {
     id: string
     label: string
     topic: string

@@ -9,6 +9,7 @@
     - [Interpretation](#interpretation)
 - [How to run](#how-to-run)
 - [Documentation](#documentation)
+    - [Demo Content](#demo-content)
 - [ToDos](#todos)
 - [References](#references)
 
@@ -101,6 +102,7 @@ You are now able to manually load the demo content via a button click.
 - [x] start with a device creation form
     - independently create provider and consumer
     - [x] form validation do not allow duplicate topic
+    - [ ] wrap each input/label line in div and style it
 - [ ] dynamically create provider
 - [ ] dynamically create consumer
     - setup listeners during creation

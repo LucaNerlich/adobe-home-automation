@@ -1,5 +1,5 @@
 import {getConsumerContainer, getProviderContainer} from './domUtils'
-import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
+import {ConsumerImpl} from './devices/consumer/ConsumerImpl'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
 import {generateConsumerForm, generateProviderForm} from './devices/FormService'
@@ -35,16 +35,16 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     // dummy consumer container
     const consumerContainer = getConsumerContainer()
 
-    const simpleConsumer = new SimpleConsumer(TOPIC_LIGHT_1, 'kitchen-light', new BooleanStrategy())
+    const simpleConsumer = new ConsumerImpl(TOPIC_LIGHT_1, 'kitchen-light', new BooleanStrategy())
     consumerContainer?.appendChild(simpleConsumer.getElement())
 
-    const simpleConsumer2 = new SimpleConsumer(TOPIC_LIGHT_1, 'kitchen-light-secondary', new BooleanStrategy())
+    const simpleConsumer2 = new ConsumerImpl(TOPIC_LIGHT_1, 'kitchen-light-secondary', new BooleanStrategy())
     consumerContainer?.appendChild(simpleConsumer2.getElement())
 
-    const simpleConsumer3 = new SimpleConsumer(TOPIC_LIGHT_2, 'livingroom-light', new BooleanStrategy())
+    const simpleConsumer3 = new ConsumerImpl(TOPIC_LIGHT_2, 'livingroom-light', new BooleanStrategy())
     consumerContainer?.appendChild(simpleConsumer3.getElement())
 
-    const simpleConsumer4 = new SimpleConsumer(TOPIC_HEATING_1, 'living-room-heater', new NumberStrategy())
+    const simpleConsumer4 = new ConsumerImpl(TOPIC_HEATING_1, 'living-room-heater', new NumberStrategy())
     consumerContainer?.appendChild(simpleConsumer4.getElement())
 
     // hide demo button
