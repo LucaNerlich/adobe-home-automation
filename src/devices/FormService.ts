@@ -73,29 +73,50 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
         topicInput.setAttribute('type', 'text')
         topicInput.setAttribute('name', TOPIC_KEY)
         topicInput.setAttribute('placeholder', 'Kitchen-Light')
+        topicInput.setAttribute('required', 'true')
 
         // build the form in order
         formRoot.appendChild(topicLabel)
         formRoot.appendChild(topicInput)
         createStrategySelect(formRoot)
         const submit = createSubmit('Add Provider')
+        const submitErrorId = getRandomID()
+        const submitErrorSpan = document.createElement('span')
+        submitErrorSpan.setAttribute('role', 'error')
+        submitErrorSpan.id = submitErrorId
+        submitErrorSpan.style.display = 'none'
+        submitErrorSpan.style.color = 'red'
+        submitErrorSpan.textContent = 'Invalid: Duplicate Topic'
+
         formRoot.appendChild(submit)
+        formRoot.appendChild(submitErrorSpan)
 
         // on submit
         formRoot.addEventListener('submit', (event) => {
             event.preventDefault()
-            const form = event.target as HTMLFormElement
 
+            const form = event.target as HTMLFormElement
             const formData = new FormData(form)
+            let isValid: boolean = true
             formData.forEach((value, key) => {
                 if (key === TOPIC_KEY) {
-                    AVAILABLE_TOPICS.push(value.toString().replace(' ', '-'))
+                    if (AVAILABLE_TOPICS.includes(value.toString())) {
+                        submitErrorSpan.style.display = ''
+                        console.log('hit')
+                        isValid = false
+                    } else {
+                        AVAILABLE_TOPICS.push(value.toString().replace(' ', '-'))
+                        isValid = true
+                    }
                 }
             })
 
-            // recreate the consumer form with the new topic
-            generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
-            form.reset()
+            if (isValid) {
+                // recreate the consumer form with the new topic
+                generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
+                submitErrorSpan.style.display = 'none'
+                form.reset()
+            }
         })
     }
 }

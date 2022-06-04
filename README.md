@@ -98,6 +98,7 @@ You are now able to manually load the demo content via a button click.
 - [x] create generic consumer
 - [x] start with a device creation form
     - independently create provider and consumer
+    - [x] form validation do not allow duplicate topic
 - [ ] dynamically create provider
 - [ ] dynamically create consumer
     - setup listeners during creation
@@ -117,6 +118,7 @@ You are now able to manually load the demo content via a button click.
     - provider needs to remove topic and all consumer on deletion
 - [ ] add Demo Screenshot to README
 - [x] add table of contents to README
+- [ ] record short demo video
 - [ ] Copy "final" build files to `/assignment`
     - index.html
     - index.js
@@ -134,3 +136,4 @@ You are now able to manually load the demo content via a button click.
 - <https://refactoring.guru/design-patterns/strategy/typescript/example>
 - <https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events>
 - <https://medium.com/geekculture/html-event-handling-in-typescript-b9ca7178d912>
+- <https://www.freecodecamp.org/news/form-validation-with-html5-and-javascript/>
