@@ -17,16 +17,15 @@ export class ConsumerImpl extends Consumer {
     }
 
     private getDisplayElement(): HTMLElement {
-        // initialize with default data
         return this.strategy.createConsumerElement(this.topic, {
-            label: 'some-simple-consumer',
+            label: this.label,
             id: this.id,
             value: false,
         })
     }
 
     getElement(): HTMLElement {
-        const consumerWrapper = this.getConsumerWrapper(this.id, this.getLabel())
+        const consumerWrapper = ConsumerImpl.getConsumerWrapper(this.id, this.getLabel())
         consumerWrapper.textContent = this.getLabel() + ': '
         consumerWrapper.appendChild(this.getDisplayElement())
 
@@ -45,7 +44,7 @@ export class ConsumerImpl extends Consumer {
      * @param id -> unique uuid
      * @param label -> optional value, specify to add a data-label attribute
      */
-    private getConsumerWrapper(id: string, label?: string): HTMLElement {
+    private static getConsumerWrapper(id: string, label?: string): HTMLElement {
         const consumerRootContainer = document.createElement('div')
         consumerRootContainer.id = id
         consumerRootContainer.classList.add('consumer-item')

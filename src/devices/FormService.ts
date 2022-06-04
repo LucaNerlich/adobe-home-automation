@@ -3,6 +3,7 @@ import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
 
 export const TOPIC_FORM_NAME = 'topic'
+export const NAME_FORM_NAME = 'name'
 export const STRATEGIES_FORM_NAME = 'strategies'
 
 function createSubmit(label: string) {
@@ -64,6 +65,7 @@ function generateTopicSelect(formRoot: HTMLFormElement) {
         strategySelectInput.appendChild(createSelectOption(topic))
     })
 
+    formRoot.appendChild(document.createElement('br'))
     formRoot.appendChild(topicSelectLabel)
     formRoot.appendChild(strategySelectInput)
 }
@@ -143,7 +145,21 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         // reset form children
         formRoot.innerHTML = ''
 
+        // nam
+        const nameId = getRandomID()
+        const nameLabel = document.createElement('label')
+        nameLabel.setAttribute('for', nameId)
+        nameLabel.textContent = 'Name'
+        const nameInput = document.createElement('input')
+        nameInput.id = nameId
+        nameInput.setAttribute('type', 'text')
+        nameInput.setAttribute('name', NAME_FORM_NAME)
+        nameInput.setAttribute('placeholder', 'Kitchen-Light')
+        nameInput.setAttribute('required', 'true')
+
         // build the form in order
+        formRoot.appendChild(nameLabel)
+        formRoot.appendChild(nameInput)
         generateTopicSelect(formRoot)
         createStrategySelect(formRoot)
         const submit = createSubmit('Add Consumer')
@@ -154,6 +170,7 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
             event.preventDefault()
             const form = event.target as HTMLFormElement
             const formData = new FormData(form)
+            form.reset()
 
             // create and add new consumer
             createDeviceWithFormData(formData, DeviceType.CONSUMER)
