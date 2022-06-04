@@ -7,7 +7,7 @@ export class NumberStrategy extends Strategy {
         const consumerDisplay = document.createElement('span')
         const value: number = parseFloat(eventData.value)
         if (!isNaN(value)) {
-            consumerDisplay.textContent = value.toString() + 'f'
+            consumerDisplay.textContent = value.toString()
         } else {
             // set default
             consumerDisplay.textContent = 'N/A'

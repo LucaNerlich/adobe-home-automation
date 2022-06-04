@@ -44,14 +44,14 @@ export class BooleanStrategy extends Strategy {
         event.preventDefault()
 
         const eventData: EventData = (<CustomEvent>event).detail as EventData
-
+        console.log('eventData', eventData)
         // force typecast
         const displayElement = this as unknown as HTMLElement
         // get the element that actually holds the displayed value in case of bool strategy
-        const displayValueSpan = displayElement.querySelector('span:first-of-type')
+        const displayValueSpan: HTMLSpanElement = displayElement.querySelector('span:first-of-type') as HTMLSpanElement
 
         if (displayValueSpan) {
-            displayValueSpan.textContent = eventData.value
+            BooleanStrategy.setValue(BooleanStrategy.parseValue(eventData), displayValueSpan)
         }
     }
 }
