@@ -5,8 +5,8 @@
 > Contact: M. Voss
 
 - [Assigment](#assigment)
-  - [Task](#task)
-  - [Interpretation](#interpretation)
+    - [Task](#task)
+    - [Interpretation](#interpretation)
 - [How to run](#how-to-run)
 - [Documentation](#documentation)
 - [ToDos](#todos)
@@ -70,6 +70,18 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 - Entry-file Html: `assignment/index.html`
 - Entry-file Scripts: `assignment/index.js`
+
+### Demo Content
+
+The app comes with a set of demo providers and consumers already added.
+Remove the following line in `/index.ts`, to disable this behaviour:
+
+```javascript
+// Load Demo Content
+document.getElementById('load-demo-button')?.click()
+```
+
+You are now able to manually load the demo content via a button click.
 
 ## ToDos
 

@@ -19,12 +19,15 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     AVAILABLE_TOPICS.push(TOPIC_LIGHT_2)
     AVAILABLE_TOPICS.push(TOPIC_HEATING_1)
 
+    // recreate the consumer form with the new topic
+    generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
+
     // dummy provider container
     const providerContainer = getProviderContainer()
     const kitchenLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_1)
     providerContainer?.appendChild(kitchenLightProvider)
-    const livingroomLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_2)
-    providerContainer?.appendChild(livingroomLightProvider)
+    const livingRoomLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_2)
+    providerContainer?.appendChild(livingRoomLightProvider)
 
     const livingRoomHeatingProvider = new NumberStrategy().createProviderElement(TOPIC_HEATING_1)
     providerContainer?.appendChild(livingRoomHeatingProvider)
