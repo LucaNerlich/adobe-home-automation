@@ -3,6 +3,7 @@ import {Strategy} from '../strategies/Strategy'
 export abstract class Consumer {
     abstract id: string
     abstract label: string
+    abstract topic: string
     // abstract update(element: HTMLElement, event: Event): void
 
     abstract _strategy: Strategy
@@ -14,6 +15,4 @@ export abstract class Consumer {
     abstract getDisplayElement(): HTMLElement;
 
     abstract getElement(): HTMLElement;
-
-    abstract addEventHandler(topic: string, callback: Function): void;
-}
+s}

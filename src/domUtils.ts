@@ -1,4 +1,5 @@
 import {CONSUMER_CONTAINER_ID, FORMS_CONTAINER_ID, PROVIDER_CONTAINER_ID} from './constants'
+import {EventData} from './entities/EventData'
 
 export function getConsumerContainer(): HTMLElement | null {
     return document.getElementById(CONSUMER_CONTAINER_ID)
@@ -28,4 +29,13 @@ export function getConsumerWrapper(id: string, label?: string): HTMLElement {
     }
 
     return consumerRootContainer
+}
+
+export function createCustomEvent(topic: string, id: string, value: any): CustomEvent {
+    return new CustomEvent(topic, {
+        detail: {
+            id: id,
+            value: value,
+        } as EventData,
+    })
 }

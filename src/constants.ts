@@ -1,7 +1,7 @@
 // Topic -> Consumers Map
 export const TOPIC_CONSUMER_MAP = new Map<string, Array<HTMLElement>>()
 
-export function addGlobalConsumer(topic: string, consumer: HTMLElement | null): void {
+export function addGlobalConsumerDisplay(topic: string, consumer: HTMLElement | null): void {
     if (consumer) {
         if (TOPIC_CONSUMER_MAP.has(topic)) {
             TOPIC_CONSUMER_MAP.get(topic)?.push(consumer)

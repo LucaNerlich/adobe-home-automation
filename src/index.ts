@@ -1,6 +1,5 @@
-import {EventData} from './entities/EventData'
-import {addGlobalConsumer, TOPIC_CONSUMER_MAP} from './constants'
-import {getConsumerContainer} from './domUtils'
+import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from './constants'
+import {createCustomEvent, getConsumerContainer, getProviderContainer} from './domUtils'
 import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
@@ -9,12 +8,7 @@ export function sum(a: number, b: number) {
     return a + b
 }
 
-const customEvent: CustomEvent = new CustomEvent('lightswitch', {
-    detail: {
-        id: 'some-light-switch-id',
-        value: 0.5,
-    } as EventData,
-})
+const customEvent: CustomEvent = createCustomEvent('lightswitch', 'some-light-switch-id', 0.5)
 
 function provideEvent(this: HTMLElement, event: Event) {
     event.preventDefault()
@@ -30,24 +24,24 @@ function provideEvent(this: HTMLElement, event: Event) {
 const lightswitch = document.getElementById('lightswitch')
 lightswitch?.addEventListener('click', provideEvent)
 
+// dummy provider container
+const providerContainer = getProviderContainer()
+const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light', 'Kitchen Light')
+providerContainer?.appendChild(kitchenLightProvider)
 
-// dummy consumer
-let consumerContainer = getConsumerContainer()
-let simpleConsumer = new SimpleConsumer('kitchen-light', new BooleanStrategy())
-let boolDisplay1 = simpleConsumer.getElement()
-boolDisplay1?.addEventListener('lightswitch', simpleConsumer.strategy.update)
-consumerContainer?.appendChild(boolDisplay1)
 
-let simpleConsumer2 = new SimpleConsumer('kitchen-light-secondary', new BooleanStrategy())
-let boolDisplay2 = simpleConsumer2.getElement()
-boolDisplay2?.addEventListener('lightswitch', simpleConsumer2.strategy.update)
-consumerContainer?.appendChild(boolDisplay2)
+// dummy consumer container
+const consumerContainer = getConsumerContainer()
 
-let simpleConsumer3 = new SimpleConsumer('living-room-heater', new NumberStrategy())
-let numberDisplay1 = simpleConsumer3.getElement()
+const simpleConsumer = new SimpleConsumer('kitchen-light', 'kitchen-light', new BooleanStrategy())
+consumerContainer?.appendChild(simpleConsumer.getElement())
+
+const simpleConsumer2 = new SimpleConsumer('kitchen-light', 'kitchen-light-secondary', new BooleanStrategy())
+consumerContainer?.appendChild(simpleConsumer2.getElement())
+
+const simpleConsumer3 = new SimpleConsumer('living-room-heater', 'living-room-heater', new NumberStrategy())
+const numberDisplay1 = simpleConsumer3.getElement()
 numberDisplay1?.addEventListener('lightswitch', simpleConsumer3.strategy.update)
 consumerContainer?.appendChild(numberDisplay1)
 
-addGlobalConsumer('lightswitch', boolDisplay1)
-addGlobalConsumer('lightswitch', boolDisplay2)
-addGlobalConsumer('lightswitch', numberDisplay1)
+addGlobalConsumerDisplay('lightswitch', numberDisplay1)

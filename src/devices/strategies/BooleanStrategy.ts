@@ -1,5 +1,7 @@
 import {Strategy} from './Strategy'
 import {EventData} from '../../entities/EventData'
+import {createCustomEvent} from '../../domUtils'
+import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
 
 const classOff = 'bool-strategy-off'
 const classOn = 'bool-strategy-on'
@@ -31,26 +33,52 @@ export class BooleanStrategy extends Strategy {
         }
     }
 
-    createDisplayElement(eventData: EventData): HTMLSpanElement {
+    createProviderElement(topic: string, label: string): HTMLElement {
+        const randomID = getRandomID()
+        const formElement = document.createElement('form')
+        formElement.classList.add('bool-strategy-form')
+
+        const labelElement = document.createElement('label')
+        labelElement.textContent = label
+        labelElement.setAttribute('for', randomID)
+
+        const inputElement = document.createElement('input')
+        inputElement.id = randomID
+        inputElement.setAttribute('type', 'checkbox')
+        inputElement.setAttribute('name', label)
+        inputElement.addEventListener('click', (event) => {
+            const checkboxElement = event.target as HTMLInputElement
+            const checkboxEvent = createCustomEvent(topic, randomID, checkboxElement?.checked)
+            const consumers = TOPIC_CONSUMER_MAP.get(topic)
+            consumers?.forEach(item => {
+                item.dispatchEvent(checkboxEvent)
+            })
+        })
+
+        formElement.appendChild(labelElement)
+        formElement.appendChild(inputElement)
+        return formElement
+    }
+
+    createConsumerElement(topic: string, eventData: EventData): HTMLSpanElement {
         const state: boolean = BooleanStrategy.parseValue(eventData)
         const consumerDisplay = document.createElement('span')
 
         BooleanStrategy.setValue(state, consumerDisplay)
 
+        consumerDisplay.addEventListener(topic, this.update)
+        addGlobalConsumerDisplay(topic, consumerDisplay)
         return consumerDisplay
     }
 
     update(event: Event): void {
-        event.preventDefault()
-
         const eventData: EventData = (<CustomEvent>event).detail as EventData
         // force typecast
-        const displayElement = this as unknown as HTMLElement
-        // get the element that actually holds the displayed value in case of bool strategy
-        const displayValueSpan: HTMLSpanElement = displayElement.querySelector('span:first-of-type') as HTMLSpanElement
+        const displayElement = this as unknown as HTMLSpanElement
 
-        if (displayValueSpan) {
-            BooleanStrategy.setValue(BooleanStrategy.parseValue(eventData), displayValueSpan)
+        if (displayElement) {
+            BooleanStrategy.setValue(BooleanStrategy.parseValue(eventData), displayElement)
         }
     }
+
 }

@@ -10,7 +10,12 @@ export abstract class Strategy {
      * Mocks a real display / api from a smart home device
      * returns the element that visualizes the given value
      */
-    abstract createDisplayElement(eventData: EventData): HTMLElement;
+    abstract createConsumerElement(topic: string, eventData: EventData): HTMLElement;
+
+    /**
+     * Creates and returns an element (e.g input field)
+     */
+    abstract createProviderElement(topic: string, label: string): HTMLElement;
 
     /**
      * Updates the underlying div that represents the display / api for implementing strategy

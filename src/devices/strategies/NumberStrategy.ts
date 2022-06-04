@@ -3,7 +3,7 @@ import {EventData} from '../../entities/EventData'
 
 export class NumberStrategy extends Strategy {
 
-    createDisplayElement(eventData: EventData): HTMLSpanElement {
+    createConsumerElement(eventData: EventData): HTMLSpanElement {
         const consumerDisplay = document.createElement('span')
         const value: number = parseFloat(eventData.value)
         if (!isNaN(value)) {
