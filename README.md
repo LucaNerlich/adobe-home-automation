@@ -4,6 +4,14 @@
 > End: 2022-06-13
 > Contact: M. Voss
 
+- [Assigment](#assigment)
+  - [Task](#task)
+  - [Interpretation](#interpretation)
+- [How to run](#how-to-run)
+- [Documentation](#documentation)
+- [ToDos](#todos)
+- [References](#references)
+
 ## Assigment
 
 ### Task
@@ -76,25 +84,27 @@ I'm fully aware that build-fragments should not be added to version control in a
 - [x] create "dummy" consumer element
 - [x] create generic provider
 - [x] create generic consumer
-- [ ] start with a device creation form
+- [x] start with a device creation form
     - independently create provider and consumer
-- [ ] write service that creates provider
-- [ ] write service that creates consumer
+- [ ] dynamically create provider
+- [ ] dynamically create consumer
     - setup listeners during creation
     - ensure that multiple consumers are able to listen to the same event topic
-- [ ] investigate how the strategy pattern could be used
-- Must have Device Types
-    - [ ] boolean -> light on/off, blinds open/closed
-    - [ ] float 0-1 -> e.g dimmable light
-    - [ ] float -> heating
+- [x] investigate how the strategy pattern could be used
+- Must have Device Types / Strategies
+    - [x] boolean -> light on/off, blinds open/closed
+    - [x] float 0-1 -> e.g dimmable light
+    - [x] float -> heating
 - Nice to have Device Types
     - [ ] color (picker/value) -> rgb lights
     - [ ] set timer for X -> close blinds at 12pm
 - [x] Setup skeleton div structure
-- [ ] add localStorage "cache" / "state" to preserve *something* during page refresh
+- [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
     - maybe add "load demo state" button instead?
+- [ ] add remove button to consumer and provider
+    - provider needs to remove topic and all consumer on deletion
 - [ ] add Demo Screenshot to README
-- [ ] add table of contents to README
+- [x] add table of contents to README
 - [ ] Copy "final" build files to `/assignment`
     - index.html
     - index.js

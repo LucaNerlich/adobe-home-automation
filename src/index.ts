@@ -3,7 +3,7 @@ import {SimpleConsumer} from './devices/consumer/SimpleConsumer'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
 import {generateConsumerForm, generateProviderForm} from './devices/FormService'
-import {CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
+import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
 
 // todo remove, this is just a jest hello world example
 export function sum(a: number, b: number) {
@@ -11,36 +11,50 @@ export function sum(a: number, b: number) {
 }
 
 // TODO
-document.getElementById('load-demo-button')?.addEventListener('click', () => {
-    console.log('loading demo state')
+document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
+    const TOPIC_LIGHT_1 = 'light-1'
+    const TOPIC_LIGHT_2 = 'light-2'
+    const TOPIC_HEATING_1 = 'heating-1'
+    AVAILABLE_TOPICS.push(TOPIC_LIGHT_1)
+    AVAILABLE_TOPICS.push(TOPIC_LIGHT_2)
+    AVAILABLE_TOPICS.push(TOPIC_HEATING_1)
+
+    // dummy provider container
+    const providerContainer = getProviderContainer()
+    const kitchenLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_1)
+    providerContainer?.appendChild(kitchenLightProvider)
+    const livingroomLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_2)
+    providerContainer?.appendChild(livingroomLightProvider)
+
+    const livingRoomHeatingProvider = new NumberStrategy().createProviderElement(TOPIC_HEATING_1)
+    providerContainer?.appendChild(livingRoomHeatingProvider)
+
+    // dummy consumer container
+    const consumerContainer = getConsumerContainer()
+
+    const simpleConsumer = new SimpleConsumer(TOPIC_LIGHT_1, 'kitchen-light', new BooleanStrategy())
+    consumerContainer?.appendChild(simpleConsumer.getElement())
+
+    const simpleConsumer2 = new SimpleConsumer(TOPIC_LIGHT_1, 'kitchen-light-secondary', new BooleanStrategy())
+    consumerContainer?.appendChild(simpleConsumer2.getElement())
+
+    const simpleConsumer3 = new SimpleConsumer(TOPIC_LIGHT_2, 'livingroom-light', new BooleanStrategy())
+    consumerContainer?.appendChild(simpleConsumer3.getElement())
+
+    const simpleConsumer4 = new SimpleConsumer(TOPIC_HEATING_1, 'living-room-heater', new NumberStrategy())
+    consumerContainer?.appendChild(simpleConsumer4.getElement())
+
+    // hide demo button
+    const demoButton = event.target as HTMLButtonElement
+    demoButton.disabled = true
+    demoButton.style.display = 'none'
 })
 
 // Initial From Generation
 generateProviderForm(document.getElementById(PROVIDER_FORM_ID) as HTMLFormElement)
 generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
 
-// dummy provider container
-const providerContainer = getProviderContainer()
-const kitchenLightProvider = new BooleanStrategy().createProviderElement('kitchen-light')
-providerContainer?.appendChild(kitchenLightProvider)
-const livingroomLightProvider = new BooleanStrategy().createProviderElement('livingroom-light')
-providerContainer?.appendChild(livingroomLightProvider)
-
-const livingRoomHeatingProvider = new NumberStrategy().createProviderElement('living-room-heater')
-providerContainer?.appendChild(livingRoomHeatingProvider)
+// Load Demo Content
+document.getElementById('load-demo-button')?.click()
 
 
-// dummy consumer container
-const consumerContainer = getConsumerContainer()
-
-const simpleConsumer = new SimpleConsumer('kitchen-light', 'kitchen-light', new BooleanStrategy())
-consumerContainer?.appendChild(simpleConsumer.getElement())
-
-const simpleConsumer2 = new SimpleConsumer('kitchen-light', 'kitchen-light-secondary', new BooleanStrategy())
-consumerContainer?.appendChild(simpleConsumer2.getElement())
-
-const simpleConsumer3 = new SimpleConsumer('livingroom-light', 'livingroom-light', new BooleanStrategy())
-consumerContainer?.appendChild(simpleConsumer3.getElement())
-
-const simpleConsumer4 = new SimpleConsumer('living-room-heater', 'living-room-heater', new NumberStrategy())
-consumerContainer?.appendChild(simpleConsumer4.getElement())

@@ -12,8 +12,8 @@ export class SimpleConsumer extends Consumer {
     constructor(topic: string, label: string, strategy: Strategy) {
         super()
         this.id = getRandomID()
-        this.label = label
         this.topic = topic
+        this.label = label
         this.strategy = strategy
     }
 

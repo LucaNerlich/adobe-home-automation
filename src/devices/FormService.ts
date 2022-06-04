@@ -1,8 +1,4 @@
-import {CONSUMER_FORM_ID, getRandomID} from '../constants'
-
-// On provider creation submit, the new topic will be added here.
-// Can be used by consumer form, for example.
-export const AVAILABLE_TOPICS: Array<string> = []
+import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, getRandomID} from '../constants'
 
 function createSubmit(label: string) {
     const submit = document.createElement('input')
@@ -78,7 +74,6 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
         topicInput.setAttribute('name', TOPIC_KEY)
         topicInput.setAttribute('placeholder', 'Kitchen-Light')
 
-
         // build the form in order
         formRoot.appendChild(topicLabel)
         formRoot.appendChild(topicInput)
@@ -94,7 +89,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
             const formData = new FormData(form)
             formData.forEach((value, key) => {
                 if (key === TOPIC_KEY) {
-                    AVAILABLE_TOPICS.push(value.toString())
+                    AVAILABLE_TOPICS.push(value.toString().replace(' ', '-'))
                 }
             })
 

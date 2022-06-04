@@ -11,6 +11,10 @@ export function addGlobalConsumerDisplay(topic: string, consumer: HTMLElement | 
     }
 }
 
+// On provider creation submit, the new topic will be added here.
+// Can be used by consumer form, for example.
+export const AVAILABLE_TOPICS: Array<string> = []
+
 // DOM
 export const PROVIDER_CONTAINER_ID: string = 'provider'
 export const PROVIDER_FORM_ID: string = 'provider-form'
