@@ -74,7 +74,7 @@ I'm fully aware that build-fragments should not be added to version control in a
 - [x] Add Jest Setup for unit tests
 - [x] create "dummy" provider element + event
 - [x] create "dummy" consumer element
-- [ ] create generic provider
+- [x] create generic provider
 - [x] create generic consumer
 - [ ] start with a device creation form
     - independently create provider and consumer

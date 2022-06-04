@@ -7,24 +7,19 @@ export class SimpleConsumer extends Consumer {
     id: string
     label: string
     topic: string
+    strategy: Strategy
 
     constructor(topic: string, label: string, strategy: Strategy) {
         super()
         this.id = getRandomID()
         this.label = label
         this.topic = topic
-        this._strategy = strategy
+        this.strategy = strategy
     }
 
-    _strategy: Strategy
-
-    get strategy(): Strategy {
-        return this._strategy
-    }
-
-    getDisplayElement(): HTMLElement {
+    private getDisplayElement(): HTMLElement {
         // initialize with default data
-        return this._strategy.createConsumerElement(this.topic, {
+        return this.strategy.createConsumerElement(this.topic, {
             label: 'some-simple-consumer',
             id: this.id,
             value: false,
