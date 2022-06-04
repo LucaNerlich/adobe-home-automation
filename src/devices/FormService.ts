@@ -70,6 +70,18 @@ function generateTopicSelect(formRoot: HTMLFormElement) {
     formRoot.appendChild(strategySelectInput)
 }
 
+function generateErrorSpan(message: string) {
+    const submitErrorId = getRandomID()
+    const submitErrorSpan = document.createElement('span')
+    submitErrorSpan.setAttribute('role', 'error')
+    submitErrorSpan.id = submitErrorId
+    submitErrorSpan.style.display = 'none'
+    submitErrorSpan.style.color = 'red'
+    submitErrorSpan.textContent = message
+
+    return submitErrorSpan
+}
+
 export function getTopicValue(topicInput: string) {
     return topicInput?.replace(' ', '-')
 }
@@ -93,13 +105,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
         formRoot.appendChild(topicInput)
         createStrategySelect(formRoot)
         const submit = createSubmit('Add Provider')
-        const submitErrorId = getRandomID()
-        const submitErrorSpan = document.createElement('span')
-        submitErrorSpan.setAttribute('role', 'error')
-        submitErrorSpan.id = submitErrorId
-        submitErrorSpan.style.display = 'none'
-        submitErrorSpan.style.color = 'red'
-        submitErrorSpan.textContent = 'Invalid: Duplicate Topic'
+        const submitErrorSpan = generateErrorSpan('Invalid: Duplicate Topic')
 
         formRoot.appendChild(submit)
         formRoot.appendChild(submitErrorSpan)
@@ -110,18 +116,17 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
 
             const form = event.target as HTMLFormElement
             const formData = new FormData(form)
+
+            // validate provider form
             let isValid: boolean = true
             formData.forEach((value, key) => {
                 if (key === TOPIC_FORM_NAME) {
                     const topicValue = getTopicValue(value.toString())
                     if (AVAILABLE_TOPICS.includes(topicValue)) {
                         submitErrorSpan.style.display = ''
-                        console.log('hit')
                         isValid = false
                     } else {
                         AVAILABLE_TOPICS.push(topicValue)
-                        // create and add new provider
-
                         isValid = true
                     }
                 }
@@ -163,17 +168,36 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         generateTopicSelect(formRoot)
         createStrategySelect(formRoot)
         const submit = createSubmit('Add Consumer')
+        const submitErrorSpan = generateErrorSpan('Invalid: Name cannot be empty.')
         formRoot.appendChild(submit)
+        formRoot.appendChild(submitErrorSpan)
+
 
         // on submit
         formRoot.addEventListener('submit', (event) => {
             event.preventDefault()
             const form = event.target as HTMLFormElement
             const formData = new FormData(form)
-            form.reset()
 
-            // create and add new consumer
-            createDeviceWithFormData(formData, DeviceType.CONSUMER)
+            // validate consumer form
+            let isValid: boolean = true
+            formData.forEach((value, key) => {
+                if (key === NAME_FORM_NAME) {
+                    if (value.toString().trim().length === 0) {
+                        submitErrorSpan.style.display = ''
+                        isValid = false
+                    } else {
+                        isValid = true
+                    }
+                }
+            })
+
+            if (isValid) {
+                submitErrorSpan.style.display = 'none'
+                form.reset()
+                // create and add new consumer
+                createDeviceWithFormData(formData, DeviceType.CONSUMER)
+            }
         })
     }
 }

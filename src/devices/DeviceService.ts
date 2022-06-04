@@ -68,8 +68,6 @@ export function createDeviceWithFormData(formData: FormData, deviceType: DeviceT
     let name = ''
     let strategyType: StrategyType | null = null
 
-    console.log('hit')
-
     // I am aware, that this is technically the second time that we are looping over the same FormData,
     // but it should be feasible with this certainly limited amount of ever available from input values.
     formData.forEach((value, key) => {
