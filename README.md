@@ -9,6 +9,8 @@
     - [Interpretation](#interpretation)
 - [How to run](#how-to-run)
 - [Documentation](#documentation)
+    - [Testing](#testing-unit--e2e)
+    - [Implementation](#implementation)
     - [Demo Content](#demo-content)
 - [ToDos](#todos)
     - [Known Issues](#known-issues)
@@ -76,12 +78,14 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 ## Documentation
 
-> Testing
+### Testing (Unit + E2E)
 
 I've written jest unit tests for most of the backend functionality and element creation.
 Additionally, e2e tests are being run heedlessly for chrome and firefox using CypressIO.
 
 Jest test cases run on dev and prod builds. Cypress e2e tests only during production builds.
+
+### Implementation
 
 > Production Artifacts
 
