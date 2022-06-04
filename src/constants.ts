@@ -13,7 +13,9 @@ export function addGlobalConsumerDisplay(topic: string, consumer: HTMLElement | 
 
 // DOM
 export const PROVIDER_CONTAINER_ID: string = 'provider'
+export const PROVIDER_FORM_ID: string = 'provider-form'
 export const CONSUMER_CONTAINER_ID: string = 'consumer'
+export const CONSUMER_FORM_ID: string = 'consumer-form'
 export const DASHBOARD_CONTAINER_ID: string = 'dashboard'
 export const FORMS_CONTAINER_ID: string = 'forms'
 
