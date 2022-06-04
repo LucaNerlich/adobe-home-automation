@@ -8,9 +8,13 @@ import {
     generateConsumerForm,
     generateProviderForm,
     NAME_FORM_NAME,
+    STRATEGIES_FORM_NAME,
+    TOPIC_FORM_NAME,
 } from '../devices/FormService'
+import {AVAILABLE_TOPICS} from '../constants'
 
 const label = 'some-label'
+const topic = 'some-topic'
 
 test('createSubmit returns input element', () => {
     const submit = createSubmit(label)
@@ -37,6 +41,7 @@ test('generateProviderForm correctly prepares provider-form', () => {
 })
 
 test('generateConsumerForm correctly prepares consumer-form', () => {
+    AVAILABLE_TOPICS.push(topic)
     const formRoot = document.createElement('form')
 
     generateConsumerForm(formRoot)
@@ -56,6 +61,42 @@ test('generateConsumerForm correctly prepares consumer-form', () => {
     expect(nameInput?.getAttribute('placeholder')).toBe('Kitchen-Light 1')
     expect(nameInput?.getAttribute('required')).toBe('true')
 
+    // test submit
     const submit = formRoot.querySelector('input[type=submit]')
     expect(submit).not.toBe(null)
+
+    // test error span
+    const errorSpan = formRoot.querySelector('span[role=error]') as HTMLElement
+    expect(errorSpan).not.toBe(null)
+    expect(errorSpan?.id).not.toBe(null)
+    expect(errorSpan?.textContent).not.toBe(null)
+    expect(errorSpan?.style.display).toBe('none')
+    expect(errorSpan?.style.color).toBe('red')
+
+    // test br
+    const br = formRoot.querySelector('br') as HTMLElement
+    expect(br).not.toBe(null)
+
+    // test topic select label
+    const childNodes = formRoot.children
+    const topicLabel = childNodes.item(3) as HTMLElement
+    expect(topicLabel).not.toBe(null)
+    expect(topicLabel?.getAttribute('for')).not.toBe(null)
+    expect(topicLabel?.textContent).toBe('Available Topics')
+
+    // test topic select dropdown
+    const topicSelect = childNodes.item(4) as HTMLElement
+    expect(topicSelect).not.toBe(null)
+    expect(topicSelect?.getAttribute('name')).toBe(TOPIC_FORM_NAME)
+
+    // test strategy select label
+    const strategyLabel = childNodes.item(6) as HTMLElement
+    expect(strategyLabel).not.toBe(null)
+    expect(strategyLabel?.textContent).toBe('Use Case')
+    expect(strategyLabel?.getAttribute('for')).not.toBe(null)
+
+    // test strategy select dropdown
+    const strategySelect = childNodes.item(7) as HTMLElement
+    expect(strategySelect).not.toBe(null)
+    expect(strategySelect?.getAttribute('name')).toBe(STRATEGIES_FORM_NAME)
 })

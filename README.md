@@ -1,7 +1,7 @@
 # (Adobe) Home Automation Assessment
 
-> Start: 2022-06-03
-> End: 2022-06-13
+> First Commit: 2022-06-03
+> Last Commit: 2022-06-13
 > Contact: M. Voss
 
 - [Assigment](#assigment)
@@ -89,7 +89,9 @@ I've opted out of adding any SASS Plugins to keep this setup as simple as possib
 
 The app is broken down into three main sections.
 
--
+- Form Container to create new Provider and Consumer
+- Control Dashboard to emit Events
+- Visualization Panel of Consumers and their event handling
 
 ### Demo Content
 
