@@ -83,7 +83,7 @@ function generateErrorSpan(message: string) {
 }
 
 export function getTopicValue(topicInput: string) {
-    return topicInput?.replace(' ', '-')
+    return topicInput?.replaceAll(' ', '-')
 }
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {

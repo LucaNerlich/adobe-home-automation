@@ -102,9 +102,9 @@ You are now able to manually load the demo content via a button click.
 - [x] start with a device creation form
     - independently create provider and consumer
     - [x] form validation do not allow duplicate topic
-    - [ ] wrap each input/label line in div and style it
-- [ ] dynamically create provider
-- [ ] dynamically create consumer
+    - [ ] ~~wrap each input/label line in div and style it~~
+- [x] dynamically create provider
+- [x] dynamically create consumer
     - setup listeners during creation
     - ensure that multiple consumers are able to listen to the same event topic
 - [x] investigate how the strategy pattern could be used
@@ -117,7 +117,7 @@ You are now able to manually load the demo content via a button click.
     - [ ] set timer for X -> close blinds at 12pm
 - [x] Setup skeleton div structure
 - [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
-    - maybe add "load demo state" button instead?
+    - [x] add "load demo state" button instead?
 - [ ] add remove button to consumer and provider
     - provider needs to remove topic and all consumer on deletion
 - [ ] add updated Demo Screenshot to README

@@ -1,6 +1,7 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
+import {getTopicValue} from '../FormService'
 
 export class ConsumerImpl extends Consumer {
     id: string
@@ -11,7 +12,7 @@ export class ConsumerImpl extends Consumer {
     constructor(topic: string, label: string, strategy: Strategy) {
         super()
         this.id = getRandomID()
-        this.topic = topic
+        this.topic = getTopicValue(topic)
         this.label = label
         this.strategy = strategy
     }
@@ -27,8 +28,7 @@ export class ConsumerImpl extends Consumer {
         consumerRootContainer.classList.add('consumer-item')
 
         if (label && label.length > 0) {
-            const labelAttribute = label.replace(' ', '-')
-            consumerRootContainer.setAttribute('data-label', labelAttribute)
+            consumerRootContainer.setAttribute('data-label', label)
         }
 
         return consumerRootContainer

@@ -10,7 +10,6 @@ export function sum(a: number, b: number) {
     return a + b
 }
 
-// TODO
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
     const TOPIC_LIGHT_1 = 'light-1'
     const TOPIC_LIGHT_2 = 'light-2'
@@ -35,17 +34,17 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     // dummy consumer container
     const consumerContainer = getConsumerContainer()
 
-    const simpleConsumer = new ConsumerImpl(TOPIC_LIGHT_1, 'kitchen-light', new BooleanStrategy())
-    consumerContainer?.appendChild(simpleConsumer.getElement())
+    const demoConsumerKitchen1 = new ConsumerImpl(TOPIC_LIGHT_1, 'Kitchen - Light (Left)', new BooleanStrategy())
+    consumerContainer?.appendChild(demoConsumerKitchen1.getElement())
 
-    const simpleConsumer2 = new ConsumerImpl(TOPIC_LIGHT_1, 'kitchen-light-secondary', new BooleanStrategy())
-    consumerContainer?.appendChild(simpleConsumer2.getElement())
+    const demoConsumerKitchen2 = new ConsumerImpl(TOPIC_LIGHT_1, 'Kitchen - Light (Right)', new BooleanStrategy())
+    consumerContainer?.appendChild(demoConsumerKitchen2.getElement())
 
-    const simpleConsumer3 = new ConsumerImpl(TOPIC_LIGHT_2, 'livingroom-light', new BooleanStrategy())
-    consumerContainer?.appendChild(simpleConsumer3.getElement())
+    const demoConsumerLivingRoom1 = new ConsumerImpl(TOPIC_LIGHT_2, 'Living Room - Light (All)', new BooleanStrategy())
+    consumerContainer?.appendChild(demoConsumerLivingRoom1.getElement())
 
-    const simpleConsumer4 = new ConsumerImpl(TOPIC_HEATING_1, 'living-room-heater', new NumberStrategy())
-    consumerContainer?.appendChild(simpleConsumer4.getElement())
+    const demoConsumerLivingRoom2 = new ConsumerImpl(TOPIC_HEATING_1, 'Living Room - (Heating)', new NumberStrategy())
+    consumerContainer?.appendChild(demoConsumerLivingRoom2.getElement())
 
     // hide demo button
     const demoButton = event.target as HTMLButtonElement
