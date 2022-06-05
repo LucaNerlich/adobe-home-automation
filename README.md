@@ -1,7 +1,9 @@
 # (Adobe) Home Automation Assessment
 
 > First Commit: 2022-06-03
-> Last Commit: 2022-06-13
+
+> Last Commit: 2022-06-06
+
 > Contact: M. Voss
 
 - [Assigment](#assigment)
@@ -13,7 +15,8 @@
     - [Implementation](#implementation)
     - [Demo Content](#demo-content)
 - [ToDos](#todos)
-    - [Known Issues](#known-issues)
+    - [Submission](#submission)
+    - [Known Issues](#known-issues--future-extensions)
 - [References](#references)
 
 ## Assigment
@@ -158,15 +161,20 @@ You are now able to manually load the demo content via a button click.
     - [ ] set timer for X -> close blinds at 12pm
     - [ ] simple "button" strategy / alternative to checkbox
         - can we extend bool strategy?
-- [ ] write the rest of technical documentation
+- [ ] write the rest of the technical documentation
 - [x] use more `data-` attributes as resilient dom selectors
 - [x] Setup skeleton div structure
 - [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
     - [x] add "load demo state" button instead?
-- [ ] add jest testcases
-- [ ] add updated Demo Screenshot to README
+- [x] add jest testcases
+- [x] add cypress e2e testcases
 - [x] add table of contents to README
+
+### Submission
+
+- [ ] add updated Demo Screenshot to README
 - [ ] record short demo video
+- [ ] update "last commit" date in README
 - [ ] Copy "final" build files to `/assignment`
     - index.html
     - index.js
