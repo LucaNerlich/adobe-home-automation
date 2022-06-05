@@ -110,11 +110,29 @@ portable `index.js`.
 This script is being referenced by the `index.html`, which additionally loads all stylesheets via a single `index.css`.
 I've opted out of adding any SASS Plugins to keep this setup as simple as possible.
 
-The app is broken down into three main sections.
+The html structure is broken down into three main sections.
 
 - Form Container to create new Provider and Consumer
 - Control Dashboard to emit Events
 - Visualization Panel of Consumers and their event handling
+
+The apps' logic in its basic form is as follows:
+
+A Provider of type Strategy X sends a data object, the 'new'
+value, as an event to the specified event type, here called **topic**.
+
+Each consumer of type Strategy X has an event listener for a specific topic.
+On event dispatch this consumer updates its internal state
+(here its visual representation in html) according to its strategy implementation.
+
+An example would be a light switch (provider) that's connected with a cable
+(topic) to any number of light bulbs (consumer).
+
+To be able to handle multiple use cases (here 'Strategies'),
+each provider and consumer have a specific Strategy assigned.
+This allows the underlying logic to be generic
+and makes it easy to implement new features such as a color-picker variation
+(Imagine an RGB Light bulb) for example.
 
 ### Demo Content
 

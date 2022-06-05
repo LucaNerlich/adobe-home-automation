@@ -83,5 +83,4 @@ export class BooleanStrategy extends Strategy {
             BooleanStrategy.setValue(BooleanStrategy.parseValue(eventData), displayElement)
         }
     }
-
 }
