@@ -134,6 +134,21 @@ This allows the underlying logic to be generic
 and makes it easy to implement new features such as a color-picker variation
 (Imagine an RGB Light bulb) for example.
 
+In the current implementation, only one provider can be created per topic.
+However, this is just due to the form validation.
+One can either deactivate it:
+
+```javascript
+// generateProviderForm L129+
+
+if (true) {
+    // [...]
+}
+```
+
+or adapt it to only add a new topic `<option/>` if it doesn't already exist.
+Multiple provider for the same topic represents a set of switches that control the same set of lights, for example.
+
 ### Demo Content
 
 ![demo-screenshot](./assets/demo.png)
