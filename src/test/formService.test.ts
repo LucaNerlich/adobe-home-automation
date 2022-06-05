@@ -7,7 +7,7 @@ import {
     createSubmit,
     generateConsumerForm,
     generateProviderForm,
-    NAME_FORM_NAME,
+    CONSUMER_FORM_NAME,
     STRATEGIES_FORM_NAME,
     TOPIC_FORM_NAME,
 } from '../devices/FormService'
@@ -57,8 +57,8 @@ test('generateConsumerForm correctly prepares consumer-form', () => {
     const nameInput = formRoot.querySelector('input')
     expect(nameInput).not.toBe(null)
     expect(nameInput?.getAttribute('type')).toBe('text')
-    expect(nameInput?.getAttribute('name')).toBe(NAME_FORM_NAME)
-    expect(nameInput?.getAttribute('placeholder')).toBe('Kitchen-Light 1')
+    expect(nameInput?.getAttribute('name')).toBe(CONSUMER_FORM_NAME)
+    expect(nameInput?.getAttribute('placeholder')).toBe('Name')
     expect(nameInput?.getAttribute('required')).toBe('true')
 
     // test submit

@@ -4,7 +4,7 @@ import {createDeviceWithFormData, DeviceType} from './DeviceService'
 import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
 
 export const TOPIC_FORM_NAME = 'topic'
-export const NAME_FORM_NAME = 'name'
+export const CONSUMER_FORM_NAME = 'name'
 export const STRATEGIES_FORM_NAME = 'strategies'
 
 export function createSubmit(label: string) {
@@ -91,24 +91,11 @@ function generateErrorSpan(message: string) {
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
     if (formRoot) {
-        // topic
-        const topicId = getRandomID()
-        const topicLabel = document.createElement('label')
-        setDataAttribute(topicLabel, getFormDataAttribute('provider-topic-label'))
-        topicLabel.setAttribute('for', topicId)
-        topicLabel.textContent = 'Topic'
-
-        const topicInput = document.createElement('input')
-        setDataAttribute(topicInput, getFormDataAttribute('provider-topic-input'))
-        topicInput.id = topicId
-        topicInput.setAttribute('type', 'text')
-        topicInput.setAttribute('name', TOPIC_FORM_NAME)
-        topicInput.setAttribute('placeholder', 'Kitchen-Light')
-        topicInput.setAttribute('required', 'true')
+        const labelInputTupel = generateLabelTextInput('Topic', 'provider-topic', TOPIC_FORM_NAME)
 
         // build the form in order
-        formRoot.appendChild(topicLabel)
-        formRoot.appendChild(topicInput)
+        formRoot.appendChild(labelInputTupel[0])
+        formRoot.appendChild(labelInputTupel[1])
         createStrategySelect(formRoot)
 
         const submit = createSubmit('Add Provider')
@@ -153,29 +140,40 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
     }
 }
 
+/**
+ * Generates a Tuple of a <label/> and an <input/> element.
+ * @param label -> label / placeholder
+ * @param type -> data-form-element attribute value prefix
+ * @param name -> name attribute value
+ */
+function generateLabelTextInput(label: string, type: string, name: string): [HTMLElement, HTMLElement] {
+    const labelId = getRandomID()
+    const labelElement = document.createElement('label')
+    labelElement.setAttribute('for', labelId)
+    setDataAttribute(labelElement, getFormDataAttribute(type + '-label'))
+    labelElement.textContent = label
+
+    const inputElement = document.createElement('input')
+    inputElement.id = labelId
+    setDataAttribute(inputElement, getFormDataAttribute(type + '-input'))
+    inputElement.setAttribute('type', 'text')
+    inputElement.setAttribute('name', name)
+    inputElement.setAttribute('placeholder', label)
+    inputElement.setAttribute('required', 'true')
+
+    return [labelElement, inputElement]
+}
+
 export function generateConsumerForm(formRoot: HTMLFormElement | null) {
     if (formRoot) {
         // reset form children
         formRoot.innerHTML = ''
 
-        // name
-        const nameId = getRandomID()
-        const nameLabel = document.createElement('label')
-        nameLabel.setAttribute('for', nameId)
-        setDataAttribute(nameLabel, getFormDataAttribute('consumer-name-label'))
-        nameLabel.textContent = 'Name'
-
-        const nameInput = document.createElement('input')
-        nameInput.id = nameId
-        setDataAttribute(nameInput, getFormDataAttribute('consumer-name-input'))
-        nameInput.setAttribute('type', 'text')
-        nameInput.setAttribute('name', NAME_FORM_NAME)
-        nameInput.setAttribute('placeholder', 'Kitchen-Light 1')
-        nameInput.setAttribute('required', 'true')
+        const labelInputTupel = generateLabelTextInput('Name', 'consumer-name', CONSUMER_FORM_NAME)
 
         // build the form in order
-        formRoot.appendChild(nameLabel)
-        formRoot.appendChild(nameInput)
+        formRoot.appendChild(labelInputTupel[0])
+        formRoot.appendChild(labelInputTupel[1])
 
         generateTopicSelect(formRoot)
         createStrategySelect(formRoot)
@@ -194,7 +192,7 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
             // validate consumer form
             let isValid: boolean = true
             formData.forEach((value, key) => {
-                if (key === NAME_FORM_NAME) {
+                if (key === CONSUMER_FORM_NAME) {
                     if (value.toString().trim().length === 0) {
                         // @FIXME figure out why the form is being submitted twice.
                         submitErrorSpan.style.display = ''
