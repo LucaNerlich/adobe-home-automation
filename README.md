@@ -80,10 +80,11 @@ I'm fully aware that build-fragments should not be added to version control in a
 
 ### Testing (Unit + E2E)
 
-I've written jest unit tests for most of the backend functionality and element creation.
-Additionally, e2e tests are being run heedlessly for chrome and firefox using CypressIO.
+I've tested **every** ui functionality available as well as the div structure with CypressIO E2E tests.
+These run heedlessly during every production build.
 
-Jest test cases run on dev and prod builds. Cypress e2e tests only during production builds.
+Additionally, I've written jest unit tests for most of the backend functionality and element creation.
+Jest test cases run on dev and prod builds.
 
 Jest Unit Tests
 
@@ -178,6 +179,7 @@ You are now able to manually load the demo content via a button click.
 - When adding a new consumer, it does not automatically grab the current state of its corresponding provider
 - Currently, not possible to delete a consumer or a topic, once added.
 - Add more test cases, especially for the event listeners, although this is quite tricky.
+- Responsive Layout
 
 ## References
 
