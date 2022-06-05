@@ -15,10 +15,10 @@
     "scripts": {
         "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
         "serve": "esbuild src/index.ts --bundle --servedir=./ --outdir=./ --sourcemap --loader:.html=text",
-        "build": "npm run test && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
-        "build-prod": "npm run test && npm run cypress:headless:chrome && npm run cypress:headless:firefox && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
+        "build": "npm run jest && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
+        "build-prod": "npm run jest && npm run cypress:headless:chrome && npm run cypress:headless:firefox && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
         "serve-prod": "esbuild --servedir=./assignment",
-        "test": "jest --coverage",
+        "jest": "jest --coverage",
         "cypress:open": "cypress open",
         "cypress:headless:chrome": "cypress run --headless --browser chrome --config video=false,screenshotOnRunFailure=false",
         "cypress:headless:firefox": "cypress run --headless --browser firefox:dev --config video=false,screenshotOnRunFailure=false"

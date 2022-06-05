@@ -13,7 +13,7 @@ describe('forms.cy.ts', () => {
         cy.get('#provider-form')
     })
 
-    it('provider form should create provider', () => {
+    it('provider form should create provider and add topic to consumer form', () => {
         cy.visit('/')
         cy.get('#provider-form > :nth-child(2)').type(someTopic)
         cy.get('#provider-form >  input[type=submit]').click()

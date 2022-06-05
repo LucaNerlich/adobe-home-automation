@@ -1,6 +1,8 @@
 import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, getRandomID} from '../constants'
 import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
+import {createDataAttribute} from '../domUtils'
+import {DataAttribute} from '../entities/DataAttribute'
 
 export const TOPIC_FORM_NAME = 'topic'
 export const NAME_FORM_NAME = 'name'
@@ -82,6 +84,14 @@ function generateErrorSpan(message: string) {
     return submitErrorSpan
 }
 
+function getFormDataAttribute(value: string) {
+    return createDataAttribute('form-element', value)
+}
+
+function setDataAttribute(element: HTMLElement, dataAttribute: DataAttribute): void {
+    element.setAttribute(dataAttribute.type, dataAttribute.value)
+}
+
 export function getTopicValue(topicInput: string) {
     return topicInput?.replaceAll(' ', '-')
 }
@@ -154,9 +164,12 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         const nameId = getRandomID()
         const nameLabel = document.createElement('label')
         nameLabel.setAttribute('for', nameId)
+        setDataAttribute(nameLabel, getFormDataAttribute('consumer-name-label'))
         nameLabel.textContent = 'Name'
+
         const nameInput = document.createElement('input')
         nameInput.id = nameId
+        setDataAttribute(nameInput, getFormDataAttribute('consumer-name-input'))
         nameInput.setAttribute('type', 'text')
         nameInput.setAttribute('name', NAME_FORM_NAME)
         nameInput.setAttribute('placeholder', 'Kitchen-Light 1')
