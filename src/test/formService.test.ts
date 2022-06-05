@@ -3,11 +3,12 @@
  */
 
 import {
+    CONSUMER_FORM_NAME, createInputElement,
+    createLabelElement,
     createSelectOption,
     createSubmit,
     generateConsumerForm,
     generateProviderForm,
-    CONSUMER_FORM_NAME,
     STRATEGIES_FORM_NAME,
     TOPIC_FORM_NAME,
 } from '../devices/FormService'
@@ -15,6 +16,8 @@ import {AVAILABLE_TOPICS} from '../constants'
 
 const label = 'some-label'
 const topic = 'some-topic'
+const id = 'some-id'
+const type = 'some-type'
 
 test('createSubmit returns input element', () => {
     const submit = createSubmit(label)
@@ -30,6 +33,24 @@ test('createSelectOption returns option element', () => {
     expect(option).not.toBe(null)
     expect(option.getAttribute('value')).toBe(label)
     expect(option.textContent).toBe(label)
+})
+
+test('createLabelElement returns label element', () => {
+    const labelElement = createLabelElement(id, label, type)
+
+    expect(labelElement).not.toBe(null)
+    expect(labelElement.getAttribute('for')).toBe(id)
+    expect(labelElement.getAttribute('data-form-element')).toBe(type + '-label')
+    expect(labelElement.textContent).toBe(label)
+})
+
+test('createInputElement returns input element', () => {
+    const inputElement = createInputElement(id, label, type)
+
+    expect(inputElement).not.toBe(null)
+    expect(inputElement.id).toBe(id)
+    expect(inputElement.getAttribute('type')).toBe(type)
+    expect(inputElement.getAttribute('data-form-element')).toBe(label + '-input')
 })
 
 test('generateProviderForm correctly prepares provider-form', () => {

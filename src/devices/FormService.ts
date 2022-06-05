@@ -149,7 +149,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
 export function createLabelElement(id: string, label: string, type?: string): HTMLElement {
     const labelElement = document.createElement('label')
     labelElement.setAttribute('for', id)
-    setDataAttribute(labelElement, getFormDataAttribute(type ? type : label + '-label'))
+    setDataAttribute(labelElement, getFormDataAttribute((type ? type : label) + '-label'))
     labelElement.textContent = label
     return labelElement
 }

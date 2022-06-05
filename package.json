@@ -16,7 +16,7 @@
         "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
         "serve": "esbuild src/index.ts --bundle --servedir=./ --outdir=./ --sourcemap --loader:.html=text",
         "build": "npm run jest && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
-        "build-prod": "npm run jest && npm run cypress:headless:chrome && npm run cypress:headless:firefox && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text",
+        "build-prod": "npm run jest && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text && npm run cypress:headless:chrome && npm run cypress:headless:firefox",
         "serve-prod": "esbuild --servedir=./assignment",
         "jest": "jest --coverage",
         "cypress:open": "cypress open",
