@@ -2,13 +2,8 @@ import {getConsumerContainer, getProviderContainer} from './domUtils'
 import {ConsumerImpl} from './devices/consumer/ConsumerImpl'
 import {BooleanStrategy} from './devices/strategies/BooleanStrategy'
 import {NumberStrategy} from './devices/strategies/NumberStrategy'
-import {generateConsumerForm, generateProviderForm} from './devices/FormService'
+import {createSelectOption, generateConsumerForm, generateProviderForm} from './devices/FormService'
 import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
-
-// todo remove, this is just a jest hello world example
-export function sum(a: number, b: number) {
-    return a + b
-}
 
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
     const TOPIC_LIGHT_1 = 'light-1'
@@ -18,8 +13,10 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     AVAILABLE_TOPICS.push(TOPIC_LIGHT_2)
     AVAILABLE_TOPICS.push(TOPIC_HEATING_1)
 
-    // recreate the consumer form with the new topic
-    generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
+    const topicSelect = document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]')
+    topicSelect?.appendChild(createSelectOption(TOPIC_LIGHT_1))
+    topicSelect?.appendChild(createSelectOption(TOPIC_LIGHT_2))
+    topicSelect?.appendChild(createSelectOption(TOPIC_HEATING_1))
 
     // dummy provider container
     const providerContainer = getProviderContainer()
@@ -52,11 +49,11 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     demoButton.style.display = 'none'
 })
 
+// Load Demo Content
+document.getElementById('load-demo-button')?.click()
+
 // Initial From Generation
 generateProviderForm(document.getElementById(PROVIDER_FORM_ID) as HTMLFormElement)
 generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
-
-// Load Demo Content
-document.getElementById('load-demo-button')?.click()
 
 

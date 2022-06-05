@@ -1,4 +1,4 @@
-import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, getRandomID} from '../constants'
+import {AVAILABLE_TOPICS, getRandomID} from '../constants'
 import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
 import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
@@ -125,22 +125,24 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
 
             // validate provider form
             let isValid: boolean = true
+            let topic = ''
             formData.forEach((value, key) => {
                 if (key === TOPIC_FORM_NAME) {
-                    const topicValue = replaceSpaceWithDash(value.toString())
-                    if (AVAILABLE_TOPICS.includes(topicValue)) {
+                    topic = replaceSpaceWithDash(value.toString())
+                    if (AVAILABLE_TOPICS.includes(topic)) {
                         submitErrorSpan.style.display = ''
                         isValid = false
                     } else {
-                        AVAILABLE_TOPICS.push(topicValue)
+                        AVAILABLE_TOPICS.push(topic)
                         isValid = true
                     }
                 }
             })
 
             if (isValid) {
-                // recreate the consumer form with the new topic
-                generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
+                // add the new topic to the consumer topic select options
+                const topicSelect = document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]')
+                topicSelect?.appendChild(createSelectOption(topic))
                 submitErrorSpan.style.display = 'none'
                 form.reset()
 
@@ -195,7 +197,7 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
                 if (key === NAME_FORM_NAME) {
                     if (value.toString().trim().length === 0) {
                         // @FIXME figure out why the form is being submitted twice.
-                        // submitErrorSpan.style.display = ''
+                        submitErrorSpan.style.display = ''
                         isValid = false
                     } else {
                         isValid = true
