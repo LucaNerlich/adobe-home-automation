@@ -37,3 +37,21 @@ export function getFormDataAttribute(value: string) {
 export function setDataAttribute(element: HTMLElement, dataAttribute: DataAttribute): void {
     element.setAttribute(dataAttribute.type, dataAttribute.value)
 }
+
+/**
+ * returns a button that on click deletes the element with the given id
+ * @param elementId -> ID of the HTMLElement to remove from the DOM
+ */
+export function createDeletionButton(elementId: string): HTMLButtonElement {
+    function deleteElement() {
+        document.getElementById(elementId)?.remove()
+    }
+
+    const button = document.createElement('button')
+    button.textContent = 'X'
+    button.addEventListener('click', deleteElement)
+    button.classList.add('delete')
+    setDataAttribute(button, getFormDataAttribute('delete-' + elementId))
+
+    return button
+}

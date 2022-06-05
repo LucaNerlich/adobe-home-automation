@@ -1,6 +1,6 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
-import {createCustomEvent, getFormDataAttribute, setDataAttribute} from '../../domUtils'
+import {createCustomEvent, createDeletionButton, getFormDataAttribute, setDataAttribute} from '../../domUtils'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
 
 const classOff = 'bool-strategy-off'
@@ -35,10 +35,12 @@ export class BooleanStrategy extends Strategy {
     }
 
     createProviderElement(topic: string, label?: string): HTMLElement {
-        const randomID = getRandomID()
+        const formId = getRandomID()
         const formElement = document.createElement('form')
+        formElement.id = formId
         formElement.classList.add('bool-strategy-form')
 
+        const randomID = getRandomID()
         const labelElement = document.createElement('label')
         setDataAttribute(labelElement, getFormDataAttribute('provider-item-label_' + topic))
         labelElement.textContent = label ? label : topic
@@ -60,6 +62,7 @@ export class BooleanStrategy extends Strategy {
 
         formElement.appendChild(labelElement)
         formElement.appendChild(inputElement)
+        formElement.appendChild(createDeletionButton(formId))
         return formElement
     }
 

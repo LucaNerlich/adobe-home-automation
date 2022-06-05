@@ -1,7 +1,7 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
-import {createCustomEvent, getFormDataAttribute, setDataAttribute} from '../../domUtils'
+import {createCustomEvent, createDeletionButton, getFormDataAttribute, setDataAttribute} from '../../domUtils'
 
 export class NumberStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
@@ -10,10 +10,12 @@ export class NumberStrategy extends Strategy {
      * Do we handle only 0 -> 1 as % value for simplicity’s sake?
      */
     createProviderElement(topic: string, label?: string): HTMLElement {
-        const randomID = getRandomID()
+        const formId = getRandomID()
         const formElement = document.createElement('form')
         formElement.classList.add('number-strategy-form')
+        formElement.id = formId
 
+        const randomID = getRandomID()
         const labelElement = document.createElement('label')
         setDataAttribute(labelElement, getFormDataAttribute('provider-item-label_' + topic))
         labelElement.textContent = label ? label : topic
@@ -39,6 +41,7 @@ export class NumberStrategy extends Strategy {
 
         formElement.appendChild(labelElement)
         formElement.appendChild(inputElement)
+        formElement.appendChild(createDeletionButton(formId))
         return formElement
     }
 

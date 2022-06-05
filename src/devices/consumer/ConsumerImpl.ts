@@ -1,7 +1,7 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
-import {replaceSpaceWithDash} from '../../domUtils'
+import {createDeletionButton, replaceSpaceWithDash} from '../../domUtils'
 
 export class ConsumerImpl extends Consumer {
     id: string
@@ -41,6 +41,7 @@ export class ConsumerImpl extends Consumer {
 
         const topicHint = document.createElement('p')
         topicHint.textContent = this.topic
+        consumerWrapper.appendChild(createDeletionButton(this.id))
         consumerWrapper.appendChild(topicHint)
         return consumerWrapper
     }
