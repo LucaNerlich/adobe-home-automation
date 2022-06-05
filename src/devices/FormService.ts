@@ -141,6 +141,36 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
 }
 
 /**
+ * Generates a <label/> element
+ * @param id
+ * @param label
+ * @param type
+ */
+export function createLabelElement(id: string, label: string, type?: string): HTMLElement {
+    const labelElement = document.createElement('label')
+    labelElement.setAttribute('for', id)
+    setDataAttribute(labelElement, getFormDataAttribute(type ? type : label + '-label'))
+    labelElement.textContent = label
+    return labelElement
+}
+
+/**
+ * Generates an <input/> element with its basic properties.
+ * Can and should be adapted afterwards.
+ * @param id -> string id, should match its label 'for' attribute value
+ * @param dataAttribute -> string value, will be prefixed to the data attribute '-input' value
+ * @param type -> the input type, e.g text, number, checkbox
+ */
+export function createInputElement(id: string, dataAttribute: string, type: string): HTMLElement {
+    const inputElement = document.createElement('input')
+    inputElement.id = id
+    setDataAttribute(inputElement, getFormDataAttribute(dataAttribute + '-input'))
+    inputElement.setAttribute('type', type)
+
+    return inputElement
+}
+
+/**
  * Generates a Tuple of a <label/> and an <input/> element.
  * @param label -> label / placeholder
  * @param type -> data-form-element attribute value prefix
@@ -148,15 +178,9 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
  */
 function generateLabelTextInput(label: string, type: string, name: string): [HTMLElement, HTMLElement] {
     const labelId = getRandomID()
-    const labelElement = document.createElement('label')
-    labelElement.setAttribute('for', labelId)
-    setDataAttribute(labelElement, getFormDataAttribute(type + '-label'))
-    labelElement.textContent = label
+    const labelElement = createLabelElement(labelId, label, type)
 
-    const inputElement = document.createElement('input')
-    inputElement.id = labelId
-    setDataAttribute(inputElement, getFormDataAttribute(type + '-input'))
-    inputElement.setAttribute('type', 'text')
+    const inputElement = createInputElement(labelId, type, 'text')
     inputElement.setAttribute('name', name)
     inputElement.setAttribute('placeholder', label)
     inputElement.setAttribute('required', 'true')
@@ -170,8 +194,6 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         formRoot.innerHTML = ''
 
         const labelInputTupel = generateLabelTextInput('Name', 'consumer-name', CONSUMER_FORM_NAME)
-
-        // build the form in order
         formRoot.appendChild(labelInputTupel[0])
         formRoot.appendChild(labelInputTupel[1])
 
@@ -179,8 +201,9 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         createStrategySelect(formRoot)
 
         const submit = createSubmit('Add Consumer')
-        const submitErrorSpan = generateErrorSpan('Invalid: Name cannot be empty.')
         formRoot.appendChild(submit)
+
+        const submitErrorSpan = generateErrorSpan('Invalid: Name cannot be empty.')
         formRoot.appendChild(submitErrorSpan)
 
         // on submit

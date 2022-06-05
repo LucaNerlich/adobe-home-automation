@@ -24,7 +24,7 @@ describe('forms.cy.ts', () => {
         // validate created provider
         cy.get('#provider > :nth-child(5)').within(() => {
             cy.get('label[data-form-element="provider-item-label_some-topic"]').should('have.text', someTopic)
-            cy.get('input[data-form-element="provider-item-input_some-topic"]').should('have.attr', 'type').and('equal', 'checkbox')
+            cy.get('input[data-form-element="provider-item-input_some-topic-input"]').should('have.attr', 'type').and('equal', 'checkbox')
         })
 
         // check if a new topic has been added to consumer topic select

@@ -1,7 +1,8 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
-import {createCustomEvent, createDeletionButton, getFormDataAttribute, setDataAttribute} from '../../domUtils'
+import {createCustomEvent, createDeletionButton} from '../../domUtils'
+import {createInputElement, createLabelElement} from '../FormService'
 
 export class NumberStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
@@ -16,15 +17,10 @@ export class NumberStrategy extends Strategy {
         formElement.id = formId
 
         const randomID = getRandomID()
-        const labelElement = document.createElement('label')
-        setDataAttribute(labelElement, getFormDataAttribute('provider-item-label_' + topic))
-        labelElement.textContent = label ? label : topic
-        labelElement.setAttribute('for', randomID)
+        const labelElement = createLabelElement(randomID, label ? label : topic, 'provider-item-label_' + topic)
+        formElement.appendChild(labelElement)
 
-        const inputElement = document.createElement('input')
-        setDataAttribute(inputElement, getFormDataAttribute('provider-item-input_' + topic))
-        inputElement.id = randomID
-        inputElement.setAttribute('type', 'number')
+        const inputElement = createInputElement(randomID, 'provider-item-input_' + topic, 'number')
         inputElement.setAttribute('name', label ? label : topic)
         inputElement.setAttribute('min', '0')
         inputElement.setAttribute('max', '1')
@@ -38,9 +34,8 @@ export class NumberStrategy extends Strategy {
                 item.dispatchEvent(checkboxEvent)
             })
         })
-
-        formElement.appendChild(labelElement)
         formElement.appendChild(inputElement)
+
         formElement.appendChild(createDeletionButton(formId))
         return formElement
     }
