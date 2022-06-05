@@ -158,7 +158,7 @@ You are now able to manually load the demo content via a button click.
     - [ ] simple "button" strategy / alternative to checkbox
         - can we extend bool strategy?
 - [ ] write the rest of technical documentation
-- [ ] use more `data-` attributes as resilient dom selectors
+- [x] use more `data-` attributes as resilient dom selectors
 - [x] Setup skeleton div structure
 - [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
     - [x] add "load demo state" button instead?

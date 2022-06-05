@@ -1,8 +1,8 @@
 import {StrategyType} from './strategies/Strategy'
 import {BooleanStrategy} from './strategies/BooleanStrategy'
 import {NumberStrategy} from './strategies/NumberStrategy'
-import {getConsumerContainer, getProviderContainer} from '../domUtils'
-import {replaceSpaceWithDash, NAME_FORM_NAME, STRATEGIES_FORM_NAME, TOPIC_FORM_NAME} from './FormService'
+import {getConsumerContainer, getProviderContainer, replaceSpaceWithDash} from '../domUtils'
+import {NAME_FORM_NAME, STRATEGIES_FORM_NAME, TOPIC_FORM_NAME} from './FormService'
 import {ConsumerImpl} from './consumer/ConsumerImpl'
 import {Consumer} from './consumer/Consumer'
 

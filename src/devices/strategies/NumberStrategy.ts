@@ -1,7 +1,7 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
-import {createCustomEvent} from '../../domUtils'
+import {createCustomEvent, getFormDataAttribute, setDataAttribute} from '../../domUtils'
 
 export class NumberStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
@@ -15,10 +15,12 @@ export class NumberStrategy extends Strategy {
         formElement.classList.add('number-strategy-form')
 
         const labelElement = document.createElement('label')
+        setDataAttribute(labelElement, getFormDataAttribute('provider-item-label_' + topic))
         labelElement.textContent = label ? label : topic
         labelElement.setAttribute('for', randomID)
 
         const inputElement = document.createElement('input')
+        setDataAttribute(inputElement, getFormDataAttribute('provider-item-input_' + topic))
         inputElement.id = randomID
         inputElement.setAttribute('type', 'number')
         inputElement.setAttribute('name', label ? label : topic)

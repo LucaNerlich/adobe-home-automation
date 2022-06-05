@@ -1,8 +1,7 @@
 import {AVAILABLE_TOPICS, CONSUMER_FORM_ID, getRandomID} from '../constants'
 import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
-import {createDataAttribute} from '../domUtils'
-import {DataAttribute} from '../entities/DataAttribute'
+import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
 
 export const TOPIC_FORM_NAME = 'topic'
 export const NAME_FORM_NAME = 'name'
@@ -90,26 +89,17 @@ function generateErrorSpan(message: string) {
     return submitErrorSpan
 }
 
-function getFormDataAttribute(value: string) {
-    return createDataAttribute('form-element', value)
-}
-
-function setDataAttribute(element: HTMLElement, dataAttribute: DataAttribute): void {
-    element.setAttribute(dataAttribute.type, dataAttribute.value)
-}
-
-export function replaceSpaceWithDash(value: string) {
-    return value?.replaceAll(' ', '-').toLowerCase()
-}
-
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
     if (formRoot) {
         // topic
         const topicId = getRandomID()
         const topicLabel = document.createElement('label')
+        setDataAttribute(topicLabel, getFormDataAttribute('provider-topic-label'))
         topicLabel.setAttribute('for', topicId)
         topicLabel.textContent = 'Topic'
+
         const topicInput = document.createElement('input')
+        setDataAttribute(topicInput, getFormDataAttribute('provider-topic-input'))
         topicInput.id = topicId
         topicInput.setAttribute('type', 'text')
         topicInput.setAttribute('name', TOPIC_FORM_NAME)

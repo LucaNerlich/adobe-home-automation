@@ -1,6 +1,6 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
-import {createCustomEvent} from '../../domUtils'
+import {createCustomEvent, getFormDataAttribute, setDataAttribute} from '../../domUtils'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
 
 const classOff = 'bool-strategy-off'
@@ -40,10 +40,12 @@ export class BooleanStrategy extends Strategy {
         formElement.classList.add('bool-strategy-form')
 
         const labelElement = document.createElement('label')
+        setDataAttribute(labelElement, getFormDataAttribute('provider-item-label_' + topic))
         labelElement.textContent = label ? label : topic
         labelElement.setAttribute('for', randomID)
 
         const inputElement = document.createElement('input')
+        setDataAttribute(inputElement, getFormDataAttribute('provider-item-input_' + topic))
         inputElement.id = randomID
         inputElement.setAttribute('type', 'checkbox')
         inputElement.setAttribute('name', label ? label : topic)

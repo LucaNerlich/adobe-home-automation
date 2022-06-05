@@ -1,7 +1,7 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
-import {replaceSpaceWithDash} from '../FormService'
+import {replaceSpaceWithDash} from '../../domUtils'
 
 export class ConsumerImpl extends Consumer {
     id: string
