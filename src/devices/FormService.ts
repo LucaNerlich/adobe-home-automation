@@ -10,6 +10,7 @@ export const STRATEGIES_FORM_NAME = 'strategies'
 
 export function createSubmit(label: string) {
     const submit = document.createElement('input')
+    setDataAttribute(submit, getFormDataAttribute('submit_' + replaceSpaceWithDash(label)))
     submit.setAttribute('type', 'submit')
     submit.setAttribute('value', label)
     return submit
@@ -17,6 +18,7 @@ export function createSubmit(label: string) {
 
 export function createSelectOption(label: string): HTMLElement {
     const optionElement = document.createElement('option')
+    setDataAttribute(optionElement, getFormDataAttribute('select-option_' + replaceSpaceWithDash(label)))
     optionElement.setAttribute('value', label)
     optionElement.textContent = label
 
@@ -31,10 +33,12 @@ export function createSelectOption(label: string): HTMLElement {
 function createStrategySelect(formRoot: HTMLFormElement) {
     const strategyId = getRandomID()
     const strategyLabel = document.createElement('label')
+    setDataAttribute(strategyLabel, getFormDataAttribute('strategy-select-label'))
     strategyLabel.setAttribute('for', strategyId)
     strategyLabel.textContent = 'Use Case'
 
     const strategyInput = document.createElement('select')
+    setDataAttribute(strategyInput, getFormDataAttribute('strategy-select'))
     strategyInput.id = strategyId
     strategyInput.setAttribute('name', STRATEGIES_FORM_NAME)
 
@@ -56,10 +60,12 @@ function createStrategySelect(formRoot: HTMLFormElement) {
 function generateTopicSelect(formRoot: HTMLFormElement) {
     const topicSelectId = getRandomID()
     const topicSelectLabel = document.createElement('label')
+    setDataAttribute(topicSelectLabel, getFormDataAttribute('consumer-topic-label'))
     topicSelectLabel.setAttribute('for', topicSelectId)
     topicSelectLabel.textContent = 'Available Topics'
 
     const strategySelectInput = document.createElement('select')
+    setDataAttribute(strategySelectInput, getFormDataAttribute('consumer-topic-select'))
     strategySelectInput.id = topicSelectId
     strategySelectInput.setAttribute('name', TOPIC_FORM_NAME)
 
@@ -92,8 +98,8 @@ function setDataAttribute(element: HTMLElement, dataAttribute: DataAttribute): v
     element.setAttribute(dataAttribute.type, dataAttribute.value)
 }
 
-export function getTopicValue(topicInput: string) {
-    return topicInput?.replaceAll(' ', '-')
+export function replaceSpaceWithDash(value: string) {
+    return value?.replaceAll(' ', '-').toLowerCase()
 }
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
@@ -131,7 +137,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
             let isValid: boolean = true
             formData.forEach((value, key) => {
                 if (key === TOPIC_FORM_NAME) {
-                    const topicValue = getTopicValue(value.toString())
+                    const topicValue = replaceSpaceWithDash(value.toString())
                     if (AVAILABLE_TOPICS.includes(topicValue)) {
                         submitErrorSpan.style.display = ''
                         isValid = false

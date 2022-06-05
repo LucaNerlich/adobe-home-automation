@@ -1,7 +1,7 @@
 import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
-import {getTopicValue} from '../FormService'
+import {replaceSpaceWithDash} from '../FormService'
 
 export class ConsumerImpl extends Consumer {
     id: string
@@ -12,7 +12,7 @@ export class ConsumerImpl extends Consumer {
     constructor(topic: string, label: string, strategy: Strategy) {
         super()
         this.id = getRandomID()
-        this.topic = getTopicValue(topic)
+        this.topic = replaceSpaceWithDash(topic)
         this.label = label
         this.strategy = strategy
     }
