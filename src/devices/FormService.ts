@@ -194,7 +194,6 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
             formData.forEach((value, key) => {
                 if (key === CONSUMER_FORM_NAME) {
                     if (value.toString().trim().length === 0) {
-                        // @FIXME figure out why the form is being submitted twice.
                         submitErrorSpan.style.display = ''
                         isValid = false
                     } else {

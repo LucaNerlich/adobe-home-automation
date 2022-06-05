@@ -188,6 +188,8 @@ You are now able to manually load the demo content via a button click.
 - Currently, not possible to delete a consumer or a topic, once added.
 - Add more test cases, especially for the event listeners, although this is quite tricky.
 - Responsive Layout
+- Update Provider Form Validation to allow multiple providers with the same topic
+    - Imagine multiple light switches that control the same light bulb
 
 ## References
 
