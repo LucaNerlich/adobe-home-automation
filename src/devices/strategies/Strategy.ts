@@ -26,6 +26,11 @@ export abstract class Strategy {
     abstract createProviderElement(topic: string, label?: string): HTMLElement;
 
     /**
+     * @param event -> dispatches data for its topic
+     */
+    abstract dispatchEvent(event: Event): void;
+
+    /**
      * Updates the underlying div that represents the display / api for implementing strategy
      * @param this -> (implicit) the HTMLElement to update
      * @param event -> event and data sent by provider

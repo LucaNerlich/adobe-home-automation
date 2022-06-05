@@ -7,6 +7,10 @@ import {createInputElement, createLabelElement} from '../FormService'
 const classOff = 'bool-strategy-off'
 const classOn = 'bool-strategy-on'
 
+/**
+ * Strategy that represents a basic 'on/off' switch in a home automation setting.
+ * For simplicity’s sake, the UI element is a checkbox instead of a button.
+ */
 export class BooleanStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.BOOLEAN_STRATEGY
 
@@ -35,6 +39,18 @@ export class BooleanStrategy extends Strategy {
         }
     }
 
+    dispatchEvent(event: Event, ...args: string[]) {
+        const topic = args[0] as string
+        const randomID = args[1] as string
+        const checkboxElement = event.target as HTMLInputElement
+        const checkboxEvent = createCustomEvent(topic, randomID, checkboxElement?.checked)
+        const consumers = TOPIC_CONSUMER_MAP.get(topic)
+        consumers?.forEach(item => {
+            item.dispatchEvent(checkboxEvent)
+        })
+
+    }
+
     createProviderElement(topic: string, label?: string): HTMLElement {
         const formId = getRandomID()
         const formElement = document.createElement('form')
@@ -47,14 +63,7 @@ export class BooleanStrategy extends Strategy {
 
         const inputElement = createInputElement(randomID, 'provider-item-input_' + topic, 'checkbox')
         inputElement.setAttribute('name', label ? label : topic)
-        inputElement.addEventListener('click', (event) => {
-            const checkboxElement = event.target as HTMLInputElement
-            const checkboxEvent = createCustomEvent(topic, randomID, checkboxElement?.checked)
-            const consumers = TOPIC_CONSUMER_MAP.get(topic)
-            consumers?.forEach(item => {
-                item.dispatchEvent(checkboxEvent)
-            })
-        })
+        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, randomID))
         formElement.appendChild(inputElement)
 
         formElement.appendChild(createDeletionButton(formId))

@@ -3,6 +3,13 @@ import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
 import {createDeletionButton, replaceSpaceWithDash} from '../../domUtils'
 
+/**
+ * Represents a single consumer.
+ * Ensures that the needed values are present and provides a single,
+ * core function which returns the consumers' HTML Element.
+ * This mocks an IOT Devices api in a home automation setting.
+ * The returned element represents a lightbulb or the temperature display of a heating device, for example.
+ */
 export class ConsumerImpl extends Consumer {
     id: string
     label: string

@@ -4,8 +4,25 @@ import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../c
 import {createCustomEvent, createDeletionButton} from '../../domUtils'
 import {createInputElement, createLabelElement} from '../FormService'
 
+/**
+ * Strategy that represents a number input, e.g. to set the temperature of a heating device.
+ * The current implementation is just a float value from 0 to 1 in 0.1 steps.
+ * This simulates the % of the max value the consumer device could be set to.
+ * Of course, either this strategy or another could implement a more lenient number-field.
+ */
 export class NumberStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
+
+    dispatchEvent(event: Event, ...args: string[]) {
+        const topic = args[0] as string
+        const randomID = args[1] as string
+        const numberField = event.target as HTMLInputElement
+        const checkboxEvent = createCustomEvent(topic, randomID, numberField?.valueAsNumber)
+        const consumers = TOPIC_CONSUMER_MAP.get(topic)
+        consumers?.forEach(item => {
+            item.dispatchEvent(checkboxEvent)
+        })
+    }
 
     /**
      * Do we handle only 0 -> 1 as % value for simplicity’s sake?
@@ -26,14 +43,7 @@ export class NumberStrategy extends Strategy {
         inputElement.setAttribute('max', '1')
         inputElement.setAttribute('step', '0.1')
         inputElement.setAttribute('placeholder', '% max. value')
-        inputElement.addEventListener('change', (event) => {
-            const numberField = event.target as HTMLInputElement
-            const checkboxEvent = createCustomEvent(topic, randomID, numberField?.valueAsNumber)
-            const consumers = TOPIC_CONSUMER_MAP.get(topic)
-            consumers?.forEach(item => {
-                item.dispatchEvent(checkboxEvent)
-            })
-        })
+        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, randomID))
         formElement.appendChild(inputElement)
 
         formElement.appendChild(createDeletionButton(formId))

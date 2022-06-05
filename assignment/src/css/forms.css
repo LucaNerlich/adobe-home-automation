@@ -5,3 +5,7 @@ input[type=submit] {
 input[type=number] {
     min-width: 100px;
 }
+
+button.delete {
+    margin-left: 1em;
+}
