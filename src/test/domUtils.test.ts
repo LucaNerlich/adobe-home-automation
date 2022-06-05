@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import {createCustomEvent, createDataAttribute} from '../domUtils'
+import {createCustomEvent, createDataAttribute, replaceSpaceWithDash} from '../domUtils'
 
 const topic = 'some-topic'
 const id = 'some-id'
@@ -25,4 +25,11 @@ test('getDataAttribute returns DataAttribute', () => {
     expect(dataAttribute).not.toBe(null)
     expect(dataAttribute.type).toBe('data-' + dataAttributeSuffix)
     expect(dataAttribute.value).toBe(value)
+})
+
+test('replaceSpaceWithDash returns correct string', () => {
+    const newValue = replaceSpaceWithDash('Some String')
+
+    expect(newValue).not.toBe(null)
+    expect(newValue).toBe('some-string')
 })
