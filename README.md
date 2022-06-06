@@ -87,7 +87,7 @@ I'm fully aware that build-fragments should not be added to version control in a
 ### Testing (Unit + E2E)
 
 I've tested **every** ui functionality available as well as the div structure with CypressIO E2E tests.
-These run heedlessly during every production build.
+These run headless during every production build.
 
 Additionally, I've written jest unit tests for most of the backend functionality and element creation.
 Jest test cases run on dev and prod builds.
@@ -218,9 +218,10 @@ You are now able to manually load the demo content via a button click.
 ### Submission
 
 - [x] add updated Demo Screenshot to README
-- [ ] record short demo video
+- [ ] ~~record short demo video~~
+    - OBS does not capture the dropdown popup :/
 - [x] update "last commit" date in README
-- [ ] Copy "final" build files to `/assignment`
+- [x] Copy "final" build files to `/assignment` + zip it
     - index.html
     - index.js
     - index.css

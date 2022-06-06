@@ -1,9 +1,5 @@
 import {EventData} from '../../entities/EventData'
 
-/*
-todo how to handle "composite" devices ->
-     devices that may need more than one "handle this Event" implementation
-*/
 /**
  * A strategy encapsulates a specific use case and handles the corresponding provider and consumer.
  * A provider broadcasts its value changes via a custom event and a specific topic.
