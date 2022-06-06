@@ -69,6 +69,8 @@ I'm fully aware that build-fragments should not be added to version control in a
 > Production
 
 1. `$ npm run build-prod`
+    1. If the cypress test run fails, it is most likely due to the local browser. Either remove the cypress test
+       execution, or try a different browser (e.g chrome, firefox, firefox:dev, edge)
 2. Open `/index.html` in any modern browser
     1. index.html references the scripts and stylesheets.
     2. Everything runs self-contained when served from an HTTP server
@@ -93,7 +95,7 @@ Jest Unit Tests
 
 ![jest](./assets/jest.png)
 
-Cypress (Chrome + Firefox Dev) E2E Tests
+Cypress (Chrome) E2E Tests
 
 ![cypress](./assets/cypress.png)
 
