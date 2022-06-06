@@ -29,12 +29,15 @@ export function createSelectOption(label: string): HTMLElement {
  *         and before form creation
  * @param formRoot
  */
-function createStrategySelect(formRoot: HTMLFormElement) {
+function addStrategySelectToForm(formRoot: HTMLFormElement) {
+    formRoot.appendChild(document.createElement('br'))
+
     const strategyId = getRandomID()
     const strategyLabel = document.createElement('label')
     setDataAttribute(strategyLabel, getFormDataAttribute('strategy-select-label'))
     strategyLabel.setAttribute('for', strategyId)
     strategyLabel.textContent = 'Use Case'
+    formRoot.appendChild(strategyLabel)
 
     const strategyInput = document.createElement('select')
     setDataAttribute(strategyInput, getFormDataAttribute('strategy-select'))
@@ -47,8 +50,6 @@ function createStrategySelect(formRoot: HTMLFormElement) {
         },
     )
 
-    formRoot.appendChild(document.createElement('br'))
-    formRoot.appendChild(strategyLabel)
     formRoot.appendChild(strategyInput)
 }
 
@@ -56,12 +57,15 @@ function createStrategySelect(formRoot: HTMLFormElement) {
  * Generates a select dropdown with values from {@link AVAILABLE_TOPICS}.
  * @param formRoot
  */
-function generateTopicSelect(formRoot: HTMLFormElement) {
+function addTopicSelectToForm(formRoot: HTMLFormElement) {
+    formRoot.appendChild(document.createElement('br'))
+
     const topicSelectId = getRandomID()
     const topicSelectLabel = document.createElement('label')
     setDataAttribute(topicSelectLabel, getFormDataAttribute('consumer-topic-label'))
     topicSelectLabel.setAttribute('for', topicSelectId)
     topicSelectLabel.textContent = 'Available Topics'
+    formRoot.appendChild(topicSelectLabel)
 
     const strategySelectInput = document.createElement('select')
     setDataAttribute(strategySelectInput, getFormDataAttribute('consumer-topic-select'))
@@ -72,8 +76,6 @@ function generateTopicSelect(formRoot: HTMLFormElement) {
         strategySelectInput.appendChild(createSelectOption(topic))
     })
 
-    formRoot.appendChild(document.createElement('br'))
-    formRoot.appendChild(topicSelectLabel)
     formRoot.appendChild(strategySelectInput)
 }
 
@@ -96,7 +98,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
         // build the form in order
         formRoot.appendChild(labelInputTupel[0])
         formRoot.appendChild(labelInputTupel[1])
-        createStrategySelect(formRoot)
+        addStrategySelectToForm(formRoot)
 
         const submit = createSubmit('Add Provider')
         const submitErrorSpan = generateErrorSpan('Invalid: Duplicate Topic')
@@ -197,8 +199,8 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
         formRoot.appendChild(labelInputTupel[0])
         formRoot.appendChild(labelInputTupel[1])
 
-        generateTopicSelect(formRoot)
-        createStrategySelect(formRoot)
+        addTopicSelectToForm(formRoot)
+        addStrategySelectToForm(formRoot)
 
         const submit = createSubmit('Add Consumer')
         formRoot.appendChild(submit)
