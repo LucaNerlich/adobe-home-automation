@@ -13,6 +13,7 @@
 - [Documentation](#documentation)
     - [Testing (Unit + E2E)](#testing-unit--e2e)
     - [Implementation](#implementation)
+        - [Repository Structure](#repository-structure)
     - [Demo Content](#demo-content)
 - [ToDos](#todos)
     - [Submission](#submission)
@@ -131,7 +132,8 @@ An example would be a light switch (provider) that's connected with a cable
 (topic) to any number of light bulbs (consumer).
 
 To be able to handle multiple use cases (here 'Strategies'),
-each provider and consumer have a specific Strategy assigned.
+each provider and consumer have a specific Strategy assigned — or, in other words, each strategy owns its implementation
+of its consumers and its providers.
 This allows the underlying logic to be generic
 and makes it easy to implement new features such as a color-picker variation
 (Imagine an RGB Light bulb) for example.
@@ -150,6 +152,14 @@ if (true) {
 
 or adapt it to only add a new topic `<option/>` if it doesn't already exist.
 Multiple provider for the same topic represents a set of switches that control the same set of lights, for example.
+
+#### Repository Structure
+
+- `/.github` (Github Actions Configs)
+- `/assets` (favicons + README Screenshots)
+- `/assignments` (final build artifact for the purpose of this assignment)
+- `/cypress` (CypressIO E2E Test Cases)
+- `/src` (Typescript + CSS)
 
 ### Demo Content
 
@@ -196,7 +206,7 @@ You are now able to manually load the demo content via a button click.
     - [ ] set timer for X -> close blinds at 12pm
     - [ ] simple "button" strategy / alternative to checkbox
         - can we extend bool strategy?
-- [ ] write the rest of the technical documentation
+- [x] write the rest of the technical documentation
 - [x] use more `data-` attributes as resilient dom selectors
 - [x] Setup skeleton div structure
 - [ ] ~~add localStorage "cache" / "state" to preserve *something* during page refresh~~
@@ -207,9 +217,9 @@ You are now able to manually load the demo content via a button click.
 
 ### Submission
 
-- [ ] add updated Demo Screenshot to README
+- [x] add updated Demo Screenshot to README
 - [ ] record short demo video
-- [ ] update "last commit" date in README
+- [x] update "last commit" date in README
 - [ ] Copy "final" build files to `/assignment`
     - index.html
     - index.js
