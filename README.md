@@ -251,3 +251,4 @@ You are now able to manually load the demo content via a button click.
 - <https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events>
 - <https://medium.com/geekculture/html-event-handling-in-typescript-b9ca7178d912>
 - <https://www.freecodecamp.org/news/form-validation-with-html5-and-javascript/>
+- <https://docs.cypress.io/api/table-of-contents>
