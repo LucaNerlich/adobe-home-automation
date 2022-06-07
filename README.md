@@ -229,6 +229,8 @@ You are now able to manually load the demo content via a button click.
 
 ### Known Issues / Future Extensions
 
+- Extract Provider "building blocks" (label+input combos) to separate components and make them reusable.
+    - maybe also declare specific "sub"interfaces for EventData with which the consumer can work.
 - ~~Consumer Form tries to submit twice. However, validation correctly blocks the second submission.~~
 - When adding a new consumer, it does not automatically grab the current state of its corresponding provider
 - ~~Currently, not possible to delete a consumer or a topic, once added.~~
