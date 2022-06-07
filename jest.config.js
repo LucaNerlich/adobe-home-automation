@@ -2,8 +2,8 @@ module.exports = async () => {
     return {
         verbose: true,
         transform: {
-            "^.+\\.tsx?$": [
-                "esbuild-jest",
+            '^.+\\.tsx?$': [
+                'esbuild-jest',
                 {
                     sourcemap: true,
                     loaders: {
@@ -12,5 +12,5 @@ module.exports = async () => {
                 }
             ]
         }
-    };
-};
+    }
+}

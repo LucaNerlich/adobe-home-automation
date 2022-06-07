@@ -77,17 +77,16 @@ function testConsumer(consumer: Consumer | null, strategyType: StrategyType) {
     expect(topicHintElement?.textContent).toBe(topic)
 
     // check default display element values
+    const display = wrapperDiv?.querySelector('span')
     switch (strategyType) {
-        case StrategyType.BOOLEAN_STRATEGY:
-            const boolDisplay = wrapperDiv?.querySelector('span')
-            expect(boolDisplay).not.toBe(null)
-            expect(boolDisplay?.textContent).toBe('OFF')
-            break
-        case StrategyType.NUMBER_STRATEGY:
-            const numberDisplay = wrapperDiv?.querySelector('span')
-            expect(numberDisplay).not.toBe(null)
-            expect(numberDisplay?.textContent).toBe('N/A')
-            break
+    case StrategyType.BOOLEAN_STRATEGY:
+        expect(display).not.toBe(null)
+        expect(display?.textContent).toBe('OFF')
+        break
+    case StrategyType.NUMBER_STRATEGY:
+        expect(display).not.toBe(null)
+        expect(display?.textContent).toBe('N/A')
+        break
     }
 }
 

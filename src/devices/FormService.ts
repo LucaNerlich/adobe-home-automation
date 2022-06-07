@@ -46,8 +46,8 @@ function addStrategySelectToForm(formRoot: HTMLFormElement) {
 
     // https://bobbyhadz.com/blog/typescript-iterate-enum
     Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
-            strategyInput.appendChild(createSelectOption(strategyType))
-        },
+        strategyInput.appendChild(createSelectOption(strategyType))
+    },
     )
 
     formRoot.appendChild(strategyInput)
@@ -113,7 +113,7 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
             const formData = new FormData(form)
 
             // validate provider form
-            let isValid: boolean = true
+            let isValid = true
             let topic = ''
             formData.forEach((value, key) => {
                 if (key === TOPIC_FORM_NAME) {
@@ -215,7 +215,7 @@ export function generateConsumerForm(formRoot: HTMLFormElement | null) {
             const formData = new FormData(form)
 
             // validate consumer form
-            let isValid: boolean = true
+            let isValid = true
             formData.forEach((value, key) => {
                 if (key === CONSUMER_FORM_NAME) {
                     if (value.toString().trim().length === 0) {

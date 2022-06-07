@@ -16,15 +16,15 @@ export function createProvider(topic: string, strategyType: StrategyType): HTMLE
 
     if (strategyType != null) {
         switch (strategyType) {
-            case StrategyType.BOOLEAN_STRATEGY.valueOf():
-                result = new BooleanStrategy().createProviderElement(topic)
-                break
-            case StrategyType.NUMBER_STRATEGY.valueOf():
-                result = new NumberStrategy().createProviderElement(topic)
-                break
-            default:
-                console.error('Cannot create provider for non existent strategy: ', strategyType)
-                break
+        case StrategyType.BOOLEAN_STRATEGY.valueOf():
+            result = new BooleanStrategy().createProviderElement(topic)
+            break
+        case StrategyType.NUMBER_STRATEGY.valueOf():
+            result = new NumberStrategy().createProviderElement(topic)
+            break
+        default:
+            console.error('Cannot create provider for non existent strategy: ', strategyType)
+            break
         }
     }
 
@@ -42,15 +42,15 @@ export function createConsumer(topic: string, label: string, strategyType: Strat
 
     if (strategyType != null) {
         switch (strategyType) {
-            case StrategyType.BOOLEAN_STRATEGY.valueOf():
-                result = new ConsumerImpl(topic, label, new BooleanStrategy())
-                break
-            case StrategyType.NUMBER_STRATEGY.valueOf():
-                result = new ConsumerImpl(topic, label, new NumberStrategy())
-                break
-            default:
-                console.error('Cannot create provider for non existent strategy: ', strategyType)
-                break
+        case StrategyType.BOOLEAN_STRATEGY.valueOf():
+            result = new ConsumerImpl(topic, label, new BooleanStrategy())
+            break
+        case StrategyType.NUMBER_STRATEGY.valueOf():
+            result = new ConsumerImpl(topic, label, new NumberStrategy())
+            break
+        default:
+            console.error('Cannot create provider for non existent strategy: ', strategyType)
+            break
         }
     }
 
@@ -83,19 +83,20 @@ export function createDeviceWithFormData(formData: FormData, deviceType: DeviceT
 
     // generate new provider and add to container
     if ((topic && topic.length > 0) && strategyType) {
+        const consumerElement = createConsumer(topic, name, strategyType)?.getElement()
+        
         switch (deviceType) {
-            case DeviceType.PROVIDER:
-                getProviderContainer()?.appendChild(createProvider(topic, strategyType))
-                break
-            case DeviceType.CONSUMER:
-                const consumerElement = createConsumer(topic, name, strategyType)?.getElement()
-                if (consumerElement) {
-                    getConsumerContainer()?.appendChild(consumerElement)
-                }
-                break
-            default:
-                console.error('No device implementation exists for given type: ', deviceType)
-                break
+        case DeviceType.PROVIDER:
+            getProviderContainer()?.appendChild(createProvider(topic, strategyType))
+            break
+        case DeviceType.CONSUMER:
+            if (consumerElement) {
+                getConsumerContainer()?.appendChild(consumerElement)
+            }
+            break
+        default:
+            console.error('No device implementation exists for given type: ', deviceType)
+            break
         }
     }
 }
