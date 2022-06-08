@@ -52,8 +52,7 @@ However, due to the size and constrains of this app, I will try to build somethi
 The "configuration"
 panel publishes state changes for a topic and all devices that subscribe to this topic consume that update.
 
-On a side note, I am keeping any frontend styling to a minimum and simple,
-since I want to focus on the underlying logic and not "waste" time.
+On a side note, I am keeping any frontend styling to a minimum and simple.
 
 ## How to run
 
