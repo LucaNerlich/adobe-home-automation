@@ -23,6 +23,14 @@ export function replaceSpaceWithDash(value: string) {
     return value?.replaceAll(' ', '-').toLowerCase()
 }
 
+export function createBaseForm(id: string, label: string): HTMLFormElement {
+    const formElement = document.createElement('form')
+    formElement.classList.add(`${label}-form`)
+    formElement.id = id
+
+    return formElement
+}
+
 export function createDataAttribute(suffix: string, value: any): DataAttribute {
     return {
         type: 'data-' + suffix,

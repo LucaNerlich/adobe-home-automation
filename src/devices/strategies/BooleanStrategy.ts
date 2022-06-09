@@ -1,6 +1,6 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
-import {createCustomEvent, createDeletionButton} from '../../domUtils'
+import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
 import {createInputElement, createLabelElement} from '../FormService'
 
@@ -53,17 +53,15 @@ export class BooleanStrategy extends Strategy {
 
     createProviderElement(topic: string, label?: string): HTMLElement {
         const formId = getRandomID()
-        const formElement = document.createElement('form')
-        formElement.id = formId
-        formElement.classList.add('bool-strategy-form')
+        const formElement = createBaseForm(formId, 'bool-strategy')
 
-        const randomID = getRandomID()
-        const labelElement = createLabelElement(randomID, label ? label : topic, 'provider-item-label_' + topic)
+        const labelID = getRandomID()
+        const labelElement = createLabelElement(labelID, label ? label : topic, 'provider-item-label_' + topic)
         formElement.appendChild(labelElement)
 
-        const inputElement = createInputElement(randomID, 'provider-item-input_' + topic, 'checkbox')
+        const inputElement = createInputElement(labelID, 'provider-item-input_' + topic, 'checkbox')
         inputElement.setAttribute('name', label ? label : topic)
-        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, randomID))
+        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, labelID))
         formElement.appendChild(inputElement)
 
         formElement.appendChild(createDeletionButton(formId))

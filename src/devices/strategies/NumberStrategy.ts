@@ -1,7 +1,7 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
-import {createCustomEvent, createDeletionButton} from '../../domUtils'
+import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
 import {createInputElement, createLabelElement} from '../FormService'
 
 /**
@@ -29,21 +29,19 @@ export class NumberStrategy extends Strategy {
      */
     createProviderElement(topic: string, label?: string): HTMLElement {
         const formId = getRandomID()
-        const formElement = document.createElement('form')
-        formElement.classList.add('number-strategy-form')
-        formElement.id = formId
+        const formElement = createBaseForm(formId, 'number-strategy')
 
-        const randomID = getRandomID()
-        const labelElement = createLabelElement(randomID, label ? label : topic, 'provider-item-label_' + topic)
+        const labelID = getRandomID()
+        const labelElement = createLabelElement(labelID, label ? label : topic, 'provider-item-label_' + topic)
         formElement.appendChild(labelElement)
 
-        const inputElement = createInputElement(randomID, 'provider-item-input_' + topic, 'number')
+        const inputElement = createInputElement(labelID, 'provider-item-input_' + topic, 'number')
         inputElement.setAttribute('name', label ? label : topic)
         inputElement.setAttribute('min', '0')
         inputElement.setAttribute('max', '1')
         inputElement.setAttribute('step', '0.1')
         inputElement.setAttribute('placeholder', '% max. value')
-        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, randomID))
+        inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, labelID))
         formElement.appendChild(inputElement)
 
         formElement.appendChild(createDeletionButton(formId))

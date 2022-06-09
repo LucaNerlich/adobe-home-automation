@@ -24,7 +24,7 @@ export abstract class Strategy {
     /**
      * @param event -> dispatches data for its topic
      */
-    abstract dispatchEvent(event: Event): void;
+    abstract dispatchEvent(event: Event, ...args: string[]): void;
 
     /**
      * Updates the underlying div that represents the display / api for implementing strategy
@@ -36,5 +36,6 @@ export abstract class Strategy {
 
 export enum StrategyType {
     BOOLEAN_STRATEGY = 'BOOLEAN_STRATEGY',
-    NUMBER_STRATEGY = 'NUMBER_STRATEGY'
+    NUMBER_STRATEGY = 'NUMBER_STRATEGY',
+    TEXT_STRATEGY = 'TEXT_STRATEGY'
 }

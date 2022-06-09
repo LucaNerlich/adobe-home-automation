@@ -2,7 +2,9 @@
 
 > First Commit: 2022-06-03
 
-> Last Commit: 2022-06-06 (Added eslint on 2022-06-07)
+> Last Commit before hand-in: 2022-06-06
+
+> Commits after: 'Added eslint', 'small refactoring of provider and consumer div creation', 'added Text-Strategy'
 
 > Contact: M. Voss
 
