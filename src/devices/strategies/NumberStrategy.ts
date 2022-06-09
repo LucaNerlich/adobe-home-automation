@@ -1,8 +1,9 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
-import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
+import {getRandomID} from '../../constants'
 import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
 import {createInputElement, createLabelElement} from '../FormService'
+import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from '../../state'
 
 /**
  * Strategy that represents a number input, e.g. to set the temperature of a heating device.

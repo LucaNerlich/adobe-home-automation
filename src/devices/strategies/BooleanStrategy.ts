@@ -1,8 +1,9 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
-import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
+import {getRandomID} from '../../constants'
 import {createInputElement, createLabelElement} from '../FormService'
+import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from '../../state'
 
 const classOff = 'bool-strategy-off'
 const classOn = 'bool-strategy-on'

@@ -22,7 +22,7 @@ describe('forms.cy.ts', () => {
         cy.get('#provider-form > input[type=submit][data-form-element="submit_add-provider"]').click()
 
         // validate created provider
-        cy.get('#provider > :nth-child(5)').within(() => {
+        cy.get('#provider > :nth-child(6)').within(() => {
             cy.get('label[data-form-element="provider-item-label_some-topic-label"]').should('have.text', someTopic)
             cy.get('input[data-form-element="provider-item-input_some-topic-input"]').should('have.attr', 'type').and('equal', 'checkbox')
         })

@@ -43,6 +43,7 @@ export class ConsumerImpl extends Consumer {
 
     getElement(): HTMLElement {
         const consumerWrapper = ConsumerImpl.getConsumerWrapper(this.id, this.getLabel())
+        consumerWrapper.classList.add(`consumer-item-${this.strategy.strategyType}`)
         consumerWrapper.textContent = this.getLabel() + ': '
         consumerWrapper.appendChild(this.getDisplayElement())
 

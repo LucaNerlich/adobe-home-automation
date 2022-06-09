@@ -1,7 +1,8 @@
-import {AVAILABLE_TOPICS, getRandomID} from '../constants'
+import {getRandomID} from '../constants'
 import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
 import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
+import {AVAILABLE_TOPICS} from '../state'
 
 export const TOPIC_FORM_NAME = 'topic'
 export const CONSUMER_FORM_NAME = 'name'

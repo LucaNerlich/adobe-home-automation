@@ -3,7 +3,8 @@
  */
 
 import {
-    CONSUMER_FORM_NAME, createInputElement,
+    CONSUMER_FORM_NAME,
+    createInputElement,
     createLabelElement,
     createSelectOption,
     createSubmit,
@@ -12,7 +13,7 @@ import {
     STRATEGIES_FORM_NAME,
     TOPIC_FORM_NAME,
 } from '../devices/FormService'
-import {AVAILABLE_TOPICS} from '../constants'
+import {AVAILABLE_TOPICS} from '../state'
 
 const label = 'some-label'
 const topic = 'some-topic'

@@ -1,8 +1,9 @@
 import {Strategy, StrategyType} from './Strategy'
 import {EventData} from '../../entities/EventData'
 import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
-import {addGlobalConsumerDisplay, getRandomID, TOPIC_CONSUMER_MAP} from '../../constants'
+import {getRandomID} from '../../constants'
 import {createInputElement, createLabelElement} from '../FormService'
+import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from '../../state'
 
 export class TextStrategy extends Strategy {
     strategyType: StrategyType = StrategyType.TEXT_STRATEGY
@@ -10,6 +11,7 @@ export class TextStrategy extends Strategy {
     createConsumerElement(topic: string, eventData: EventData): HTMLElement {
         const consumerDisplay = document.createElement('span')
         consumerDisplay.textContent = eventData.value
+        consumerDisplay.style.color = 'blue'
         consumerDisplay.addEventListener(topic, this.update)
         addGlobalConsumerDisplay(topic, consumerDisplay)
         return consumerDisplay
