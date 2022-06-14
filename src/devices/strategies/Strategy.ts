@@ -1,4 +1,5 @@
 import {EventData} from '../../entities/EventData'
+import {StrategyType} from './StrategyType'
 
 /**
  * A strategy encapsulates a specific use case and handles the corresponding provider and consumer.
@@ -23,6 +24,7 @@ export abstract class Strategy {
 
     /**
      * @param event -> dispatches data for its topic
+     * @param args -> additional data such as topic or id
      */
     abstract dispatchEvent(event: Event, ...args: string[]): void;
 
@@ -32,10 +34,4 @@ export abstract class Strategy {
      * @param event -> event and data sent by provider
      */
     abstract update(event: Event): void;
-}
-
-export enum StrategyType {
-    BOOLEAN_STRATEGY = 'BOOLEAN_STRATEGY',
-    NUMBER_STRATEGY = 'NUMBER_STRATEGY',
-    TEXT_STRATEGY = 'TEXT_STRATEGY'
 }

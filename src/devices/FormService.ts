@@ -1,8 +1,8 @@
 import {getRandomID} from '../constants'
-import {StrategyType} from './strategies/Strategy'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
 import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
 import {AVAILABLE_TOPICS} from '../state'
+import {StrategyType} from './strategies/StrategyType'
 
 export const TOPIC_FORM_NAME = 'topic'
 export const CONSUMER_FORM_NAME = 'name'
@@ -94,11 +94,11 @@ function generateErrorSpan(message: string) {
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
     if (formRoot) {
-        const labelInputTupel = generateLabelTextInput('Topic', 'provider-topic', TOPIC_FORM_NAME)
+        const labelInputTuple = generateLabelTextInput('Topic', 'provider-topic', TOPIC_FORM_NAME)
 
         // build the form in order
-        formRoot.appendChild(labelInputTupel[0])
-        formRoot.appendChild(labelInputTupel[1])
+        formRoot.appendChild(labelInputTuple[0])
+        formRoot.appendChild(labelInputTuple[1])
         addStrategySelectToForm(formRoot)
 
         const submit = createSubmit('Add Provider')

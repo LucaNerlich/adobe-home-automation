@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import {StrategyType} from '../devices/strategies/Strategy'
 import {createConsumer, createProvider} from '../devices/DeviceService'
 import {Consumer} from '../devices/consumer/Consumer'
+import {StrategyType} from '../devices/strategies/StrategyType'
 
 const topic = 'some-topic'
 const label = 'some-label'
