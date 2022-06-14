@@ -1,4 +1,3 @@
-import {StrategyType} from './strategies/Strategy'
 import {BooleanStrategy} from './strategies/BooleanStrategy'
 import {NumberStrategy} from './strategies/NumberStrategy'
 import {getConsumerContainer, getProviderContainer, replaceSpaceWithDash} from '../domUtils'
@@ -6,6 +5,7 @@ import {CONSUMER_FORM_NAME, STRATEGIES_FORM_NAME, TOPIC_FORM_NAME} from './FormS
 import {ConsumerImpl} from './consumer/ConsumerImpl'
 import {Consumer} from './consumer/Consumer'
 import {TextStrategy} from './strategies/TextStrategy'
+import {StrategyType} from './strategies/StrategyType'
 
 /**
  * Creates a provider element for the given topic and strategy type.

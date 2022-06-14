@@ -7,6 +7,7 @@ import {CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
 import {TextStrategy} from './devices/strategies/TextStrategy'
 import {AVAILABLE_TOPICS} from './state'
 
+// On click, generates a set of demo providers and consumers
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
     const TOPIC_LIGHT_1 = 'light-1'
     const TOPIC_LIGHT_2 = 'light-2'
@@ -23,7 +24,6 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     topicSelect?.appendChild(createSelectOption(TOPIC_HEATING_1))
     topicSelect?.appendChild(createSelectOption(TOPIC_TEXT_1))
 
-    // dummy provider container
     const providerContainer = getProviderContainer()
 
     const kitchenLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_1)
@@ -35,7 +35,6 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     const ledDisplayProvider = new TextStrategy().createProviderElement(TOPIC_TEXT_1)
     providerContainer?.appendChild(ledDisplayProvider)
 
-    // dummy consumer container
     const consumerContainer = getConsumerContainer()
 
     const demoConsumerKitchen1 = new ConsumerImpl(TOPIC_LIGHT_1, 'Kitchen - Light (Left)', new BooleanStrategy())
