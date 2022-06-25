@@ -9,6 +9,21 @@ function App() {
         name: 'lightswitch',
     })
 
+    /*
+     * TODO
+     *  add react-router-dom
+     * <Router>
+     * <Route/> -> Provider
+     * <Route/> -> Consumer
+     * </Router
+     *
+     * use useContext(SmartHomeContext)
+     * maybe map of topic -> DataProvider?
+     *
+     * context should be a state
+     * create services -> ConsumerService, ProviderService
+     */
+
     return (
         <div className='App'>
             <div>
