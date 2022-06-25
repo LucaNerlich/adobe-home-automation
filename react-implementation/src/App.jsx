@@ -9,6 +9,8 @@ function App() {
         name: 'lightswitch',
     })
 
+    // const providerValue = useMemo(() => ({providers, setProviders}), [providers, setProviders()])
+
     /*
      * TODO
      *  add react-router-dom
@@ -38,7 +40,7 @@ function App() {
 
             <div>
                 <h2>Consumer</h2>
-                <SmartHomeContext.Provider value={providers}>
+                <SmartHomeContext.Provider value={{providers, setProviders}}>
                     <Consumer providerKey='light1' />
                     <Consumer providerKey='light1' />
                 </SmartHomeContext.Provider>

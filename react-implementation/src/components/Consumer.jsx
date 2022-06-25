@@ -4,12 +4,12 @@ import {SmartHomeContext} from '../util/SmartHomeContext'
 export default function Consumer(props) {
     const providerKey = props.providerKey
 
-    const value = React.useContext(SmartHomeContext);
+    const {providers, setProvider} = React.useContext(SmartHomeContext)
 
     return (
         <div>
             <h2>Provider: {providerKey}</h2>
-            Consumer Value: {value.name}
+            Consumer Value: {providers.name}
         </div>
     )
 }
