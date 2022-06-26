@@ -47,9 +47,14 @@ export const useRegistryService = () => {
             TOPIC_COUNT_MAP.set(topic, newValue)
 
             if (newValue === 0) {
-                const topicSelect = getConsumerTopicSelect()
-                console.warn('Deleted last provider of topic: "%s"', topic)
-                // todo find option with topic and remove
+                console.warn('Deleted last provider of topic: "%s".', topic)
+
+                const topicSelect = getConsumerTopicSelect() as HTMLSelectElement
+                Array.from(topicSelect?.options).forEach((option) => {
+                    if (option.value === topic) {
+                        option.remove()
+                    }
+                })
             }
         }
         return result
