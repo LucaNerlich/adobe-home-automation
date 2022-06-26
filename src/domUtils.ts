@@ -10,7 +10,7 @@ export function getProviderContainer(): HTMLElement | null {
     return document.getElementById(PROVIDER_CONTAINER_ID)
 }
 
-export function createCustomEvent(topic: string, id: string, value: string | number | object): CustomEvent {
+export function createCustomEvent(topic: string, id: string, value: string | number |  boolean | object): CustomEvent {
     return new CustomEvent(topic, {
         detail: {
             id: id,
@@ -31,7 +31,7 @@ export function createBaseForm(id: string, label: string): HTMLFormElement {
     return formElement
 }
 
-export function createDataAttribute(suffix: string, value: string | number | object): DataAttribute {
+export function createDataAttribute(suffix: string, value: string | number |  boolean | object): DataAttribute {
     return {
         type: 'data-' + suffix,
         value: value,
