@@ -3,7 +3,7 @@ import {EventData} from '../../entities/EventData'
 import {getRandomID} from '../../constants'
 import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
 import {createInputElement, createLabelElement} from '../FormService'
-import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from '../../state'
+import {useRegistryService} from '../RegistryService'
 import {StrategyType} from './StrategyType'
 
 /**
@@ -14,13 +14,14 @@ import {StrategyType} from './StrategyType'
  */
 export class NumberStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.NUMBER_STRATEGY
+    readonly registryService = useRegistryService()
 
     dispatchEvent(event: Event, ...args: string[]) {
         const topic = args[0] as string
         const randomID = args[1] as string
         const numberField = event.target as HTMLInputElement
         const checkboxEvent = createCustomEvent(topic, randomID, numberField?.valueAsNumber)
-        const consumers = TOPIC_CONSUMER_MAP.get(topic)
+        const consumers = this.registryService.getConsumer(topic)
         consumers?.forEach(item => {
             item.dispatchEvent(checkboxEvent)
         })
@@ -61,7 +62,7 @@ export class NumberStrategy extends Strategy {
         }
 
         consumerDisplay.addEventListener(topic, this.update)
-        addGlobalConsumerDisplay(topic, consumerDisplay)
+        this.registryService.addConsumer(topic, consumerDisplay)
         return consumerDisplay
     }
 

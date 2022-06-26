@@ -13,7 +13,7 @@ import {
     STRATEGIES_FORM_NAME,
     TOPIC_FORM_NAME,
 } from '../devices/FormService'
-import {AVAILABLE_TOPICS} from '../state'
+import {AVAILABLE_TOPICS} from '../devices/RegistryService'
 
 const label = 'some-label'
 const topic = 'some-topic'

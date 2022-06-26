@@ -1,7 +1,7 @@
 import {getRandomID} from '../constants'
 import {createDeviceWithFormData, DeviceType} from './DeviceService'
 import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
-import {AVAILABLE_TOPICS} from '../state'
+import {AVAILABLE_TOPICS} from './RegistryService'
 import {StrategyType} from './strategies/StrategyType'
 
 export const TOPIC_FORM_NAME = 'topic'

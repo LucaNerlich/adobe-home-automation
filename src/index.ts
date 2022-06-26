@@ -5,7 +5,7 @@ import {NumberStrategy} from './devices/strategies/NumberStrategy'
 import {createSelectOption, generateConsumerForm, generateProviderForm} from './devices/FormService'
 import {CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
 import {TextStrategy} from './devices/strategies/TextStrategy'
-import {AVAILABLE_TOPICS} from './state'
+import {AVAILABLE_TOPICS} from './devices/RegistryService'
 
 // On click, generates a set of demo providers and consumers
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
@@ -60,5 +60,3 @@ document.getElementById('load-demo-button')?.click()
 // Initial From Generation
 generateProviderForm(document.getElementById(PROVIDER_FORM_ID) as HTMLFormElement)
 generateConsumerForm(document.getElementById(CONSUMER_FORM_ID) as HTMLFormElement)
-
-
