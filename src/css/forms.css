@@ -2,10 +2,11 @@ input[type=submit] {
     display: block;
 }
 
-input[type=number] {
-    min-width: 100px;
-}
-
 button.delete {
     margin-left: 1em;
+}
+
+#consumer-form > input, #provider-form > input, select {
+    width: 100%;
+    margin: 0.5em 0.5em 0.5em 0;
 }

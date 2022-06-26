@@ -21,7 +21,7 @@ export function createSelectOption(label: string): HTMLElement {
     const optionElement = document.createElement('option')
     setDataAttribute(optionElement, getFormDataAttribute('select-option_' + replaceSpaceWithDash(label)))
     optionElement.setAttribute('value', label)
-    optionElement.textContent = label
+    optionElement.textContent = label.replace('_STRATEGY', '')
 
     return optionElement
 }
@@ -48,8 +48,8 @@ function addStrategySelectToForm(formRoot: HTMLFormElement) {
 
     // https://bobbyhadz.com/blog/typescript-iterate-enum
     Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
-        strategyInput.appendChild(createSelectOption(strategyType))
-    },
+            strategyInput.appendChild(createSelectOption(strategyType))
+        },
     )
 
     formRoot.appendChild(strategyInput)
