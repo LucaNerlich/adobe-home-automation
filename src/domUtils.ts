@@ -46,13 +46,21 @@ export function setDataAttribute(element: HTMLElement, dataAttribute: DataAttrib
     element.setAttribute(dataAttribute.type, dataAttribute.value)
 }
 
+export function getConsumerTopicSelect(){
+    return document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]');
+}
+
 /**
  * returns a button that on click deletes the element with the given id
  * @param elementId -> ID of the HTMLElement to remove from the DOM
+ * @param callback -> additional function which should be called onClick
  */
-export function createDeletionButton(elementId: string): HTMLButtonElement {
+export function createDeletionButton(elementId: string, callback?: Function): HTMLButtonElement {
     function deleteElement() {
         document.getElementById(elementId)?.remove()
+        if (callback) {
+            callback()
+        }
     }
 
     const button = document.createElement('button')

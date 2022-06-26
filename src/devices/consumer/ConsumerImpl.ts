@@ -2,6 +2,7 @@ import {Consumer} from './Consumer'
 import {Strategy} from '../strategies/Strategy'
 import {getRandomID} from '../../constants'
 import {createDeletionButton, replaceSpaceWithDash} from '../../domUtils'
+import {useRegistryService} from '../RegistryService'
 
 /**
  * Represents a single consumer.
@@ -15,6 +16,8 @@ export class ConsumerImpl extends Consumer {
     label: string
     topic: string
     strategy: Strategy
+
+    readonly registryService = useRegistryService()
 
     constructor(topic: string, label: string, strategy: Strategy) {
         super()
@@ -49,7 +52,9 @@ export class ConsumerImpl extends Consumer {
 
         const topicHint = document.createElement('p')
         topicHint.textContent = this.topic
-        consumerWrapper.appendChild(createDeletionButton(this.id))
+        consumerWrapper.appendChild(createDeletionButton(this.id, () => {
+            this.registryService.removeConsumer(this.topic)
+        }))
         consumerWrapper.appendChild(topicHint)
         return consumerWrapper
     }

@@ -5,7 +5,7 @@ import {NumberStrategy} from './devices/strategies/NumberStrategy'
 import {createSelectOption, generateConsumerForm, generateProviderForm} from './devices/FormService'
 import {CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
 import {TextStrategy} from './devices/strategies/TextStrategy'
-import {AVAILABLE_TOPICS} from './devices/RegistryService'
+import {AVAILABLE_TOPICS, useRegistryService} from './devices/RegistryService'
 
 // On click, generates a set of demo providers and consumers
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
@@ -13,6 +13,7 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     const TOPIC_LIGHT_2 = 'light-2'
     const TOPIC_HEATING_1 = 'heating-1'
     const TOPIC_TEXT_1 = 'text-1'
+    const registryService = useRegistryService()
     AVAILABLE_TOPICS.push(TOPIC_LIGHT_1)
     AVAILABLE_TOPICS.push(TOPIC_LIGHT_2)
     AVAILABLE_TOPICS.push(TOPIC_HEATING_1)
@@ -28,12 +29,16 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
 
     const kitchenLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_1)
     providerContainer?.appendChild(kitchenLightProvider)
+    registryService.addTopic(TOPIC_LIGHT_1)
     const livingRoomLightProvider = new BooleanStrategy().createProviderElement(TOPIC_LIGHT_2)
     providerContainer?.appendChild(livingRoomLightProvider)
+    registryService.addTopic(TOPIC_LIGHT_2)
     const livingRoomHeatingProvider = new NumberStrategy().createProviderElement(TOPIC_HEATING_1)
     providerContainer?.appendChild(livingRoomHeatingProvider)
+    registryService.addTopic(TOPIC_HEATING_1)
     const ledDisplayProvider = new TextStrategy().createProviderElement(TOPIC_TEXT_1)
     providerContainer?.appendChild(ledDisplayProvider)
+    registryService.addTopic(TOPIC_TEXT_1)
 
     const consumerContainer = getConsumerContainer()
 

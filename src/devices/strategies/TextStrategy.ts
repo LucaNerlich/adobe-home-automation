@@ -33,7 +33,9 @@ export class TextStrategy extends Strategy {
         inputElement.addEventListener('input', (event) => this.dispatchEvent(event, topic, labelID))
         form.appendChild(inputElement)
 
-        form.appendChild(createDeletionButton(formID))
+        form.appendChild(createDeletionButton(formID, () => {
+            this.registryService.removeTopic(topic)
+        }))
 
         return form
     }

@@ -1,5 +1,9 @@
 // Topic -> Consumers Map
+
+import {getConsumerTopicSelect} from '../domUtils'
+
 const TOPIC_CONSUMER_MAP = new Map<string, Array<HTMLElement>>()
+const TOPIC_COUNT_MAP = new Map<string, number>()
 
 export const useRegistryService = () => {
     function addConsumer(topic: string, consumer: HTMLElement | null) {
@@ -12,28 +16,61 @@ export const useRegistryService = () => {
         }
     }
 
-    function removeConsumer() {
-
+    function removeConsumer(topic: string) {
+        if (TOPIC_CONSUMER_MAP.has(topic)) {
+            TOPIC_CONSUMER_MAP.delete(topic)
+        }
     }
 
     function getConsumer(topic: string) {
         return TOPIC_CONSUMER_MAP.get(topic)
     }
 
-    function addProvider() {
+    function addTopic(topic: string, updateDomCallback?: Function) {
+        if (TOPIC_COUNT_MAP.has(topic)) {
+            const oldValue = TOPIC_COUNT_MAP.get(topic)
+            TOPIC_COUNT_MAP.set(topic, oldValue ? oldValue + 1 : 1)
+        } else {
+            TOPIC_COUNT_MAP.set(topic, 1)
 
+            if (updateDomCallback) {
+                updateDomCallback()
+            }
+        }
     }
 
-    function removeProvider() {
+    function removeTopic(topic: string): boolean {
+        let result = false
+        if (TOPIC_COUNT_MAP.has(topic)) {
+            const oldValue = TOPIC_COUNT_MAP.get(topic) ?? 0
+            const newValue = oldValue > 1 ? oldValue - 1 : 0
+            TOPIC_COUNT_MAP.set(topic, newValue)
 
+            if (newValue === 0) {
+                const topicSelect = getConsumerTopicSelect()
+                console.warn('Deleted last provider of topic: "%s"', topic)
+                // todo find option with topic and remove
+            }
+        }
+        return result
+    }
+
+    function getTopicCount(topic: string): number {
+        return TOPIC_COUNT_MAP.get(topic) ?? 0
+    }
+
+    function getAllTopics() {
+        return TOPIC_COUNT_MAP
     }
 
     return {
         addConsumer,
         removeConsumer,
         getConsumer,
-        addProvider,
-        removeProvider,
+        addTopic,
+        removeTopic,
+        getTopicCount,
+        getAllTopics,
     }
 }
 

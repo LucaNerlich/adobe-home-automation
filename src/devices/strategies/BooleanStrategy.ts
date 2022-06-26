@@ -67,7 +67,9 @@ export class BooleanStrategy extends Strategy {
         inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, labelID))
         formElement.appendChild(inputElement)
 
-        formElement.appendChild(createDeletionButton(formId))
+        formElement.appendChild(createDeletionButton(formId, () => {
+            this.registryService.removeTopic(topic)
+        }))
         return formElement
     }
 
