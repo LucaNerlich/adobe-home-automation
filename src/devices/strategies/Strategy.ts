@@ -13,7 +13,8 @@ export abstract class Strategy {
 
     /**
      * Mocks a real display / api from a smart home device
-     * returns the element that visualizes the given value
+     * returns the element that visualizes the given value.
+     * Needs to handle incoming types of EventData.value
      */
     abstract createConsumerElement(topic: string, eventData: EventData): HTMLElement;
 
@@ -30,7 +31,7 @@ export abstract class Strategy {
 
     /**
      * Updates the underlying div that represents the display / api for implementing strategy
-     * @param this -> (implicit) the HTMLElement to update
+     * //@param this -> (implicit) the HTMLElement to update
      * @param event -> event and data sent by provider
      */
     abstract update(event: Event): void;
