@@ -1,7 +1,8 @@
 import {getRandomID} from '../constants'
-import {createDeviceWithFormData, DeviceType} from './DeviceService'
-import {getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
-import {AVAILABLE_TOPICS} from '../state'
+import {createDeviceWithFormData} from './DeviceService'
+import {DeviceType} from './DeviceType'
+import {getConsumerTopicSelect, getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
+import {useRegistryService} from './RegistryService'
 import {StrategyType} from './strategies/StrategyType'
 
 export const TOPIC_FORM_NAME = 'topic'
@@ -20,7 +21,7 @@ export function createSelectOption(label: string): HTMLElement {
     const optionElement = document.createElement('option')
     setDataAttribute(optionElement, getFormDataAttribute('select-option_' + replaceSpaceWithDash(label)))
     optionElement.setAttribute('value', label)
-    optionElement.textContent = label
+    optionElement.textContent = label.replace('_STRATEGY', '')
 
     return optionElement
 }
@@ -47,18 +48,19 @@ function addStrategySelectToForm(formRoot: HTMLFormElement) {
 
     // https://bobbyhadz.com/blog/typescript-iterate-enum
     Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
-        strategyInput.appendChild(createSelectOption(strategyType))
-    },
+            strategyInput.appendChild(createSelectOption(strategyType))
+        },
     )
 
     formRoot.appendChild(strategyInput)
 }
 
 /**
- * Generates a select dropdown with values from {@link AVAILABLE_TOPICS}.
+ * Generates a select dropdown with values from {@link RegistryService}.
  * @param formRoot
  */
 function addTopicSelectToForm(formRoot: HTMLFormElement) {
+    const registryService = useRegistryService()
     formRoot.appendChild(document.createElement('br'))
 
     const topicSelectId = getRandomID()
@@ -73,7 +75,7 @@ function addTopicSelectToForm(formRoot: HTMLFormElement) {
     strategySelectInput.id = topicSelectId
     strategySelectInput.setAttribute('name', TOPIC_FORM_NAME)
 
-    AVAILABLE_TOPICS.forEach(topic => {
+    registryService.getAllTopics().forEach((_count, topic) => {
         strategySelectInput.appendChild(createSelectOption(topic))
     })
 
@@ -93,6 +95,8 @@ function generateErrorSpan(message: string) {
 }
 
 export function generateProviderForm(formRoot: HTMLFormElement | null) {
+    const registryService = useRegistryService()
+
     if (formRoot) {
         const labelInputTuple = generateLabelTextInput('Topic', 'provider-topic', TOPIC_FORM_NAME)
 
@@ -119,20 +123,17 @@ export function generateProviderForm(formRoot: HTMLFormElement | null) {
             formData.forEach((value, key) => {
                 if (key === TOPIC_FORM_NAME) {
                     topic = replaceSpaceWithDash(value.toString())
-                    if (AVAILABLE_TOPICS.includes(topic)) {
-                        submitErrorSpan.style.display = ''
-                        isValid = false
-                    } else {
-                        AVAILABLE_TOPICS.push(topic)
-                        isValid = true
-                    }
+
+                    registryService.addTopic(topic, () => {
+                        // add the new topic to the consumer topic select options
+                        const topicSelect = getConsumerTopicSelect()
+                        topicSelect?.appendChild(createSelectOption(topic))
+                    })
+                    isValid = true
                 }
             })
 
             if (isValid) {
-                // add the new topic to the consumer topic select options
-                const topicSelect = document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]')
-                topicSelect?.appendChild(createSelectOption(topic))
                 submitErrorSpan.style.display = 'none'
                 form.reset()
 

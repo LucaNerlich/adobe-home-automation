@@ -6,6 +6,7 @@ import {ConsumerImpl} from './consumer/ConsumerImpl'
 import {Consumer} from './consumer/Consumer'
 import {TextStrategy} from './strategies/TextStrategy'
 import {StrategyType} from './strategies/StrategyType'
+import {DeviceType} from './DeviceType'
 
 /**
  * Creates a provider element for the given topic and strategy type.
@@ -106,9 +107,4 @@ export function createDeviceWithFormData(formData: FormData, deviceType: DeviceT
             break
         }
     }
-}
-
-export enum DeviceType {
-    PROVIDER = 'PROVIDER',
-    CONSUMER = 'CONSUMER'
 }

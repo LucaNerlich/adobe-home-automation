@@ -4,5 +4,5 @@
 export interface EventData {
     id: string,
     label?: string,
-    value: any,
+    value: string | number |  boolean | object,
 }

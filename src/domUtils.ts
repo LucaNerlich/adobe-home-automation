@@ -10,7 +10,7 @@ export function getProviderContainer(): HTMLElement | null {
     return document.getElementById(PROVIDER_CONTAINER_ID)
 }
 
-export function createCustomEvent(topic: string, id: string, value: any): CustomEvent {
+export function createCustomEvent(topic: string, id: string, value: string | number |  boolean | object): CustomEvent {
     return new CustomEvent(topic, {
         detail: {
             id: id,
@@ -31,7 +31,7 @@ export function createBaseForm(id: string, label: string): HTMLFormElement {
     return formElement
 }
 
-export function createDataAttribute(suffix: string, value: any): DataAttribute {
+export function createDataAttribute(suffix: string, value: string | number |  boolean | object): DataAttribute {
     return {
         type: 'data-' + suffix,
         value: value,
@@ -46,13 +46,21 @@ export function setDataAttribute(element: HTMLElement, dataAttribute: DataAttrib
     element.setAttribute(dataAttribute.type, dataAttribute.value)
 }
 
+export function getConsumerTopicSelect() {
+    return document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]')
+}
+
 /**
  * returns a button that on click deletes the element with the given id
  * @param elementId -> ID of the HTMLElement to remove from the DOM
+ * @param callback -> additional function which should be called onClick
  */
-export function createDeletionButton(elementId: string): HTMLButtonElement {
+export function createDeletionButton(elementId: string, callback?: () => void): HTMLButtonElement {
     function deleteElement() {
         document.getElementById(elementId)?.remove()
+        if (callback) {
+            callback()
+        }
     }
 
     const button = document.createElement('button')

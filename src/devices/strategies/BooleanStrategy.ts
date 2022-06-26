@@ -3,7 +3,7 @@ import {EventData} from '../../entities/EventData'
 import {createBaseForm, createCustomEvent, createDeletionButton} from '../../domUtils'
 import {getRandomID} from '../../constants'
 import {createInputElement, createLabelElement} from '../FormService'
-import {addGlobalConsumerDisplay, TOPIC_CONSUMER_MAP} from '../../state'
+import {useRegistryService} from '../RegistryService'
 import {StrategyType} from './StrategyType'
 
 const classOff = 'bool-strategy-off'
@@ -15,6 +15,7 @@ const classOn = 'bool-strategy-on'
  */
 export class BooleanStrategy extends Strategy {
     readonly strategyType: StrategyType = StrategyType.BOOLEAN_STRATEGY
+    readonly registryService = useRegistryService()
 
     private static parseValue(eventData: EventData) {
         return (
@@ -46,7 +47,7 @@ export class BooleanStrategy extends Strategy {
         const randomID = args[1] as string
         const checkboxElement = event.target as HTMLInputElement
         const checkboxEvent = createCustomEvent(topic, randomID, checkboxElement?.checked)
-        const consumers = TOPIC_CONSUMER_MAP.get(topic)
+        const consumers = this.registryService.getConsumer(topic)
         consumers?.forEach(item => {
             item.dispatchEvent(checkboxEvent)
         })
@@ -66,7 +67,9 @@ export class BooleanStrategy extends Strategy {
         inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, labelID))
         formElement.appendChild(inputElement)
 
-        formElement.appendChild(createDeletionButton(formId))
+        formElement.appendChild(createDeletionButton(formId, () => {
+            this.registryService.removeTopic(topic)
+        }))
         return formElement
     }
 
@@ -77,7 +80,7 @@ export class BooleanStrategy extends Strategy {
         BooleanStrategy.setValue(state, consumerDisplay)
 
         consumerDisplay.addEventListener(topic, this.update)
-        addGlobalConsumerDisplay(topic, consumerDisplay)
+        this.registryService.addConsumer(topic, consumerDisplay)
         return consumerDisplay
     }
 
