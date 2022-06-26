@@ -13,7 +13,7 @@ import {
     STRATEGIES_FORM_NAME,
     TOPIC_FORM_NAME,
 } from '../devices/FormService'
-import {AVAILABLE_TOPICS} from '../devices/RegistryService'
+import {useRegistryService} from '../devices/RegistryService'
 
 const label = 'some-label'
 const topic = 'some-topic'
@@ -63,7 +63,8 @@ test('generateProviderForm correctly prepares provider-form', () => {
 })
 
 test('generateConsumerForm correctly prepares consumer-form', () => {
-    AVAILABLE_TOPICS.push(topic)
+    const registryService = useRegistryService()
+    registryService.addTopic(topic)
     const formRoot = document.createElement('form')
 
     generateConsumerForm(formRoot)

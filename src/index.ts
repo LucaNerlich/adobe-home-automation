@@ -5,7 +5,7 @@ import {NumberStrategy} from './devices/strategies/NumberStrategy'
 import {createSelectOption, generateConsumerForm, generateProviderForm} from './devices/FormService'
 import {CONSUMER_FORM_ID, PROVIDER_FORM_ID} from './constants'
 import {TextStrategy} from './devices/strategies/TextStrategy'
-import {AVAILABLE_TOPICS, useRegistryService} from './devices/RegistryService'
+import {useRegistryService} from './devices/RegistryService'
 
 // On click, generates a set of demo providers and consumers
 document.getElementById('load-demo-button')?.addEventListener('click', (event) => {
@@ -14,10 +14,6 @@ document.getElementById('load-demo-button')?.addEventListener('click', (event) =
     const TOPIC_HEATING_1 = 'heating-1'
     const TOPIC_TEXT_1 = 'text-1'
     const registryService = useRegistryService()
-    AVAILABLE_TOPICS.push(TOPIC_LIGHT_1)
-    AVAILABLE_TOPICS.push(TOPIC_LIGHT_2)
-    AVAILABLE_TOPICS.push(TOPIC_HEATING_1)
-    AVAILABLE_TOPICS.push(TOPIC_TEXT_1)
 
     const topicSelect = document.querySelector('#consumer-form > select[data-form-element="consumer-topic-select"]')
     topicSelect?.appendChild(createSelectOption(TOPIC_LIGHT_1))

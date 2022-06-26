@@ -1,5 +1,6 @@
 import {getRandomID} from '../constants'
-import {createDeviceWithFormData, DeviceType} from './DeviceService'
+import {createDeviceWithFormData} from './DeviceService'
+import {DeviceType} from './DeviceType'
 import {getConsumerTopicSelect, getFormDataAttribute, replaceSpaceWithDash, setDataAttribute} from '../domUtils'
 import {useRegistryService} from './RegistryService'
 import {StrategyType} from './strategies/StrategyType'
@@ -47,15 +48,15 @@ function addStrategySelectToForm(formRoot: HTMLFormElement) {
 
     // https://bobbyhadz.com/blog/typescript-iterate-enum
     Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
-            strategyInput.appendChild(createSelectOption(strategyType))
-        },
+        strategyInput.appendChild(createSelectOption(strategyType))
+    },
     )
 
     formRoot.appendChild(strategyInput)
 }
 
 /**
- * Generates a select dropdown with values from {@link AVAILABLE_TOPICS}.
+ * Generates a select dropdown with values from {@link RegistryService}.
  * @param formRoot
  */
 function addTopicSelectToForm(formRoot: HTMLFormElement) {

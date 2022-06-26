@@ -26,21 +26,21 @@ export const useRegistryService = () => {
         return TOPIC_CONSUMER_MAP.get(topic)
     }
 
-    function addTopic(topic: string, updateDomCallback?: Function) {
+    function addTopic(topic: string, callback?: () => void) {
         if (TOPIC_COUNT_MAP.has(topic)) {
             const oldValue = TOPIC_COUNT_MAP.get(topic)
             TOPIC_COUNT_MAP.set(topic, oldValue ? oldValue + 1 : 1)
         } else {
             TOPIC_COUNT_MAP.set(topic, 1)
 
-            if (updateDomCallback) {
-                updateDomCallback()
+            if (callback) {
+                callback()
             }
         }
     }
 
     function removeTopic(topic: string): boolean {
-        let result = false
+        const result = false
         if (TOPIC_COUNT_MAP.has(topic)) {
             const oldValue = TOPIC_COUNT_MAP.get(topic) ?? 0
             const newValue = oldValue > 1 ? oldValue - 1 : 0
@@ -78,7 +78,3 @@ export const useRegistryService = () => {
         getAllTopics,
     }
 }
-
-// On provider creation submit, the new topic will be added here.
-// Can be used by consumer form, for example.
-export const AVAILABLE_TOPICS: Array<string> = []
