@@ -1,5 +1,3 @@
-// Topic -> Consumers Map
-
 import {getConsumerTopicSelect} from '../domUtils'
 
 const TOPIC_CONSUMER_MAP = new Map<string, Array<HTMLElement>>()
