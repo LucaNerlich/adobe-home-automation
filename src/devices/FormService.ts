@@ -75,8 +75,8 @@ function addStrategySelectToForm(formRoot: HTMLFormElement) {
 
     // https://bobbyhadz.com/blog/typescript-iterate-enum
     Object.keys(StrategyType).filter((v) => isNaN(Number(v))).forEach(strategyType => {
-            strategyInput.appendChild(createSelectOption(strategyType))
-        },
+        strategyInput.appendChild(createSelectOption(strategyType))
+    },
     )
 
     formRoot.appendChild(strategyInput)

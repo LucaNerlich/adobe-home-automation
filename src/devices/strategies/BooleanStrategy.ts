@@ -155,7 +155,7 @@ export class BooleanStrategy extends Strategy {
         return consumerDisplay
     }
 
-        /**
+    /**
          * @method update(event: Event): void
          *
          * Updates the display state of the consumer element according to the information received from the `Event`.

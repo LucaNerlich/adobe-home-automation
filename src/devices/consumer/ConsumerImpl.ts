@@ -100,7 +100,7 @@ export class ConsumerImpl extends Consumer {
         })
     }
 
-        /**
+    /**
          * getLabel is a private method that returns the label for the ConsumerImpl object.
          * If no label is provided, the method will default to returning 'simple-consumer'.
          *
