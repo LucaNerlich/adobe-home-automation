@@ -129,5 +129,4 @@ export class TextStrategy extends Strategy {
             displayElement.textContent = eventData.value
         }
     }
-
 }
