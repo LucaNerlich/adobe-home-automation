@@ -9,9 +9,14 @@ import {StrategyType} from './strategies/StrategyType'
 import {DeviceType} from './DeviceType'
 
 /**
- * Creates a provider element for the given topic and strategy type.
- * @param topic -> the event topic for which the provider should emit its event
- * @param strategyType -> the type of strategy which the provider should implement
+ * The function 'createProvider' generates a new HTMLElement depending on the provided 'strategyType'.
+ * It first creates a default div element and then, depending on the 'strategyType', processes it through a
+ * specific strategy (BooleanStrategy, NumberStrategy, TextStrategy) to create a tailored provider element.
+ * If the 'strategyType' is null or not one of the defined strategies, it logs an error and returns the default div.
+ *
+ * @param {string} topic - The topic for which the provider element has to be created.
+ * @param {StrategyType} strategyType - The type of strategy to apply when creating the provider element.
+ * @returns {HTMLElement} - The generated HTMLElement based on the provided 'strategyType'.
  */
 export function createProvider(topic: string, strategyType: StrategyType): HTMLElement {
     let result: HTMLElement = document.createElement('div')
@@ -37,10 +42,15 @@ export function createProvider(topic: string, strategyType: StrategyType): HTMLE
 }
 
 /**
- * Creates a consumer element for the given topic and strategy type.
- * @param topic -> the event topic which the consumer should listen to
- * @param label -> a name or label to identify the consumer / device
- * @param strategyType -> the type of strategy which the consumer should implement
+ * The function 'createConsumer' generates a new Consumer object based on the provided 'strategyType'.
+ * It initializes the result as null, and then, depending on the 'strategyType', assigns a new ConsumerImpl object
+ * with the help of a specific strategy (BooleanStrategy, NumberStrategy, TextStrategy) to the result.
+ * If the 'StrategyType' is null or not one of the defined 'StrategyType', it logs an error and does not change the result.
+ *
+ * @param {string} topic - The topic for which the Consumer object has to be created.
+ * @param {string} label - The label for which the Consumer object has to be created.
+ * @param {StrategyType} strategyType - The type of strategy to apply when creating the Consumer object.
+ * @returns {Consumer | null} - The generated Consumer object based on the provided 'strategyType'. Returns null if invalid 'strategyType'.
  */
 export function createConsumer(topic: string, label: string, strategyType: StrategyType): Consumer | null {
     let result: Consumer | null = null
@@ -66,10 +76,19 @@ export function createConsumer(topic: string, label: string, strategyType: Strat
 }
 
 /**
- * Loop over the given FormData and, if a topic and strategyType are present,
- * creates a new provider and adds it to the list.
- * @param formData
- * @param deviceType -> either PROVIDER or CONSUMER - {@link DeviceType}
+ * This function named 'createDeviceWithFormData' is responsible for creating and adding a device (either a Provider or a Consumer)
+ * using form data passed in the argument. It takes formData and a deviceType as arguments.
+ *
+ * In the function, three initiators are declared for topic, name, and strategyType.
+ * An iteration is performed over the form data to extract values for these variables based on predefined form names.
+ * If a successful match is found for the variable, the value from the form data is assigned.
+ * This function contains a forced typecast for strategyType as it's selected from predefined StrategyTypes.
+ *
+ * Following the extraction process, a new Consumer or Provider is created and added to the respective container.
+ * This depends on the assigned variables and the deviceType passed to the function.
+ * If the deviceType is neither a Provider nor a Consumer, an error is logged.
+ * @param {FormData} formData - The form data used to create the device.
+ * @param {DeviceType} deviceType - The type of device to be created.
  */
 export function createDeviceWithFormData(formData: FormData, deviceType: DeviceType) {
     let topic = ''

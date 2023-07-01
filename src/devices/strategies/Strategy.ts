@@ -2,10 +2,18 @@ import {EventData} from '../../entities/EventData'
 import {StrategyType} from './StrategyType'
 
 /**
- * A strategy encapsulates a specific use case and handles the corresponding provider and consumer.
- * A provider broadcasts its value changes via a custom event and a specific topic.
- * A consumer listens on this topic and updates its internal implementation,
- * which in return visualizes the updated value.
+ * This TypeScript class is named Strategy and is abstract.
+ * @remarks
+ * - It encapsulates a specific use case and handles the corresponding provider and consumer.
+ * - A provider broadcasts its value changes via a custom event and a specific topic.
+ * - A consumer listens on this topic and updates its implementation,
+ *   which in return visualizes the updated value.
+ * @property strategyType - The type of strategy. It's abstract and has to be implemented by sub-classes.
+ * @method createConsumerElement - Mocks a real display / api from a smart home device,
+ *   returning the element that visualizes the given value. It should handle EventData.value types.
+ * @method createProviderElement - Creates and returns a provider wrapper from, for example, an input field.
+ * @method dispatchEvent - Dispatches data for its topic. Can accept additional data such as topic or id.
+ * @method update - Updates the underlying div that represents the display / api for the implemented strategy.
  */
 export abstract class Strategy {
 
