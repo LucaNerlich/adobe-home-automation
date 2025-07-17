@@ -3,7 +3,10 @@
 @import "src/css/forms.css";
 
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
 }
 
 .container, .container-forms {
@@ -47,7 +50,24 @@ body {
 }
 
 h1, h2, h3 {
-    padding-left: 1em;
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+    color: var(--color-black);
+}
+
+h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
 

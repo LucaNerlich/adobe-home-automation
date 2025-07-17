@@ -1,30 +1,122 @@
 .bool-strategy-off {
     background-color: #be1d1d;
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .bool-strategy-on {
     background-color: #10a809;
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .consumer-item, form {
-    padding: 1em;
-    margin: 1em;
+    padding: var(--spacing-md);
+    margin: var(--spacing-md);
     border-bottom: var(--border-2);
 }
 
 .consumer-item > p {
     margin: 0;
     font-style: italic;
-    font-size: small;
+    font-size: 0.9em;
+    color: var(--color-gray);
 }
 
 label {
-    margin-right: 1em;
+    margin-right: var(--spacing-md);
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Provider control element styling */
+.container-provider input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #4a90e2;
+    transform: scale(1.1);
+}
+
+.container-provider input[type="number"] {
+    width: 120px;
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+}
+
+.container-provider input[type="number"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+.container-provider input[type="text"] {
+    width: 160px;
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+}
+
+.container-provider input[type="text"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+.container-provider input::placeholder {
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* Provider form layout improvements */
+.container-provider form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    margin: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    border-bottom: var(--border-1);
+}
+
+.container-provider form label {
+    margin-right: 8px;
+    min-width: 80px;
+    font-size: 0.95em;
 }
 
 #load-demo-button {
-    margin-left: 1em;
-    margin-bottom: 1em;
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#load-demo-button:hover {
+    background-color: #357abd;
 }
 
 html {
