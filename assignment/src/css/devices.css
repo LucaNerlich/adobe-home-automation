@@ -1,28 +1,206 @@
 .bool-strategy-off {
     background-color: #be1d1d;
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .bool-strategy-on {
     background-color: #10a809;
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
-.consumer-item, form {
-    padding: 1em;
-    margin: 1em;
-    border-bottom: var(--border-2);
+/* Consumer item cards - Smart Home Device styling */
+.consumer-item {
+    background-color: var(--color-white);
+    border: var(--border-1);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 1.05em;
+    color: var(--color-black);
 }
 
+.consumer-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Device status styling */
+.consumer-item > span {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 4px 0;
+}
+
+/* Topic hint styling */
 .consumer-item > p {
     margin: 0;
     font-style: italic;
-    font-size: small;
+    font-size: 0.85em;
+    color: var(--color-gray);
+    background-color: rgba(102, 102, 102, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+/* Delete button styling for consumer items */
+.consumer-item > button.delete {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    min-width: auto;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+/* Forms in provider section */
+form {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md);
+    border-bottom: var(--border-2);
 }
 
 label {
-    margin-right: 1em;
+    margin-right: var(--spacing-md);
+    font-weight: 500;
+    display: inline-block;
 }
 
+/* Provider control element styling */
+.container-provider input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #4a90e2;
+    transform: scale(1.1);
+}
+
+.container-provider input[type="number"] {
+    width: 120px;
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+}
+
+.container-provider input[type="number"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+.container-provider input[type="text"] {
+    width: 160px;
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+}
+
+.container-provider input[type="text"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+.container-provider input::placeholder {
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* Provider form layout improvements */
+.container-provider form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    margin: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    border-bottom: var(--border-1);
+}
+
+.container-provider form label {
+    margin-right: 8px;
+    min-width: 80px;
+    font-size: 0.95em;
+}
+
+/* Demo button styling */
 #load-demo-button {
-    margin-left: 1em;
-    margin-bottom: 1em;
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#load-demo-button:hover {
+    background-color: #357abd;
+}
+
+/* Device type specific styling */
+.consumer-item-BOOLEAN_STRATEGY .bool-strategy-off,
+.consumer-item-BOOLEAN_STRATEGY .bool-strategy-on {
+    margin-left: 8px;
+    display: inline-block;
+}
+
+.consumer-item-NUMBER_STRATEGY > span {
+    color: #4a90e2;
+    font-family: monospace;
+    font-size: 1.1em;
+    background-color: rgba(74, 144, 226, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.consumer-item-TEXT_STRATEGY > span {
+    color: #666;
+    font-style: italic;
+    background-color: rgba(102, 102, 102, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+html {
+    background-color: cornsilk;
 }

@@ -20,7 +20,7 @@
         "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
         "serve": "esbuild src/index.ts --bundle --servedir=./ --outdir=./ --sourcemap --loader:.html=text",
         "build": "npm run lint && npm run jest && esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text",
-        "build-prod": "npm run lint && npm run jest && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text && copy index.js assignment\\ && copy index.html assignment\\ && copy index.css assignment\\ && xcopy assets assignment\\assets\\ /E /I /Y && npm run cypress:chrome",
+        "build-prod": "npm run lint && npm run jest && esbuild src/index.ts --bundle --outfile=index.js --minify --loader:.html=text && copy index.js assignment\\ && copy index.html assignment\\ && copy index.css assignment\\ && xcopy src\\css assignment\\src\\css\\ /E /I /Y && xcopy assets assignment\\assets\\ /E /I /Y && npm run cypress:chrome",
         "serve-prod": "esbuild --servedir=./assignment",
         "lint": "eslint . --fix",
         "jest": "jest --coverage",
