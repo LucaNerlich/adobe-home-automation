@@ -37,6 +37,31 @@ export class NumberStrategy extends Strategy {
     readonly registryService = useRegistryService()
 
     /**
+     * @method validatePercentageValue
+     * Validates and clamps the input value to be within 0-100 range
+     * @param {HTMLInputElement} input - The input element to validate
+     */
+    private static validatePercentageValue(input: HTMLInputElement): void {
+        let value = parseFloat(input.value)
+        
+        // If not a number, clear the field
+        if (isNaN(value)) {
+            input.value = ''
+            return
+        }
+        
+        // Clamp value between 0 and 100
+        if (value < 0) {
+            value = 0
+        } else if (value > 100) {
+            value = 100
+        }
+        
+        // Update the input with the clamped value
+        input.value = value.toString()
+    }
+
+    /**
      * @method dispatchEvent
      * Dispatches a custom event to the relevant consumers associated with a topic.
      *
@@ -47,14 +72,19 @@ export class NumberStrategy extends Strategy {
      * The function works as follows:
      * 1. It extracts the topic and randomID from the args array.
      * 2. It retrieves the input element's value responsible for the event triggering and assigns it into the numberField variable.
-     * 3. It creates a custom event (checkboxEvent) using the topic, randomID, and the value of the numberField.
-     * 4. It retrieves a list of consumers associated with the topic from the registry service.
-     * 5. It dispatches the custom event (checkboxEvent) to each consumer in the list.
+     * 3. It validates and clamps the value to 0-100 range.
+     * 4. It creates a custom event (checkboxEvent) using the topic, randomID, and the value of the numberField.
+     * 5. It retrieves a list of consumers associated with the topic from the registry service.
+     * 6. It dispatches the custom event (checkboxEvent) to each consumer in the list.
      */
     dispatchEvent(event: Event, ...args: string[]) {
         const topic = args[0] as string
         const randomID = args[1] as string
         const numberField = event.target as HTMLInputElement
+        
+        // Validate and clamp the value
+        NumberStrategy.validatePercentageValue(numberField)
+        
         const checkboxEvent = createCustomEvent(topic, randomID, numberField?.valueAsNumber)
         const consumers = this.registryService.getConsumer(topic)
         consumers?.forEach(item => {
@@ -90,10 +120,17 @@ export class NumberStrategy extends Strategy {
         const inputElement = createInputElement(labelID, 'provider-item-input_' + topic, 'number')
         inputElement.setAttribute('name', label ? label : topic)
         inputElement.setAttribute('min', '0')
-        inputElement.setAttribute('max', '1')
-        inputElement.setAttribute('step', '0.1')
-        inputElement.setAttribute('placeholder', '% max. value')
+        inputElement.setAttribute('max', '100')
+        inputElement.setAttribute('step', '1')
+        inputElement.setAttribute('placeholder', '0-100%')
+        
+        // Add validation on both input (real-time) and change (when field loses focus) events
+        inputElement.addEventListener('input', (event) => {
+            const target = event.target as HTMLInputElement
+            NumberStrategy.validatePercentageValue(target)
+        })
         inputElement.addEventListener('change', (event) => this.dispatchEvent(event, topic, labelID))
+        
         formElement.appendChild(inputElement)
 
         formElement.appendChild(createDeletionButton(formId, () => {
@@ -122,7 +159,7 @@ export class NumberStrategy extends Strategy {
      */
     createConsumerElement(topic: string, eventData: EventData): HTMLSpanElement {
         const consumerDisplay = document.createElement('span')
-        const value: number = parseFloat(eventData.value)
+        const value: number = parseFloat(String(eventData.value))
         if (!isNaN(value)) {
             consumerDisplay.textContent = value.toString()
         } else {
@@ -155,7 +192,7 @@ export class NumberStrategy extends Strategy {
         const displayElement = this as unknown as HTMLSpanElement
 
         if (displayElement) {
-            displayElement.textContent = eventData.value
+            displayElement.textContent = String(eventData.value)
         }
     }
 }
