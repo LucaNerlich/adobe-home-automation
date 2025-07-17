@@ -80,7 +80,7 @@ export const  useRegistryService = () => {
      * @param {string} topic - The name of the topic.
      * @returns {number} The count of the topic.
      */
-    
+
     function getTopicCount(topic: string): number {
         return TOPIC_COUNT_MAP.get(topic) ?? 0
     }
@@ -89,9 +89,9 @@ export const  useRegistryService = () => {
      * @method getAllTopics
      * @description Returns the entire TOPIC_COUNT_MAP
      * This map includes all `topic` keys along with their corresponding count values.
-     * @returns {Map<string, number>} The entire TOPIC_COUNT_MAP 
+     * @returns {Map<string, number>} The entire TOPIC_COUNT_MAP
      */
-    function getAllTopics() {
+    function getAllTopics(): Map<string, number> {
         return TOPIC_COUNT_MAP
     }
 
