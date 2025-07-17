@@ -1,5 +1,10 @@
 import {BooleanStrategy} from './strategies/BooleanStrategy'
 import {NumberStrategy} from './strategies/NumberStrategy'
+import {ColorStrategy} from './strategies/ColorStrategy'
+import {SelectStrategy} from './strategies/SelectStrategy'
+import {TemperatureStrategy} from './strategies/TemperatureStrategy'
+import {SliderStrategy} from './strategies/SliderStrategy'
+import {TimeStrategy} from './strategies/TimeStrategy'
 import {getConsumerContainer, getProviderContainer, replaceSpaceWithDash} from '../domUtils'
 import {CONSUMER_FORM_NAME, STRATEGIES_FORM_NAME, TOPIC_FORM_NAME} from './FormService'
 import {ConsumerImpl} from './consumer/ConsumerImpl'
@@ -11,7 +16,7 @@ import {DeviceType} from './DeviceType'
 /**
  * The function 'createProvider' generates a new HTMLElement depending on the provided 'strategyType'.
  * It first creates a default div element and then, depending on the 'strategyType', processes it through a
- * specific strategy (BooleanStrategy, NumberStrategy, TextStrategy) to create a tailored provider element.
+ * specific strategy (BooleanStrategy, NumberStrategy, TextStrategy, ColorStrategy, SelectStrategy) to create a tailored provider element.
  * If the 'strategyType' is null or not one of the defined strategies, it logs an error and returns the default div.
  *
  * @param {string} topic - The topic for which the provider element has to be created.
@@ -32,6 +37,21 @@ export function createProvider(topic: string, strategyType: StrategyType): HTMLE
         case StrategyType.TEXT_STRATEGY:
             result = new TextStrategy().createProviderElement(topic)
             break
+        case StrategyType.COLOR_STRATEGY:
+            result = new ColorStrategy().createProviderElement(topic)
+            break
+        case StrategyType.SELECT_STRATEGY:
+            result = new SelectStrategy().createProviderElement(topic)
+            break
+        case StrategyType.TEMPERATURE_STRATEGY:
+            result = new TemperatureStrategy().createProviderElement(topic)
+            break
+        case StrategyType.SLIDER_STRATEGY:
+            result = new SliderStrategy().createProviderElement(topic)
+            break
+        case StrategyType.TIME_STRATEGY:
+            result = new TimeStrategy().createProviderElement(topic)
+            break
         default:
             console.error('Cannot create provider for non existent strategy: ', strategyType)
             break
@@ -44,7 +64,7 @@ export function createProvider(topic: string, strategyType: StrategyType): HTMLE
 /**
  * The function 'createConsumer' generates a new Consumer object based on the provided 'strategyType'.
  * It initializes the result as null, and then, depending on the 'strategyType', assigns a new ConsumerImpl object
- * with the help of a specific strategy (BooleanStrategy, NumberStrategy, TextStrategy) to the result.
+ * with the help of a specific strategy (BooleanStrategy, NumberStrategy, TextStrategy, ColorStrategy, SelectStrategy) to the result.
  * If the 'StrategyType' is null or not one of the defined 'StrategyType', it logs an error and does not change the result.
  *
  * @param {string} topic - The topic for which the Consumer object has to be created.
@@ -65,6 +85,21 @@ export function createConsumer(topic: string, label: string, strategyType: Strat
             break
         case StrategyType.TEXT_STRATEGY:
             result = new ConsumerImpl(topic, label, new TextStrategy())
+            break
+        case StrategyType.COLOR_STRATEGY:
+            result = new ConsumerImpl(topic, label, new ColorStrategy())
+            break
+        case StrategyType.SELECT_STRATEGY:
+            result = new ConsumerImpl(topic, label, new SelectStrategy())
+            break
+        case StrategyType.TEMPERATURE_STRATEGY:
+            result = new ConsumerImpl(topic, label, new TemperatureStrategy())
+            break
+        case StrategyType.SLIDER_STRATEGY:
+            result = new ConsumerImpl(topic, label, new SliderStrategy())
+            break
+        case StrategyType.TIME_STRATEGY:
+            result = new ConsumerImpl(topic, label, new TimeStrategy())
             break
         default:
             console.error('Cannot create consumer for non existent strategy: ', strategyType)

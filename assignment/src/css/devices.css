@@ -201,6 +201,122 @@ label {
     margin-left: 8px;
 }
 
+/* New strategy styling */
+.consumer-item-COLOR_STRATEGY > span {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.8em;
+    vertical-align: middle;
+}
+
+.consumer-item-SELECT_STRATEGY > span {
+    color: #4a90e2;
+    font-weight: 500;
+    background-color: rgba(74, 144, 226, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* Provider control styling for new strategies */
+.container-provider input[type="color"] {
+    width: 60px;
+    height: 40px;
+    padding: 0;
+    border: var(--border-1);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    background: none;
+}
+
+.container-provider input[type="color"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+}
+
+.container-provider select {
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.container-provider select:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+/* Temperature strategy styling */
+.container-provider input[type="number"] + select {
+    width: 60px;
+    margin-left: 8px;
+}
+
+.consumer-item-TEMPERATURE_STRATEGY > span {
+    color: #e67e22;
+    font-family: monospace;
+    font-size: 1.1em;
+    background-color: rgba(230, 126, 34, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* Slider strategy styling */
+.container-provider input[type="range"] {
+    width: 150px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.container-provider input[type="range"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+}
+
+.consumer-item-SLIDER_STRATEGY > span {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+/* Time strategy styling */
+.container-provider input[type="time"] {
+    width: 120px;
+    padding: 6px 8px;
+    border: var(--border-1);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    margin-right: 8px;
+    background-color: var(--color-white);
+}
+
+.container-provider input[type="time"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 1px;
+    border-color: #4a90e2;
+}
+
+.consumer-item-TIME_STRATEGY > span {
+    color: #8e44ad;
+    font-family: monospace;
+    font-size: 1.1em;
+    background-color: rgba(142, 68, 173, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 8px;
+}
+
 html {
     background-color: cornsilk;
 }
