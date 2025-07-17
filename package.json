@@ -4,16 +4,16 @@
     "version": "1.0.0",
     "main": "index.js",
     "devDependencies": {
-        "@types/jest": "^29.5.2",
-        "@typescript-eslint/eslint-plugin": "^5.60.1",
-        "@typescript-eslint/parser": "^5.60.1",
-        "cypress": "^12.16.0",
-        "esbuild": "^0.18.11",
+        "@types/jest": "^30.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.37.0",
+        "@typescript-eslint/parser": "^8.37.0",
+        "cypress": "^12.17.4",
+        "esbuild": "^0.25.6",
         "esbuild-jest": "^0.5.0",
-        "eslint": "^8.44.0",
-        "jest": "^29.5.0",
-        "jest-environment-jsdom": "^29.5.0",
-        "typescript": "^5.1.6"
+        "eslint": "^8.57.1",
+        "jest": "^30.0.4",
+        "jest-environment-jsdom": "^30.0.4",
+        "typescript": "^5.8.3"
     },
     "scripts": {
         "dev": "esbuild src/index.ts --bundle --outfile=index.js --sourcemap --loader:.html=text --watch",
@@ -41,7 +41,7 @@
     },
     "homepage": "https://github.com/LucaNerlich/adobe-home-automation#readme",
     "engines": {
-        "node": "16.15.0",
-        "npm": "8.5.5"
+        "node": "^22",
+        "npm": "^10"
     }
 }
